@@ -1,16 +1,79 @@
 /*
 HTML 5 Template Name: 
-File: Portfolio 14 CSS
+File: Portfolio 25 CSS
 Author: OS Templates
 Author URI: https://www.os-templates.com/
 Licence: <a href="https://www.os-templates.com/template-terms">Website Template Licence</a>
 */
 
-#portfolio{display:block; width:100%; line-height:1.6em;}
-#portfolio ul, #portfolio p{margin:0; padding:0; list-style:none;}
-#portfolio li{display:block; float:left; width:210px; margin:0 40px 40px 0; padding:0;}
-#portfolio li.last{margin-right:0;}
-#portfolio article, #portfolio article figure{display:block; width:100%;}
-#portfolio article figure img{width:210px; height:150px;}
-#portfolio article figure figcaption{padding:10px; color:#000000; background-color:#CCCCCC; text-align:center;}
-#portfolio article figure figcaption header{margin:0 0 5px 0; padding:0; font-size:14px;}
+#portfolio {
+    display: block;
+    width: 100%;
+    line-height: 1.8em;
+}
+
+#portfolio ul,
+#portfolio p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#portfolio li {
+    display: block;
+    float: left;
+    width: 450px;
+    margin: 0 60px 40px 0;
+    padding: 0;
+}
+
+#portfolio li.even {
+    margin-right: 0;
+}
+
+#portfolio article,
+#portfolio article figure {
+    display: block;
+    width: 100%;
+}
+
+#portfolio article figure figcaption {
+    display: block;
+    width: 200px;
+    padding: 15px 0 0 0;
+    border-top: 5px solid #B7B7B7;
+}
+
+#portfolio li.odd article figure figcaption {
+    float: left;
+}
+
+#portfolio li.even article figure figcaption {
+    float: right;
+}
+
+#portfolio article figure figcaption header {
+    margin: 0 0 15px 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#portfolio article figure figcaption p.more {
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+#portfolio article figure img {
+    width: 220px;
+    height: 200px;
+}
+
+#portfolio li.odd article figure img {
+    float: right;
+}
+
+#portfolio li.even article figure img {
+    float: left;
+}
