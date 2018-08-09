@@ -2,11 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %} 
+        <nav class="nav">
+            <a class="nav-link" href="{{ path('landing')}}">Zé landing page</a>
+            <a class="nav-link" href="{{ path('membre_list')}}">Liste membres</a>
+            <a class="nav-link" href="{{ path('membre_show')}}">Show membre</a>
+            <a class="nav-link" href="{{ path('prive_profil')}}">Editer profil</a>
+            <a class="nav-link" href="{{ path('prive_messagerie')}}">Messagerie</a>
+            <a class="nav-link" href="{{ path('admin_membres')}}">Gestion membres</a>
+            <a class="nav-link" href="{{ path('admin_config')}}">Configuration site</a>
+        </nav>
+        {% block tracabilite %}{% endblock %}
+        {% block body %}
+            <p>Template base.html.twig</p>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        {% endblock %}
     </body>
 </html>
