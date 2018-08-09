@@ -244,24 +244,41 @@ Pour plus d'infos sur les branches et les fusions : https://git-scm.com/book/fr/
 Partage des tâches
 * Modélisation de la base de données. - Tous
 * Gestion de GitHub. - Alexandre
-* Gestion de Trello. - Emeline ?
+* Gestion de Trello. - Emeline
 * Gestion de .env et de .env.dist
 * Gestion des routes et du fichier config/routes.yaml
 * Création du squelette de l'application.  - Alexandre
-* Création de formulaires ???
-* Gestion de la landing page.
+
+(* Création de formulaires ???)
+* Gestion de la landing page. Emeline 
 * Gestion de la charte graphique et du template base.html.twig.
 * Gestion de la charte graphique du backoffice et du template admin.html.twig (à partir duquel les autres templates d'administration seront dérivés). 
+
 * Gestion de 'membres', son template et son contrôleur.
 * Gestion du 'show membre', son template et son contrôleur.
 
-* Gestion de la page privée 'Profil'.
+* Gestion de la page privée 'Profil'. Margot
+
 * Gestion de la sécurité, et des formulaires d'inscription/connexion et des sessions.
+
 * Gestion de l'upload d'images et de leur stockage. Aussi des icônes du site et des différentes interfaces.
+
 * Gestion de la messagerie.
+
 * Gestion des likes.
-* Gestion des cookies.
+
+* Gestion des de sessions et de cookies. Manu
+
 * Gestion des relations entre les tables et leurs contraintes, et de sa cohérence avec l'application..
+
+* Template de base base.html.twig alexandre
+
+* Template de admin.html.twig Manu
+
+* Template de prive..html.twig Margot
+
+* page message
+
 
 --- Tâches secondaires néanmoins importantes ---
 * Vérification de la cohérence sémantique.
