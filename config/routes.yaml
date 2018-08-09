@@ -43,3 +43,15 @@ admin_membres:
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: admin/membres.html.twig
+
+test_list:
+    path: /test/list
+    controller: App\Controller\MembresController::list 
+
+test_show:
+    path: /test/show/{id}
+    controller: App\Controller\MembresController::show 
+
+test_new:
+    path: /test/new
+    controller: App\Controller\MembresController::new 

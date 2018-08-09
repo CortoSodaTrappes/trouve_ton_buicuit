@@ -7,6 +7,8 @@ use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Entity\Membres;
 
 
 
@@ -20,26 +22,39 @@ class MembresController extends Controller
             ['membres' => $membresRepository->findAll()]);
     }
 
-    public function show(Membres $membre): Response
+    public function show(Membres $pseudo): Response
     {
-        return $this->render('tests/test.html.twig', ['membre' => $membre]);
+        return $this->render('tests/test.html.twig', ['pseudo' => $pseudo]);
     }
 
     public function new(Request $request): Response
     {
+        // Instanciation de la classe Membres
         $membre = new Membres();
-        $form = $this->createForm(MembresType::class, $membre);
+
+        // Dédinition du formulaire
+        $form = $this->createFormBuilder($membre)
+            ->add('pseudo')
+            ->add('password')
+            ->add('email')
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        // Traitement de la soumission du formulaire
         $form->handleRequest($request);
 
+        // Si tout se passe bien, enregistrement du membre dans la base
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($membre);
             $em->flush();
 
-            return $this->redirectToRoute('membres_index');
+            // Après l'enregistrement, affichage de la liste de membres
+            return $this->redirectToRoute('test_list');
         }
 
-        return $this->render('membres/new.html.twig', [
+        // Affichage du formulaire (qui n'a pas encore été soumis)
+        return $this->render('tests/test.html.twig', [
             'membre' => $membre,
             'form' => $form->createView(),
         ]);

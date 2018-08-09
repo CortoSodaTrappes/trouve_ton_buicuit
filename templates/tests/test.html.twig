@@ -1,3 +1,24 @@
-{% if membre is defined %}
-{{membre}}
+<p>
+    <a href="{{path('test_list')}}">Liste</a>
+</p>
+{% if membres is defined %}
+    {% for membre in membres %}
+        <div>
+            {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
+            <a href="/test/show/{{membre.id}}">{{membre.pseudo}}</a>
+            :
+            {{membre.email}}
+        </div>
+    {% endfor %}
+    <div>
+        <a href="/test/new">Nouveau</a>
+    </div>
+{% elseif pseudo is defined %}
+    <h2>{{pseudo.pseudo}}</h2>
+    <p>Contacter au
+        {{pseudo.email}}</p>
+{% elseif form is defined %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endif %}
