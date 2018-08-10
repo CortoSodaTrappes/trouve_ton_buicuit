@@ -26,7 +26,7 @@ class Membres
     /**
      * @ORM\Column(type="string", length=80)
      */
-    private $email;
+    public $email;
 
     /**
      * @ORM\Column(type="string", length=80)

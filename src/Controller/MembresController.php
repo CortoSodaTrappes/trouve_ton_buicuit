@@ -18,6 +18,7 @@ class MembresController extends Controller
 
     public function list(MembresRepository $membresRepository): Response
     {
+        // Liste de tous les membres
         return $this->render('tests/list.html.twig', 
             ['membres' => $membresRepository->findAll()]);
     }
@@ -25,7 +26,7 @@ class MembresController extends Controller
     public function show(Membres $pseudo): Response
     {
         // Apparemment, en passant un id en argument sf4 s'arrange 
-        // pour que show() reçoive un objet membre complet.
+        // pour que show() reçoive un objet Membre complet.
         return $this->render('tests/show.html.twig', ['pseudo' => $pseudo]);
     }
 
@@ -41,14 +42,19 @@ class MembresController extends Controller
             ->add('password')
             ->add('email')
             ->add('save', SubmitType::class)
+            ->setMethod("POST")
             ->getForm();
 
-            $repository = $this->getDoctrine()->getRepository(Membres::class);
-            $tempmemberemail = $repository->findOneBy(["email" => $request->get('email')]);
-
-        if(is_null($tempmemberemail)){
-            // Traitement de la soumission du formulaire
             $form->handleRequest($request);
+
+            // Récupération d'éventuels membres qui auraient les 
+            // mêmes email et pseudo que ceux saisis.
+            $repository = $this->getDoctrine()->getRepository(Membres::class);
+            $tempmemberemail = $repository->findOneBy(["email" => $membre->getEmail()]);
+            $tempmemberpseudo = $repository->findOneBy(["pseudo" => $membre->getPseudo()]);
+
+        // email et pseudos inconnus, on tente l'enregistrement.
+        if(!$tempmemberemail && !$tempmemberpseudo){
 
             // Si tout se passe bien, enregistrement du membre dans la base
             if ($form->isSubmitted() && $form->isValid()) {
