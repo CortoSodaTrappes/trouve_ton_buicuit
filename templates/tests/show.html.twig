@@ -1,0 +1,13 @@
+{% extends 'test.html.twig' %}    
+{% block body %}
+
+<h2>{{pseudo.pseudo}}</h2>
+<p>Contacter au
+    {{pseudo.email}}</p>
+<p><a href="{{path('test_list')}}">Liste</a></p>
+<p><a href="{{path('test_edit', {id: pseudo.id }) }}">Edit {{pseudo.pseudo}}</a></p>
+<p><a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer {{pseudo.pseudo}}</a></p>
+
+{% endblock %}
+
+

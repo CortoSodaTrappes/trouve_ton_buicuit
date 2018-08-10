@@ -55,3 +55,11 @@ test_show:
 test_new:
     path: /test/new
     controller: App\Controller\MembresController::new 
+
+test_edit:
+    path: /test/edit/{id}
+    controller: App\Controller\MembresController::edit 
+
+test_delete:
+    path: /test/delete/{id}
+    controller: App\Controller\MembresController::delete 

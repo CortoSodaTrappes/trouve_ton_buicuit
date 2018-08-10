@@ -1,0 +1,19 @@
+{% extends 'test.html.twig' %}    
+
+
+{% block body %}
+{% for membre in membres %}
+    <div>
+        {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
+        <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
+        :
+        {{membre.email}}
+    </div>
+{% endfor %}
+<div>
+    <a href="/test/new">Nouveau</a>
+</div>
+
+{% endblock %}
+
+
