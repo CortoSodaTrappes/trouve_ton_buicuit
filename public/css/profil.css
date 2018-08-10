@@ -1,0 +1,48 @@
+.profil {
+  background-color: green;
+}
+
+.profil .profil-barre-top {
+  background-color: #310080;
+}
+
+.profil .profil-barre-top .container {
+  background-color: red;
+  padding: 0%;
+}
+
+.profil .profil-barre-top .container .profil-block-top-container {
+  background-color: #d0ff00;
+  padding: 0%;
+}
+
+.profil .profil-barre-top .container .row {
+  margin: 0%;
+}
+
+.profil .profil-barre-top .container .row .profil-photos {
+  background-color: white;
+}
+
+.profil .profil-barre-top .container .row .profil-photos .profil-main-img {
+  width: 100%;
+  padding: 0%;
+}
+
+.profil .profil-barre-top .container .row .profil-main-information {
+  background-color: #ccc1c1;
+  color: black;
+}
+
+.profil .profil-barre-top .container .row .profil-main-information h4 {
+  margin: 5%;
+}
+
+.profil .profil-barre-top .container .row .container-profile-base {
+  background-color: aqua;
+}
+
+.dating-profile {
+  background-color: #00c3ff;
+}
+/*# sourceMappingURL=profil.css.map */

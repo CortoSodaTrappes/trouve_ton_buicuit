@@ -1,0 +1,38 @@
+.profil {
+    background-color: green;
+    .profil-barre-top {
+        background-color: rgb(49, 0, 128);
+        .container {
+            background-color: red;
+            padding: 0%;
+            .profil-block-top-container {
+                background-color: rgb(208, 255, 0);
+                padding: 0%;
+            }
+            .row {
+                margin: 0%;
+                .profil-photos {
+                    background-color: white;
+                    .profil-main-img {
+                        width: 100%;
+                        padding: 0%;
+                    }
+                }
+                .profil-main-information {
+                    background-color: rgb(204, 193, 193);
+                    color: black;
+                    h4 {
+                        margin: 5%;
+                    }
+                }
+                .container-profile-base {
+                    background-color: aqua;
+                }
+            }
+        }
+    }
+}
+
+.dating-profile {
+    background-color: rgb(0, 195, 255);
+}

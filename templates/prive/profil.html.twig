@@ -1,6 +1,67 @@
 {% extends "prive.html.twig" %}
 
-{% block body %}
-    <p>Template profil.html.twig</p>
-    <p>Ici gestion du profil.</p>
+{% block stylesheets %}
+{{ parent() }}
+{# <link rel="stylesheet" href="css/portfolio.css"> #}
+<link rel="stylesheet" href="css/profil.css">
 {% endblock %}
+
+
+
+{% block main %}
+<section class="profil">
+    <div class="profil-barre-top">
+        <div class="container">
+            <section class="profil-block-top-container row">
+                <div class="profil-photos col-4">
+                    <img class="profil-main-img" src="images/femme1a.jpg" alt="image-profil">
+                </div>
+                <div class="profil-main-information col-6">
+                    <h4>PSEUDO</h4>
+                    <p>"Je suis bla bla bla"</p>
+                    <p>AGE</p>
+                    <p>VILLE</p>
+                </div>
+                <div class="profil-buttun-modification col-2">
+                    <p>button modifier profil</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+
+    
+       
+    <div class="dating-profile container">
+        <div class="dating-profil-main row">
+        <div class="dating-profil-banner col-4">
+            <p>Ce que j'aime</p>
+            <p>choisir dans la liste:</p>
+            <p>lkjlkjlkjlkjlkj</p>
+            <p>lkjlkjlkjlkjlkj</p>
+            <p>lkjlkjlkjlkjlkj</p>
+            <p>lkjlkjlkjlkjlkj</p>
+
+        </div>
+        <div class="dating-profil-banner col-8">
+            <div class="formulaire">
+                <p>description</p>
+                <p>personalité</p>
+                <p>psysique</p>
+                <p>mode de vie</p>
+                <p>je cherche</p>
+               
+            <div>
+
+
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
+
+{% endblock %}
+
