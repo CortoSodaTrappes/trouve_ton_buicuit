@@ -1,0 +1,310 @@
+
+########################### PENSE-BETE ###########################################
+
+
+Le $ représente ici le prompt de l'OS. Sous Linux et Mac c'est $, sous Windows c'est c:\>. Il ne faut pas copier $ pour exécuter la commande.
+
+
+####### Créer un projet symfony 4 ########
+$ composer create-project symfony/website-skeleton monprojet # Avec principales dépendances.
+ou
+$ composer create-project symfony/skeleton monprojet # Nu
+
+La console indique beaucoup de ce qu'il y a à faire par la suite.
+
+####### Première exécution d'un projet ########
+$ cd monprojet
+$ php bin/console server:run
+
+##### Initialisation de git
+$ git init
+
+Commiter l'installation du projet
+$ git add -all
+$ git commit -m "Initialisation du projet monprojet
+
+Créer une branche dev et s'y placer
+$ git checkout -b dev
+
+Selon les circonstances créer différentes branches selon les fonctionnalités ou l'équipe de développeurs.
+
+$ git branch membres
+$ git branch securite
+$ git branch base_template
+$ ...
+
+
+
+####### Création d'un contrôleur ########
+$ php bin/console make:controller
+ou
+$ php bin/console make:controller moncontroleur
+
+Ceci créé un contrôleur et une route sous un format annotation (en commentaire juste au dessus de la méthode). Mike conseille qu'on utilise plutôt les routes sous format yalm, dans le fichier config/routes.yaml.
+
+Mettons que nous voulons qu'avec l'url (nom_de_domaine)/lucky, le controlleur LuckyController affiche un numéro aléatoire dans le templante templates/lucky/number.html.twig
+
+1. On créé la route dans config/routes.yalm :
+
+lucky_number:
+    path: /
+    controller: App\Controller\LuckyController::number
+
+2. On personnalise le contrôleur :
+
+class LuckyController extends Controller
+{
+    public function number()
+    {
+        $number = random_int(0, 100);
+        return $this->render('lucky/number.html.twig', array(
+            'number' => $number,
+        ));
+    }
+}
+
+Quand on fait hériter notre contrôleur de la classe Controller, on dispose de la méthode $this->render().
+
+3. On créé ou modifie le template par défaut templates/lucky/number.html.twig
+
+<h1>Your lucky number is {{ number }}</h1>
+
+
+###### ROUTING ######
+
+Les routes donnent toutes sortes de possibilités. Par exemple :
+
+blog_list:
+    path:     /blog
+    controller: App\Controller\BlogController::list
+
+blog_show:
+    path:     /blog/{id_article}
+    controller: App\Controller\BlogController::show
+
+Une url telle que (nom_de_domaine)/blog ira sur la méthode (en sf on parle d'actions) du contrôleur BlogController qui affiche une liste d'articles. En revanche, une url telle que (nom_de_domaine)/blog/14 ira sur la méthode show du même contrôleur, qui lui affichera un article donné. Cette méthode recevra en argument le paramètre 'id_article'.
+
+    public function show($id_article)
+    {
+        // instructions pour afficher un seul article.
+    }
+
+Pour voir les routes définies :
+
+$ php bin/console debug:router
+
+Plus d'infos sur https://symfony.com/doc/current/routing.html. Sur les exemples, il faut souvent cliquer sur l'onglet YALM.
+
+###### CONTROLEURS ######
+Doc ici : https://symfony.com/doc/current/controller.html
+
+A noter une commande potentiellement intéressante, qui permet de créer dans le contrôleur un crud (Create, Read, Update, Delete) complet d'un seul coup. Mais pour ça il faut avoir déjà l'entité.
+
+$ php bin/console make:crud Monentite
+
+
+########### LA BASE DE DONNEES #################
+
+Le composant normalement utilisé pour les relations de Symfony avec la base de données est Doctrine. Les coordonnées de la base de données sont normalement confifurées dans /.env. Pour créer la base de données depuis la ligne de commande :
+
+$ php bin/console doctrine:database:create
+
+S'il n'y a pas de connexion avec la base c'est peut-être que même si le serveur de sf est lancé, il faut aussi lancer le serveur local (xampp, wamp, easyphp ou autre). Info à vérifier.
+
+Une entité est une classe qui représente une table dans la base de données. Ses propriétés, privées, sont le pendant des champs des tables des la base, et elle contient également les getters et les setters associées. Elle comporte des annotations qui vont servir d'indications à symfony pour créer les tables (le mapping). En travaillant sous Symfony, on est invités à raisonner en termes de de classes et d'objets, et oublier que dans la base il y a des tables. Pour créer une entité :
+
+$ php bin/console make:entity
+
+Ensuite, la console demande le nom de l'entité, puis les noms des champs, leur type, s'il y a lieu leur taille, etc. La console donne toutes les indications pour nous guider. Ne pas faire de champ id, Doctrine le fait tout seul.
+
+Si en cours de route on s'est trompé et qu'on veut annuler la création de l'entité, Ctrl+C. Ne pas oublier de supprimer les fichiers entité et repository qui a été créés (dans /src/Entity et dans /src/Repository).
+
+Ensuite, il faut lancer les commandes qui creent la table dans la base. La première créé les requêtes SQL, la seconde les exécute :
+
+$ php bin/console make:migration
+$ php bin/console doctrine:migrations:migrate
+
+Si on a besoin d'ajouter des propriétés à une entité déjà créé, on réutilise la commande php bin/console make:entity puis les deux autres pour mettre à jour la table dans la base.
+
+Si l'on a ajouté à la main des propriétés, on peut créer les getters et les setters d'un seul coup avec :
+
+$ php bin/console make:entity --regenerate
+
+Pour plus d'infos sur doctrine, taper 
+
+$ php bin/console list doctrine
+
+ou aller sur la doc :
+
+https://symfony.com/doc/current/doctrine.html
+
+On y trouvera les instructions pour enregistrer les données (en symfony on dit "persister les objets"), pour les récupérer, les mettres à jour et les supprimer.
+
+La doc pour les relations :
+
+https://symfony.com/doc/current/doctrine/associations.html
+
+
+################ Les templates #########################
+
+
+
+################### GIT ##########################
+
+Pour un affichage d'aide en ligne de commande, taper 
+
+$ git help
+
+Pour un affichage d'aide sur une commande en particulier, par exemple init, taper
+
+$ git --help init
+
+### Uploader un dépôt local vers GitHub
+
+Créer le dépôt sur GitHub. Normalement on y trouve les instructions nécessaires.
+
+Créer le projet en local
+
+$ git init
+$ git commit -m "first commit"
+$ git remote add origin {url_depot_distant}
+$ git push -u origin master
+
+
+### Récupérer en local un dépôt distant
+
+1. Si on a un projet sur GitHub et qu'on veut le cloner en local, sur l'interface de GitHub, sur le dépôt (repository) cliquer sur Cloner et récupérer l'url.
+
+2. En local, cloner avec l'url qu'on a récupéré :
+$ git clone {url dépôt}
+
+### Créer un dépôt local :
+Initialiser git
+$ git init
+
+S'il y a besoin de s'identifier :
+
+$ git config --global user.name 'Prenom NOM'
+$ git config --global user.email 'adresse@mail.com'
+
+Sélectionner toutes les modifications depuis le dernier commit
+$ git add --all
+
+commiter
+$ git commit -m "{message}"
+
+Pour savoir où on en est dans les modifications :
+$ git status
+
+Git status donne aussi des indications sur comment revenir en arrière. Pour annuler les modifications sur des fichiers qu'on n'a pas encore sélectionnés (c-à-d pour lesquels on n'a pas encore fait git add) :
+$ git checkout --<nom_du_fichier>
+
+Créer une branche
+$ git branch nom_de_la_branche
+
+Changer de branche
+$ git checkout nom_de_la_branche
+
+Créer une branche et se placer dans cette branche en une seule commande :
+$ git checkout -b nom_de_la_branche
+
+Pour savoir où on en est en matière de branches :
+$ git branch
+
+Pour se rappeler des commits effectués :
+$ git log
+
+La liste s'achève avec un affichage 'END' sans retourner la main sur la ligne de commande. Pour en sortir, taper 'q'.
+
+On a créé une branche mabranche à partir de master. On se situe sur machanche et on travaille dessus. Une fois que l'on a terminé, commité, etc., on veut fusionner avec master. On se place alors sur master et effectuons la fusion. Puis, enfin, nous supprimons la branche qui ne sert pas.
+
+$ git checkout master
+$ git merge mabranche 
+$ git branch -d mabranche
+
+
+
+Pour plus d'infos sur les branches et les fusions : https://git-scm.com/book/fr/v1/Les-branches-avec-Git-Brancher-et-fusionner%C2%A0%3A-les-bases
+
+
+##############################################################################################################
+
+
+--- PROPOSITION DE MARCHE A SUIVRE ---
+1. Déterminer fonctionnalités.
+2. Modéliser base de données avec MySQL WorkBench.
+3. Créer entités à partir de la modélisation de la base.
+4. Créer une architecture de base routes/contrôleurs/templates twig à partir de php bin/console make:controller.
+5. Créer autant que possible en dur la navigation dans le site (plus ou moins au fur et à mesure du précédent).
+6. 
+
+
+############################### Projet biscuit ########################################
+
+Partage des tâches
+* Modélisation de la base de données. - Tous
+* Gestion de GitHub. - Alexandre
+* Gestion de Trello. - Emeline
+* Gestion de .env et de .env.dist
+* Gestion des routes et du fichier config/routes.yaml
+* Création du squelette de l'application.  - Alexandre
+
+(* Création de formulaires ???)
+* Gestion de la landing page. Emeline 
+* Gestion de la charte graphique et du template base.html.twig.
+* Gestion de la charte graphique du backoffice et du template admin.html.twig (à partir duquel les autres templates d'administration seront dérivés). 
+
+* Gestion de 'membres', son template et son contrôleur.
+* Gestion du 'show membre', son template et son contrôleur.
+
+* Gestion de la page privée 'Profil'. Margot
+
+* Gestion de la sécurité, et des formulaires d'inscription/connexion et des sessions.
+
+* Gestion de l'upload d'images et de leur stockage. Aussi des icônes du site et des différentes interfaces.
+
+* Gestion de la messagerie.
+
+* Gestion des likes.
+
+* Gestion des de sessions et de cookies. Manu
+
+* Gestion des relations entre les tables et leurs contraintes, et de sa cohérence avec l'application..
+
+* Template de base base.html.twig alexandre
+
+* Template de admin.html.twig Manu
+
+* Template de prive..html.twig Margot
+
+* page message
+
+
+--- Tâches secondaires néanmoins importantes ---
+* Vérification de la cohérence sémantique.
+* Vérification des liens.
+* Vérification des ajouts, qu'il n'y ait pas de fichier prévu qui ne soit pas chargé dans chacune des pages. Vérifier également les <link> en mettant bien en prod la vérification d'intégrité.
+* Recherche, création et installation d'images par défaut.
+* Vérification des espaces des noms.
+* Vérification du bon fonctionnement de l'ensemble, et rapport de bugs.
+
+
+--- S'il y a le temps ---
+* Test psycho-astro-random-tarot-sophro-érotérico-analytique.
+* Chat en temps réel entre ceux qui sont connectés.
+* Galerie d'images.
+* Test de majorité.
+* Statistiques à l'attention de l'administrateur.
+* Edition des membres avec notamment la possibilité de les bannir.
+* Mise en ligne.
+* Système de privilèges qui gère la visibilité es membres les uns par rapport aux autres. 
+* ...
+* Application Android.
+
+
+Note : étant donné qu'il y a plusieurs fichiers sur lesquels plusieurs peuvent travailler, c'est peut-être une idée de dire qu'un fichier donné "appartient" à l'un de nous. De la sorte, si quelqu'un d'autre doit intervenir sur le fichier d'un autre, il s'assure auprès de lui qu'il ne travaille pas dessus à ce moment.
+
+
+
+
+
