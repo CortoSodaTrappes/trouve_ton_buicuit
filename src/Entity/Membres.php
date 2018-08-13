@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
  */
-class Membres
+class Membres implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -30,6 +32,11 @@ class Membres
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(
+     * min = 8,
+     * max = 15,
+     * minMessage = " Entrez un password superieur à 8 carac. ",
+     * maxMessage = " Entrez un password inferieur à 15 carac. ")
      */
     private $password;
 
@@ -151,4 +158,16 @@ class Membres
 
         return $this;
     }
+
+    public function getRoles(){
+        return array("ROLE_USER"); // retourne le role de l'utilissateur
+    }
+
+    public function getSalt(){}
+
+    public function getUsername(){
+        return $this->getEmail();
+    }
+
+    public function eraseCredentials(){}
 }
