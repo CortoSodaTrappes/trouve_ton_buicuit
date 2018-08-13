@@ -1,48 +1,72 @@
-.profil {
-  background-color: green;
+.profil .barre-top {
+  background-color: #e4e2e2;
 }
 
-.profil .profil-barre-top {
-  background-color: #310080;
+.profil .container {
+  padding: 0px 20px 0px 20px;
 }
 
-.profil .profil-barre-top .container {
-  background-color: red;
+.profil .container .profil-block-top-marge {
   padding: 0%;
 }
 
-.profil .profil-barre-top .container .profil-block-top-container {
-  background-color: #d0ff00;
-  padding: 0%;
-}
-
-.profil .profil-barre-top .container .row {
-  margin: 0%;
-}
-
-.profil .profil-barre-top .container .row .profil-photos {
-  background-color: white;
-}
-
-.profil .profil-barre-top .container .row .profil-photos .profil-main-img {
+.profil .container .row .profil-photos .profil-main-img {
   width: 100%;
   padding: 0%;
 }
 
-.profil .profil-barre-top .container .row .profil-main-information {
-  background-color: #ccc1c1;
+.profil .container .row .profil-main-information {
+  background-color: #9c9c9c;
   color: black;
+  padding-top: 15px;
 }
 
-.profil .profil-barre-top .container .row .profil-main-information h4 {
-  margin: 5%;
+.profil .container .row .profil-main-information h4 {
+  text-decoration: underline;
 }
 
-.profil .profil-barre-top .container .row .container-profile-base {
-  background-color: aqua;
+.profil .container .row .profil-main-information #bottonprofil {
+  margin-top: 2%;
 }
 
-.dating-profile {
-  background-color: #00c3ff;
+.dating-profile .barre-bas {
+  background-color: #fffdfd;
+}
+
+.dating-profile .barre-bas .container {
+  padding-top: 30px;
+}
+
+.dating-profile .barre-bas .container .description {
+  background-color: #9c9c9c;
+}
+
+.dating-profile .barre-bas .container .description #padding-hobby {
+  padding: 5%;
+}
+
+.dating-profile .barre-bas .container .description #padding-hobby h2 {
+  text-decoration: underline;
+}
+
+.dating-profile .barre-bas .container .description #padding-hobby p {
+  font-weight: 0.5em;
+  color: gray;
+}
+
+.dating-profile .barre-bas .container .padding-formulaires {
+  padding: 0% 2% 0% 2%;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-transition: none;
+  transition: none;
+}
+
+body {
+  background-color: white;
+  color: black;
 }
 /*# sourceMappingURL=profil.css.map */

@@ -9,51 +9,268 @@
 
 
 {% block main %}
+<body>
 <section class="profil">
-    <div class="profil-barre-top">
-        <div class="container">
-            <section class="profil-block-top-container row">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
                     <img class="profil-main-img" src="images/femme1a.jpg" alt="image-profil">
                 </div>
-                <div class="profil-main-information col-6">
+                <div class="profil-main-information col-8">
                     <h4>PSEUDO</h4>
                     <p>"Je suis bla bla bla"</p>
                     <p>AGE</p>
                     <p>VILLE</p>
-                </div>
-                <div class="profil-buttun-modification col-2">
-                    <p>button modifier profil</p>
+                    <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
                 </div>
             </section>
         </div>
     </div>
     
-
-    
+ <!-- ZONE HOBBY AND FORMULAIRES -->   
        
-    <div class="dating-profile container">
-        <div class="dating-profil-main row">
-        <div class="dating-profil-banner col-4">
-            <p>Ce que j'aime</p>
-            <p>choisir dans la liste:</p>
-            <p>lkjlkjlkjlkjlkj</p>
-            <p>lkjlkjlkjlkjlkj</p>
-            <p>lkjlkjlkjlkjlkj</p>
-            <p>lkjlkjlkjlkjlkj</p>
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
+        
+                <div class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div class="description">
+                            <form class="form-horizontal" id="padding-hobby">
+                                <h2>Ce que j'aime</h2>
+                                <p>choisir dans la liste:</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                            </form>
+                        </div>
 
-        </div>
-        <div class="dating-profil-banner col-8">
-            <div class="formulaire">
-                <p>description</p>
-                <p>personalité</p>
-                <p>psysique</p>
-                <p>mode de vie</p>
-                <p>je cherche</p>
-               
-            <div>
+                    </div>
+        <!-- ZONE INFORMATION FORMULAIRE -->          
+                    <div class="dating-profil-formulaires col-8">
+                        <div class="formulaire">
+            <!-- DESCRIPTION TEXTE-->
+                            <div class="description padding-formulaires">
+
+                                    <form class="form-horizontal ">
+                                        <fieldset>
+
+                                        <!-- Form Name -->
+                                        <h2>Ma description</h2>
+
+                                        <!-- Textarea -->
+                                        <div class="form-group">
+                                    
+                                        <div class="col-md-12">                     
+                                            <textarea class="form-control" id="Ma description" name="Ma description">décrivez vous en quelques lignes</textarea>
+                                        </div>
+                                        </div>
+
+                                        </fieldset>
+                                    </form>
+                                    <p>6 / 2000 caractères</p>
+                                    <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
+                                                
+                                                
+                            </div>
+            <!-- PERSONALITE -->
+                            <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Ma personnalité</h2>
+
+                                <!-- Relation -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Prêt à m'engager dans une relation ?</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">c'est mon souhait</option>
+                                    <option value="2">laissons faire le hasard</option>
+                                    <option value="3">pas du tout</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Enfants -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je veux des enfants :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">oui</option>
+                                    <option value="2">non</option>
+                                    <option value="3">rien est décidé</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+
+                                <!-- Caractere -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Trait de caractère le plus marqué :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">avanturieux</option>
+                                    <option value="2">calme</option>
+                                    <option value="3">sociable</option>
+                                    <option value="3">drôle</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            </form>
+                            
+                            
+                            </div>
+                            
+            <!-- PHYSIQUE -->
+                        <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Mon physique</h2>
+
+                                <!-- Taille -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Ma taille :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">140-160</option>
+                                    <option value="2">160-170</option>
+                                    <option value="3">170-180</option>
+                                    <option value="3">180-190</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Ma silhouette : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Ma silhouette :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">normal</option>
+                                    <option value="2">sportif</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">quelques kilos en trop</option>
+                                    <option value="3">ronde</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes yeux : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes yeux :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">marron</option>
+                                    <option value="2">bleus</option>
+                                    <option value="3">verts</option>
+                                    <option value="3">noisettes</option>
+                                    <option value="3">gris</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes cheveux :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes cheveux : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">chatains</option>
+                                    <option value="2">noirs</option>
+                                    <option value="3">blonds</option>
+                                    <option value="3">blancs</option>
+                                    <option value="3">roux</option>
+                                    <option value="3">autres</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            </form>
+                            
+                            
+                            </div>
+            <!-- MON MODE DE VIE -->
+                        <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Mon mode de vie</h2>
+
+                                <!-- Mon statut marital : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mon statut marital :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">jamais marié</option>
+                                    <option value="2">divorcé</option>
+                                    <option value="3">veuve</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Je fume :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je fume : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">non</option>
+                                    <option value="2">oui</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                            <!-- Je mange :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je mange : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">tout</option>
+                                    <option value="2">végétarien</option>
+                                    <option value="3">hallal</option>
+                                    <option value="3">casher</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes animaux de compagnie :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes animaux de compagnie :  </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">oui</option>
+                                    <option value="2">non</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                                <!-- Button -->
+                                <div class="form-group">
+                                
+                                    <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                </div>
+                                </div>
+                            </form>
+                        
+                        
+                        </div>
+                    
+                    <div>
 
 
+                </div>
+            </div>
         </div>
 
     </div>
@@ -62,6 +279,7 @@
 
     
 </section>
+</body>
 
 {% endblock %}
 

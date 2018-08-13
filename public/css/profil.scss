@@ -1,38 +1,67 @@
 .profil {
-    background-color: green;
-    .profil-barre-top {
-        background-color: rgb(49, 0, 128);
-        .container {
-            background-color: red;
+    .barre-top {
+        background-color: #e4e2e2;
+    }
+    .container {
+        padding: 0px 20px 0px 20px;
+        .profil-block-top-marge {
             padding: 0%;
-            .profil-block-top-container {
-                background-color: rgb(208, 255, 0);
-                padding: 0%;
+        }
+        .row {
+            .profil-photos {
+                .profil-main-img {
+                    width: 100%;
+                    padding: 0%;
+                }
             }
-            .row {
-                margin: 0%;
-                .profil-photos {
-                    background-color: white;
-                    .profil-main-img {
-                        width: 100%;
-                        padding: 0%;
-                    }
+            .profil-main-information {
+                background-color: rgb(156, 156, 156);
+                color: black;
+                padding-top: 15px;
+                h4 {
+                    text-decoration: underline;
                 }
-                .profil-main-information {
-                    background-color: rgb(204, 193, 193);
-                    color: black;
-                    h4 {
-                        margin: 5%;
-                    }
-                }
-                .container-profile-base {
-                    background-color: aqua;
+                #bottonprofil {
+                    margin-top: 2%;
                 }
             }
         }
     }
 }
 
+// ZONE HOBBY AND FORMULAIRES
 .dating-profile {
-    background-color: rgb(0, 195, 255);
+    .barre-bas {
+        background-color: rgb(255, 253, 253);
+        .container {
+            padding-top: 30px;
+            .description {
+                background-color: rgb(156, 156, 156);
+                #padding-hobby {
+                    padding: 5%;
+                    h2 {
+                        text-decoration: underline;
+                    }
+                    p {
+                        font-weight: 0.5em;
+                        color: gray;
+                    }
+                }
+            }
+            .padding-formulaires {
+                padding: 0% 2% 0% 2%;
+            }
+        }
+    }
+}
+
+*,
+*::before,
+*::after {
+    transition: none;
+}
+
+body {
+    background-color: white;
+    color: black;
 }
