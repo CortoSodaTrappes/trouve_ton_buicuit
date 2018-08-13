@@ -65,13 +65,9 @@ class MembresController extends Controller
                 // Après l'enregistrement, affichage de la liste de membres
                 return $this->redirectToRoute('test_list');
             }
-
         }else{
             $message="Il y a un loupé.";
         }
-
-
-
 
         // Affichage du formulaire (qui n'a pas encore été soumis)
         return $this->render('tests/form.html.twig', [

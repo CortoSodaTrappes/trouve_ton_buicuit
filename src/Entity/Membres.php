@@ -43,10 +43,16 @@ class Membres
      */
     private $presentations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Messagerie", mappedBy="id_expediteur", orphanRemoval=true)
+     */
+    private $messageries;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
         $this->presentations = new ArrayCollection();
+        $this->messageries = new ArrayCollection();
     }
 
     public function getId()
@@ -146,6 +152,37 @@ class Membres
             // set the owning side to null (unless already changed)
             if ($presentation->getIdMembre() === $this) {
                 $presentation->setIdMembre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messagerie[]
+     */
+    public function getMessageries(): Collection
+    {
+        return $this->messageries;
+    }
+
+    public function addMessagery(Messagerie $messagery): self
+    {
+        if (!$this->messageries->contains($messagery)) {
+            $this->messageries[] = $messagery;
+            $messagery->setIdExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagery(Messagerie $messagery): self
+    {
+        if ($this->messageries->contains($messagery)) {
+            $this->messageries->removeElement($messagery);
+            // set the owning side to null (unless already changed)
+            if ($messagery->getIdExpediteur() === $this) {
+                $messagery->setIdExpediteur(null);
             }
         }
 

@@ -69,3 +69,9 @@ test_edit:
 test_delete:
     path: /test/delete/{id}
     controller: App\Controller\MembresController::delete 
+
+test_newmessage:
+    path: /test/newmessage
+    controller: App\Controller\MessagerieController::new 
+
+

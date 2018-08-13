@@ -1,0 +1,22 @@
+{% extends 'test.html.twig' %}    
+
+
+{% block body %}
+
+<form>
+    <select>
+        {% for membre in membres %}
+            <option value="">{{membre.pseudo}}</option>
+        {% endfor %}
+    </select>
+    <select>
+        {% for membre in membres %}
+            <option value="">{{membre.pseudo}}</option>
+        {% endfor %}
+    </select>
+    <textarea></textarea>
+</form>
+
+
+
+{% endblock %}
