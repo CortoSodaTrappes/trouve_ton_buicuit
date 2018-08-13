@@ -2,11 +2,13 @@
 
 
 {% block body %}
-
-<form>
+<pre>
+    {{ dump(membres) }}
+</pre>
+<form action="" method="post" id="form">
     <select>
         {% for membre in membres %}
-            <option value="">{{membre.pseudo}}</option>
+            <option value="{{membre.id}}">{{membre.pseudo}}</option>
         {% endfor %}
     </select>
     <select>
