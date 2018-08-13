@@ -18,21 +18,21 @@ use App\Entity\Membres;
 class MembresController extends Controller
 {
 
-    public function list(MembresRepository $membresRepository): Response
+    public function testList(MembresRepository $membresRepository): Response
     {
         // Liste de tous les membres
         return $this->render('tests/list.html.twig', 
             ['membres' => $membresRepository->findAll()]);
     }
 
-    public function show(Membres $pseudo): Response
+    public function testShow(Membres $pseudo): Response
     {
         // Apparemment, en passant un id en argument sf4 s'arrange 
         // pour que show() reçoive un objet Membre complet.
         return $this->render('tests/show.html.twig', ['pseudo' => $pseudo]);
     }
 
-    public function new(Request $request): Response
+    public function testNew(Request $request): Response
     {
         // Instanciation de la classe Membres
         $message="" ;
@@ -79,7 +79,7 @@ class MembresController extends Controller
         ]);
     }
 
-    public function edit(Request $request, Membres $membre): Response
+    public function testEdit(Request $request, Membres $membre): Response
     {
         $form = $this->createFormBuilder($membre)
         ->add('pseudo')
@@ -102,7 +102,7 @@ class MembresController extends Controller
         ]);
     }
 
-    public function delete(Request $request, Membres $membre): Response
+    public function testDelete(Request $request, Membres $membre): Response
     {
             $em = $this->getDoctrine()->getManager();
             $em->remove($membre);

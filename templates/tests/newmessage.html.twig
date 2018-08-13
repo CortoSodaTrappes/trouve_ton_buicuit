@@ -1,24 +1,25 @@
-{% extends 'test.html.twig' %}    
-
+{% extends 'test.html.twig' %}
 
 {% block body %}
-<pre>
-    {{ dump(membres) }}
-</pre>
-<form action="" method="post" id="form">
-    <select>
-        {% for membre in membres %}
-            <option value="{{membre.id}}">{{membre.pseudo}}</option>
-        {% endfor %}
-    </select>
-    <select>
-        {% for membre in membres %}
-            <option value="{{membre.id}}">{{membre.pseudo}}</option>
-        {% endfor %}
-    </select>
-    <textarea></textarea>
-</form>
-
-
+    <h3>Nouveau message</h3>
+    <form action="" method="post" id="form_message">
+        <label for="expeditaur">Expediteur</label>
+        <select name="expediteur" id="expediteur">
+            {% for membre in membres %}
+                <option value="{{membre.id}}">{{membre.pseudo}}</option>
+            {% endfor %}
+        </select>
+        <label for="destinataire">Destinataire</label>
+        <select name="destinataire" id="destinataire">
+            {% for membre in membres %}
+                <option value="{{membre.id}}">{{membre.pseudo}}</option>
+            {% endfor %}
+        </select>
+        <textarea id="message" name="message" cols="50" rows="5"></textarea>
+        <button type="submit">Envoyer</button>
+        <div>
+            <a href="/test/list">Liste</a>
+        </div>
+    </form>
 
 {% endblock %}

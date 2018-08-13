@@ -1,10 +1,16 @@
-{% extends 'test.html.twig' %}    
+{% extends 'test.html.twig' %}
 
-    {% block body %}
+{% block body %}
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
     {% if message is defined %}
         {{message}}
     {% endif %}
+    <div>
+        <a href="/test/list">Liste</a>
+    </div>
+    <div>
+        <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
+    </div>
 {% endblock %}

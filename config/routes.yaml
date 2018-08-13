@@ -50,28 +50,32 @@ admin_membres:
     defaults:
         template: admin/membres.html.twig
 
+testst:
+    path: /tests
+    controller: App\Controller\MembresController::testList 
+
 test_list:
     path: /test/list
-    controller: App\Controller\MembresController::list 
+    controller: App\Controller\MembresController::testList 
 
 test_show:
     path: /test/show/{id}
-    controller: App\Controller\MembresController::show 
+    controller: App\Controller\MembresController::testShow 
 
 test_new:
     path: /test/new
-    controller: App\Controller\MembresController::new 
+    controller: App\Controller\MembresController::testNew 
 
 test_edit:
     path: /test/edit/{id}
-    controller: App\Controller\MembresController::edit 
+    controller: App\Controller\MembresController::testEdit 
 
 test_delete:
     path: /test/delete/{id}
-    controller: App\Controller\MembresController::delete 
+    controller: App\Controller\MembresController::testDelete 
 
 test_newmessage:
     path: /test/newmessage
-    controller: App\Controller\MessagerieController::new 
+    controller: App\Controller\MessagerieController::testNew 
 
 

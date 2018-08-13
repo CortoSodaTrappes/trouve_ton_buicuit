@@ -38,6 +38,11 @@ class Messagerie
      */
     private $id_destinataire;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
     public function getId()
     {
         return $this->id;
@@ -60,9 +65,9 @@ class Messagerie
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(): self
     {
-        $this->date = $date;
+        $this->date =  new \DateTime() ;
 
         return $this;
     }
@@ -87,6 +92,18 @@ class Messagerie
     public function setIdDestinataire(?Membres $id_destinataire): self
     {
         $this->id_destinataire = $id_destinataire;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(): self
+    {
+        $this->created =  new \DateTime() ;
 
         return $this;
     }

@@ -1,21 +1,24 @@
-{% extends 'test.html.twig' %}    
-
+{% extends 'test.html.twig' %}
 
 {% block body %}
-{% for membre in membres %}
-    <div>
-        {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
-        <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
-        :
-        {{membre.email}}
+    <div style="border:1px solid gray; padding:5px;">
+        {% for membre in membres %}
+            <div>
+                {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
+                <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
+                :
+                {{membre.email}}
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
-<div>
-    <a href="/test/new">Nouveau</a>
-</div>
-<div>
-    <a href="/test/newmessage">Nouveau message</a>
-</div>
+    <div>
+        <a href="/test/new">Nouveau membre</a>
+    </div>
+    <div>
+        <a href="/test/newmessage">Nouveau message</a>
+    </div>
+    <div>
+        <a href="/test/login">Connexion</a>
+    </div>
+
 {% endblock %}
-
-
