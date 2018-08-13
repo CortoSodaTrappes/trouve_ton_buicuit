@@ -7,6 +7,8 @@ use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Membres;
 
@@ -39,8 +41,8 @@ class MembresController extends Controller
         // Définition du formulaire
         $form = $this->createFormBuilder($membre)
             ->add('pseudo')
-            ->add('password')
-            ->add('email')
+            ->add('password', PasswordType::class)
+            ->add('email', EmailType::class)
             ->add('save', SubmitType::class)
             ->setMethod("POST")
             ->getForm();
