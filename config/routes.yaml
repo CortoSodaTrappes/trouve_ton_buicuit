@@ -8,6 +8,12 @@ landing:
     defaults:
         template: front/landing.html.twig
 
+landing_inscript:
+    path: /landing_inscript
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: front/landing_inscript.html.twig
+
 membre_list:
     path: /list
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
