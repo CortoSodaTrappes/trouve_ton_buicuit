@@ -49,6 +49,11 @@ class Membres implements UserInterface
      */
     private $messageries;
 
+    /**
+     * @ORM\Column(type="string", length=48)
+     */
+    private $role;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
@@ -192,6 +197,7 @@ class Membres implements UserInterface
 
     public function getRoles(){
         return array("ROLE_USER") ;
+
     }
 
     public function getSalt(){}
@@ -201,6 +207,18 @@ class Membres implements UserInterface
     }
 
     public function eraseCredentials(){}
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 
 
 }

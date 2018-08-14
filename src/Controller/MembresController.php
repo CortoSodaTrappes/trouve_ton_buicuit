@@ -59,7 +59,7 @@ class MembresController extends Controller
 
         // email et pseudos inconnus, on tente l'enregistrement.
         if(!$tempmemberemail && !$tempmemberpseudo){
-
+            $membre->setRole("ROLE_USER");
             // Si tout se passe bien, enregistrement du membre dans la base
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -67,7 +67,7 @@ class MembresController extends Controller
                 $em->flush();
 
                 // Après l'enregistrement, affichage de la liste de membres
-                return $this->redirectToRoute('test_list');
+                return $this->redirectToRoute('test_login');
             }
         }else{
             $message="Il y a un loupé.";

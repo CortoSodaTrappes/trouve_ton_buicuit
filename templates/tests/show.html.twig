@@ -4,6 +4,13 @@
 
 
 <h2>{{pseudo.pseudo}}</h2>
+    <div style="text-align:right">
+        {% if app.user is not null %}
+            <p>Connecté en tant que <strong>{{app.user.pseudo}}</strong> (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+        {% else %}
+            <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
+        {% endif %}
+    </div>
 <p>Contacter au
     {{pseudo.email}}</p>
 

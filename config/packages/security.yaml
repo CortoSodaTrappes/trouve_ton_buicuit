@@ -48,3 +48,6 @@ security:
         - { path: ^/test/profil, roles: ROLE_USER }
         - { path: ^/test/admin, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER

@@ -1,12 +1,11 @@
 {% extends 'test.html.twig' %}
 {% block body %}
     {% if app.user is not null %}
-        <p>Connecté en tant que {{app.user.pseudo}} (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
-    <h2>Messagerie de 
-        {{ app.user.pseudo }}</h2>
+        <h2>Messagerie de {{ app.user.pseudo }}</h2>
+        <p style="text-align:right;">Connecté en tant que {{app.user.pseudo}} (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
     {% else %}
-        <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
         <h2>Tous les messages enregistrés</h2>
+        <p style="text-align:right;">Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
     {% endif %}
         <table>
         <tr><th>Titre</th><th>id exp.</th><th>Date</td></tr>
