@@ -1,7 +1,5 @@
 .profil {
-    .barre-top {
-        background-color: #e4e2e2;
-    }
+    padding-bottom: 5%;
     .container {
         padding: 0px 20px 0px 20px;
         .profil-block-top-marge {
@@ -12,14 +10,22 @@
                 .profil-main-img {
                     width: 100%;
                     padding: 0%;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
                 }
             }
             .profil-main-information {
                 background-color: rgb(156, 156, 156);
                 color: black;
-                padding-top: 15px;
+                padding-top: 1.5%;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
                 h4 {
                     text-decoration: underline;
+                    font-weight: bold;
+                }
+                #phase-courte {
+                    font-style: italic;
                 }
                 #bottonprofil {
                     margin-top: 2%;
@@ -32,26 +38,52 @@
 // ZONE HOBBY AND FORMULAIRES
 .dating-profile {
     .barre-bas {
-        background-color: rgb(255, 253, 253);
         .container {
             padding-top: 30px;
-            .description {
-                background-color: rgb(156, 156, 156);
+            .dating-profil-banner-hobby {
                 #padding-hobby {
                     padding: 5%;
                     h2 {
                         text-decoration: underline;
+                        font-weight: bold;
                     }
                     p {
                         font-weight: 0.5em;
-                        color: gray;
+                        color: black;
                     }
                 }
             }
+        }
+        .dating-profil-formulaires {
+            padding-left: 0%;
+            padding-right: 0%;
             .padding-formulaires {
-                padding: 0% 2% 0% 2%;
+                padding: 1.5% 2%;
+                margin-bottom: 2%;
+                #description-longue {
+                    padding-left: 0%;
+                    padding-right: 0%;
+                    textarea {
+                        height: 20%;
+                        height: 100px;
+                    }
+                }
+                .commentaires-profil {
+                    font-size: 0.8em;
+                    font-style: italic;
+                    margin-top: -1%;
+                }
+                p {
+                    font-size: 0.9em;
+                    font-style: italic;
+                    color: rgb(48, 47, 47)
+                }
             }
         }
+    }
+    .button-enregistrer {
+        margin-top: 3rem;
+        text-align: center;
     }
 }
 
@@ -62,6 +94,25 @@
 }
 
 body {
-    background-color: white;
     color: black;
+}
+
+h2 {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.description {
+    background-color: rgb(156, 156, 156);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-control {
+    color: rgb(110, 109, 109)
 }

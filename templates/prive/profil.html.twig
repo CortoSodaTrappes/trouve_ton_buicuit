@@ -15,14 +15,18 @@
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <img class="profil-main-img" src="images/femme1a.jpg" alt="image-profil">
+                    <div>
+                        <img class="profil-main-img" src="images/femme1a.jpg" alt="image-profil">
+                    </div>
                 </div>
                 <div class="profil-main-information col-8">
-                    <h4>PSEUDO</h4>
-                    <p>"Je suis bla bla bla"</p>
-                    <p>AGE</p>
-                    <p>VILLE</p>
-                    <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
+                    <div>
+                        <h4>PSEUDO</h4>
+                        <p id="phase-courte">"Je suis bla bla bla"</p>
+                        <p>AGE</p>
+                        <p>VILLE</p>
+                        <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
+                    </div>
                 </div>
             </section>
         </div>
@@ -34,7 +38,7 @@
         <div class="barre-bas">
             <div class="container">
         
-                <div class="dating-profil-main row">
+                <section class="dating-profil-main row">
         <!-- ZONE HOBBY --> 
                     <div class="dating-profil-banner-hobby col-4">
                         <div class="description">
@@ -62,16 +66,16 @@
                                         <h2>Ma description</h2>
 
                                         <!-- Textarea -->
-                                        <div class="form-group">
+                                        <div class="form-group" >
                                     
-                                        <div class="col-md-12">                     
+                                        <div class="col-md-12" id="description-longue">                     
                                             <textarea class="form-control" id="Ma description" name="Ma description">décrivez vous en quelques lignes</textarea>
                                         </div>
                                         </div>
 
                                         </fieldset>
                                     </form>
-                                    <p>6 / 2000 caractères</p>
+                                    <p class="commentaires-profil">6 / 2000 caractères</p>
                                     <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
                                                 
                                                 
@@ -256,7 +260,7 @@
 
                                 </fieldset>
                                 <!-- Button -->
-                                <div class="form-group">
+                                <div class="form-group button-enregistrer">
                                 
                                     <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
                                 </div>
@@ -267,10 +271,8 @@
                         </div>
                     
                     <div>
-
-
-                </div>
-            </div>
+                 </section>
+           </div>
         </div>
 
     </div>

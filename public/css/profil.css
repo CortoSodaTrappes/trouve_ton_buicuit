@@ -1,5 +1,5 @@
-.profil .barre-top {
-  background-color: #e4e2e2;
+.profil {
+  padding-bottom: 5%;
 }
 
 .profil .container {
@@ -13,49 +13,86 @@
 .profil .container .row .profil-photos .profil-main-img {
   width: 100%;
   padding: 0%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .profil .container .row .profil-main-information {
   background-color: #9c9c9c;
   color: black;
-  padding-top: 15px;
+  padding-top: 1.5%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .profil .container .row .profil-main-information h4 {
   text-decoration: underline;
+  font-weight: bold;
+}
+
+.profil .container .row .profil-main-information #phase-courte {
+  font-style: italic;
 }
 
 .profil .container .row .profil-main-information #bottonprofil {
   margin-top: 2%;
 }
 
-.dating-profile .barre-bas {
-  background-color: #fffdfd;
-}
-
 .dating-profile .barre-bas .container {
   padding-top: 30px;
 }
 
-.dating-profile .barre-bas .container .description {
-  background-color: #9c9c9c;
-}
-
-.dating-profile .barre-bas .container .description #padding-hobby {
+.dating-profile .barre-bas .container .dating-profil-banner-hobby #padding-hobby {
   padding: 5%;
 }
 
-.dating-profile .barre-bas .container .description #padding-hobby h2 {
+.dating-profile .barre-bas .container .dating-profil-banner-hobby #padding-hobby h2 {
   text-decoration: underline;
+  font-weight: bold;
 }
 
-.dating-profile .barre-bas .container .description #padding-hobby p {
+.dating-profile .barre-bas .container .dating-profil-banner-hobby #padding-hobby p {
   font-weight: 0.5em;
-  color: gray;
+  color: black;
 }
 
-.dating-profile .barre-bas .container .padding-formulaires {
-  padding: 0% 2% 0% 2%;
+.dating-profile .barre-bas .dating-profil-formulaires {
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+.dating-profile .barre-bas .dating-profil-formulaires .padding-formulaires {
+  padding: 1.5% 2%;
+  margin-bottom: 2%;
+}
+
+.dating-profile .barre-bas .dating-profil-formulaires .padding-formulaires #description-longue {
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
+.dating-profile .barre-bas .dating-profil-formulaires .padding-formulaires #description-longue textarea {
+  height: 20%;
+  height: 100px;
+}
+
+.dating-profile .barre-bas .dating-profil-formulaires .padding-formulaires .commentaires-profil {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: -1%;
+}
+
+.dating-profile .barre-bas .dating-profil-formulaires .padding-formulaires p {
+  font-size: 0.9em;
+  font-style: italic;
+  color: #302f2f;
+}
+
+.dating-profile .button-enregistrer {
+  margin-top: 3rem;
+  text-align: center;
 }
 
 *,
@@ -66,7 +103,28 @@
 }
 
 body {
-  background-color: white;
   color: black;
+}
+
+h2 {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.description {
+  background-color: #9c9c9c;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+button {
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-control {
+  color: #6e6d6d;
 }
 /*# sourceMappingURL=profil.css.map */
