@@ -78,4 +78,12 @@ test_newmessage:
     path: /test/newmessage
     controller: App\Controller\MessagerieController::testNew 
 
-
+test_login:
+    path: /test/login
+    controller: App\Controller\MembresController::testlogin 
+    
+test_secret:
+    path: /test/secret
+    controller:  Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: tests/secret.html.twig

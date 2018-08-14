@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
 
 
@@ -111,5 +112,19 @@ class MembresController extends Controller
         return $this->redirectToRoute('test_list');
     }
 
-
+    public function testlogin(Request $request, AuthenticationUtils $authenticationUtils)
+    {   
+        $membre = new Membres();
+        $form = $this->createForm(LoginType::class, $membre);
+        $form->handleRequest($request);
+        $error = $authenticationUtils->getLastAuthenticationError();
+        if ($form->isSubmitted() && $form->isValid()) {
+            // return $this->render("home/index.html.twig");
+        }
+        dump($error);
+        return $this->render("tests/login.html.twig", array(
+            "formulaire" => $form->createView(),
+            "error" => $error
+        ));
+    }
 }
