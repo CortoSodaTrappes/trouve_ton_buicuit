@@ -80,7 +80,11 @@ test_newmessage:
 
 test_login:
     path: /test/login
-    controller: App\Controller\MembresController::testlogin 
+    controller: App\Controller\MembresController::testLogin 
+    
+test_logout:
+    path: /test/logout
+    controller: App\Controller\MembresController::testLogout 
     
 test_secret:
     path: /test/secret

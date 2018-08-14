@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
  */
-class Membres
+class Membres implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -188,4 +189,18 @@ class Membres
 
         return $this;
     }
+
+    public function getRoles(){
+        return array("ROLE_USER") ;
+    }
+
+    public function getSalt(){}
+
+    public function getUsername(){
+        return $this->getEmail();
+    }
+
+    public function eraseCredentials(){}
+
+
 }

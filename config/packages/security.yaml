@@ -6,6 +6,8 @@ security:
                 class: App\Entity\Membres
                 property: email
 
+    encoders:
+        App\Entity\Membres: plaintext
 
     firewalls:
         dev:
@@ -23,12 +25,14 @@ security:
                 use_referer: false
                 remember_me: false
                 username_parameter: login[email]
-                default_target_path: /home
+                default_target_path: /tests
                 password_parameter: login[password]
+                require_previous_session: false
+                always_use_default_target_path: false
 
             logout:
                 target: /tests
-                path: /testlogout
+                path: /test/logout
                 success_handler: ~
                 invalidate_session: true
 
@@ -40,5 +44,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/test/secret, roles: ROLE_ADMIN }
+        - { path: ^/test/secret, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
