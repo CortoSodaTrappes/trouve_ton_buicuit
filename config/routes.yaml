@@ -75,8 +75,17 @@ test_delete:
     controller: App\Controller\MembresController::testDelete 
 
 test_newmessage:
-    path: /test/newmessage
+    path: /test/newmessage/{id}
     controller: App\Controller\MessagerieController::testNew 
+
+test_showmessage:
+    path: /test/showmessage/{id}
+    controller: App\Controller\MessagerieController::testShow 
+
+test_messagerie:
+    path: /test/profil/messagerie
+    # controller: App\Controller\MessagerieController::testAllMessagerie 
+    controller: App\Controller\MessagerieController::testMessagerie 
 
 test_login:
     path: /test/login

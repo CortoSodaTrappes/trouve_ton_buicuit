@@ -1,6 +1,13 @@
 {% extends 'test.html.twig' %}
 
 {% block body %}
+{{dump(membre)}}
+        {% if membre.id is null %}
+            <h2>Nouveau membre</h2>
+        {% else %}
+            <h2><a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a></h2>
+        {% endif %}
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
@@ -8,9 +15,9 @@
         {{message}}
     {% endif %}
     <div>
-        <a href="/test/list">Liste</a>
+        <a href="{{path('test_list')}}">Liste des membres</a>
     </div>
-    <div>
-        <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
-    </div>
+
 {% endblock %}
+
+

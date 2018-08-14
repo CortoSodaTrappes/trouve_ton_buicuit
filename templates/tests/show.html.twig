@@ -1,12 +1,23 @@
 {% extends 'test.html.twig' %}    
 {% block body %}
 
+
+
 <h2>{{pseudo.pseudo}}</h2>
 <p>Contacter au
     {{pseudo.email}}</p>
-<p><a href="{{path('test_list')}}">Liste</a></p>
-<p><a href="{{path('test_edit', {id: pseudo.id }) }}">Edit {{pseudo.pseudo}}</a></p>
-<p><a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer {{pseudo.pseudo}}</a></p>
+
+<p><a href="{{path('test_list')}}">Liste des membres</a></p>
+
+{% if is_granted('ROLE_USER') %}
+    {% if pseudo.id == app.user.id %}
+        <p><a href="{{path('test_edit', {id: pseudo.id }) }}">Edit {{pseudo.pseudo}}</a></p>
+        <p><a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer {{pseudo.pseudo}}</a></p>
+    {% else %}
+        <p><a href="{{path('test_newmessage', {id: pseudo.id }) }}">Ecrire à {{pseudo.pseudo}}</a></p>
+    {% endif %}
+{% endif %}
+
 
 {% endblock %}
 

@@ -1,7 +1,15 @@
 {% extends 'test.html.twig' %}
 
 {% block body %}
-    <div style="border:1px solid gray; padding:5px;">
+    <h2>Liste des membres</h2>
+    <div style="text-align:right">
+        {% if app.user is not null %}
+            <p>Connecté en tant que <strong>{{app.user.pseudo}}</strong> (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+        {% else %}
+            <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
+        {% endif %}
+    </div>
+    <div style="border:1px solid gray; padding:15px;margin:5px 15px 15px 15px;">
         {% for membre in membres %}
             <div>
                 {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
@@ -14,12 +22,11 @@
     <div>
         <a href="/test/new">Nouveau membre</a>
     </div>
+
     <div>
-        <a href="/test/newmessage">Nouveau message</a>
+        <a href="{{path('test_messagerie')}}">Messagerie</a>
     </div>
-    <div>
-        <a href="/test/login">Connexion</a>
-    </div>
+
     <div>
         <a href="{{path('test_secret')}}">Message secret</a>
     </div>

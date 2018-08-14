@@ -43,6 +43,11 @@ class Messagerie
      */
     private $created;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
+
     public function getId()
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Messagerie
     public function setCreated(): self
     {
         $this->created =  new \DateTime() ;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
 
         return $this;
     }
