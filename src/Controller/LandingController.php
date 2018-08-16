@@ -56,9 +56,7 @@ class LandingController extends Controller {
     // Methode de Connexion
     public function landing(Request $request, AuthenticationUtils $authenticationUtils) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('profil');
-        }
+        
 
         
     }
