@@ -18,3 +18,8 @@ h1 {
 .tableau-reçus {
     margin-bottom: 5%;
 }
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
