@@ -36,6 +36,8 @@ class LandingController extends Controller {
             $membre->setPseudo($request->get("pseudo"));
             $membre->setEmail($request->get("email"));
             $membre->setPassword( $encoder->encodePassword($membre, $request->get("password")) );
+            $membre->setmainimage($request->get("mainimage"));
+            $membre->setRole("ROLE_USER");
             // $membre->setUpdated();
 
             try{
@@ -55,7 +57,11 @@ class LandingController extends Controller {
 
     // Methode de Connexion
     public function landing(Request $request, AuthenticationUtils $authenticationUtils) {
+        $membre = new Membres();
 
+        if ($membre->isValid()) {
+            return $this->redirectToRoute("/profil");
+        }
         
 
         
