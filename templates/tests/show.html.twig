@@ -1,31 +1,42 @@
-{% extends 'test.html.twig' %}    
+{% extends 'test.html.twig' %}
 {% block body %}
 
-
-
-<h2>{{pseudo.pseudo}}</h2>
+    <h2>{{pseudo.pseudo}}</h2>
     <div style="text-align:right">
         {% if app.user is not null %}
-            <p>Connecté en tant que <strong>{{app.user.pseudo}}</strong> (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+            <p>Connecté en tant que
+                <strong>{{app.user.pseudo}}</strong>
+                (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
         {% else %}
             <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
         {% endif %}
     </div>
-<p>Contacter au
-    {{pseudo.email}}</p>
+    <p>Contacter au
+        {{pseudo.email}}</p>
 
-<p><a href="{{path('test_list')}}">Liste des membres</a></p>
+    <p>
+        <a href="{{path('test_list')}}">Liste des membres</a>
+    </p>
 
-{% if is_granted('ROLE_USER') %}
-    {% if pseudo.id == app.user.id %}
-        <p><a href="{{path('test_edit', {id: pseudo.id }) }}">Edit {{pseudo.pseudo}}</a></p>
-        <p><a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer {{pseudo.pseudo}}</a></p>
-    {% else %}
-        <p><a href="{{path('test_newmessage', {id: pseudo.id }) }}">Ecrire à {{pseudo.pseudo}}</a></p>
+    {% if is_granted('ROLE_USER') %}
+        {% if pseudo.id == app.user.id %}
+            <p>
+                <a href="{{path('test_edit', {id: pseudo.id }) }}">Edit
+                    {{pseudo.pseudo}}</a>
+            </p>
+            <p>
+                <a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer
+                    {{pseudo.pseudo}}</a>
+            </p>
+        {% else %}
+            <p>
+                <a href="{{path('test_newmessage', {id: pseudo.id }) }}">Ecrire à
+                    {{pseudo.pseudo}}</a>
+            </p>
+        {% endif %}
     {% endif %}
-{% endif %}
 
-
+    {% if pseudo.mainimage is not null %}
+        <img src="/uploads/images/{{pseudo.mainimage}}" width="200px">
+    {% endif %}
 {% endblock %}
-
-

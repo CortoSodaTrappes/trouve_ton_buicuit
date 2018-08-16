@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -45,6 +46,7 @@ class MembresController extends Controller
             ->add('pseudo')
             ->add('password', PasswordType::class)
             ->add('email', EmailType::class)
+            ->add('mainimage', FileType::class, array('label' => 'Image', 'required'=>false))
             ->add('save', SubmitType::class)
             ->setMethod("POST")
             ->getForm();
@@ -62,6 +64,17 @@ class MembresController extends Controller
             $membre->setRole("ROLE_USER");
             // Si tout se passe bien, enregistrement du membre dans la base
             if ($form->isSubmitted() && $form->isValid()) {
+
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                if($file = $form->get('mainimage')->getData()){
+                    $fileName = $form->get('pseudo')->getData().'.'.$file->guessExtension();
+                    $file->move(
+                        $this->getParameter('mainimages_directory'),
+                        $fileName
+                    );
+                    $membre->setMainimage($fileName);
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($membre);
                 $em->flush();
@@ -87,6 +100,7 @@ class MembresController extends Controller
         ->add('pseudo')
         ->add('password')
         ->add('email')
+        ->add('mainimage', FileType::class, array('label' => 'Image', 'data_class' => null, 'required'=>false))
         ->add('save', SubmitType::class)
         ->getForm();
 

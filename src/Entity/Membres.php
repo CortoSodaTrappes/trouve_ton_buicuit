@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
@@ -21,6 +22,7 @@ class Membres implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
      */
     private $pseudo;
 
@@ -53,6 +55,14 @@ class Membres implements UserInterface
      * @ORM\Column(type="string", length=48)
      */
     private $role;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * //@Assert\NotBlank(message="Please, upload image.")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg", "image/gif" })
+     */
+    private $mainimage;
 
     public function __construct()
     {
@@ -216,6 +226,18 @@ class Membres implements UserInterface
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getMainimage(): ?string
+    {
+        return $this->mainimage;
+    }
+
+    public function setMainimage(?string $mainimage): self
+    {
+        $this->mainimage = $mainimage;
 
         return $this;
     }
