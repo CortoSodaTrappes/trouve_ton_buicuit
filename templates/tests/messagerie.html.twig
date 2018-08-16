@@ -1,18 +1,32 @@
 {% extends 'test.html.twig' %}
 {% block body %}
     {% if app.user is not null %}
-        <h2>Messagerie de {{ app.user.pseudo }}</h2>
-        <p style="text-align:right;">Connecté en tant que {{app.user.pseudo}} (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+        <h2>Messagerie de
+            {{ app.user.pseudo }}</h2>
+        <p style="text-align:right;">Connecté en tant que
+            {{app.user.pseudo}}
+            (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
     {% else %}
         <h2>Tous les messages enregistrés</h2>
         <p style="text-align:right;">Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
     {% endif %}
-        <table>
-        <tr><th>Titre</th><th>id exp.</th><th>Date</td></tr>
-        
+    <table style="width:400px; border:1px solid gray;margin: 10px auto 25px auto;">
+        <caption>
+            <strong>
+                <big>Messages reçus</big>
+            </strong>
+        </caption>
+        <tr>
+            <th>Titre</th>
+            <th>id exp.</th>
+            <th>Date</td>
+        </tr>
+
         {% for msg in messages_recus %}
             <tr>
-                <td><a href="{{path('test_showmessage', {id:msg.id}) }}">{{msg.titre}}</a></td>
+                <td>
+                    <a href="{{path('test_showmessage', {id:msg.id}) }}">{{msg.titre}}</a>
+                </td>
                 <td>&nbsp;</td>
                 <td>{{msg.date|date("d/m/Y H:i:s")}}</td>
             </tr>
@@ -21,13 +35,40 @@
                 {{dump(attributs)}}
             {% endfor %}
         {% endfor %}
-        </table>
+    </table>
+    <br>
+    <table style="width:400px; border:1px solid gray;margin: 10px auto 25px auto;">
+        <caption>
+            <strong>
+                <big>Messages envoyés</big>
+            </strong>
+        </caption>
+        <tr>
+            <th>Titre</th>
+            <th>id exp.</th>
+            <th>Date</td>
+        </tr>
 
-        <p><a href="{{path('test_list')}}">Liste des membres</a></p>
+        {% for msg in messages_envoyes %}
+            <tr>
+                <td>
+                    <a href="{{path('test_showmessage', {id:msg.id}) }}">{{msg.titre}}</a>
+                </td>
+                <td>&nbsp;</td>
+                <td>{{msg.date|date("d/m/Y H:i:s")}}</td>
+            </tr>
+            {# <td>{{msg.titre}}</td><td>{{msg.id_expediteur.id}}</td><td>{{msg.date|date("d/m/Y H:i:s")}}</td> #}
+            {% for attributs in msg %}
+                {{dump(attributs)}}
+            {% endfor %}
+        {% endfor %}
+    </table>
 
+    <p>
+        <a href="{{path('test_list')}}">Liste des membres</a>
+    </p>
 
-
-        {# {{dump(messages_recus)}}
+    {# {{dump(messages_recus)}}
         <br>
         {{dump(messages_envoyes)}} #}
 
