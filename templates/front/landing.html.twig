@@ -16,6 +16,9 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li><a href="{{path('landing_inscript')}}">Insciption</a></li>
+          {% if app.user is not null %}
+            <li><a href="{{path('logout')}}"> Déconnexion </a> </li>
+          {% endif %}
           {# <li class="active"><a class="drop" href="#">Pages</a>
             <ul>
               <li><a href="gallery.html">Gallery</a></li>

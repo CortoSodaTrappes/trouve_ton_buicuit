@@ -7,7 +7,7 @@ security:
                 property: email
 
     encoders:
-        App\Entity\Membres: plaintext
+        App\Entity\Membres: bcrypt
 
 
     firewalls:
@@ -33,8 +33,8 @@ security:
 
 
             logout:
-                target: /tests
-                path: /test/logout
+                target: /
+                path: /logout
                 success_handler: ~
                 invalidate_session: true
 

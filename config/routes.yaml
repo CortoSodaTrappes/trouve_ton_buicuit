@@ -10,6 +10,9 @@ landing_inscript:
     path: /landing_inscript
     controller: App\Controller\LandingController::landing_inscript
 
+logout:
+    path: /logout
+    controller: App\Controller\LandingController::logout
 
 membre_list:
     path: /list

@@ -61,7 +61,10 @@ class LandingController extends Controller {
         return $this->render('front/landing.html.twig');
     }
 
-
+    // Methode de deconnexion 
+    public function logout(){
+        return $this->render('front/landing.html.twig');
+    }
 
 
 }
