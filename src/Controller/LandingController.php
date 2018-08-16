@@ -57,14 +57,8 @@ class LandingController extends Controller {
 
     // Methode de Connexion
     public function landing(Request $request, AuthenticationUtils $authenticationUtils) {
-        $membre = new Membres();
 
-        if ($membre->isValid()) {
-            return $this->redirectToRoute("/profil");
-        }
-        
-
-        
+        return $this->render('front/landing.html.twig');
     }
 
 

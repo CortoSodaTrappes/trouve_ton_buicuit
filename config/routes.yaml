@@ -4,9 +4,7 @@
 
 landing:
     path: /
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: front/landing.html.twig
+    controller: App\Controller\LandingController::landing 
 
 landing_inscript:
     path: /landing_inscript
