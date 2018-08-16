@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
@@ -22,6 +22,7 @@ class Membres implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
      */
     private $pseudo;
 
@@ -50,10 +51,29 @@ class Membres implements UserInterface
      */
     private $presentations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Messagerie", mappedBy="id_expediteur", orphanRemoval=true)
+     */
+    private $messageries;
+
+    /**
+     * @ORM\Column(type="string", length=48)
+     */
+    private $role;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * //@Assert\NotBlank(message="Please, upload image.")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg", "image/gif" })
+     */
+    private $mainimage;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
         $this->presentations = new ArrayCollection();
+        $this->messageries = new ArrayCollection();
     }
 
     public function getId()
@@ -159,8 +179,39 @@ class Membres implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Messagerie[]
+     */
+    public function getMessageries(): Collection
+    {
+        return $this->messageries;
+    }
+
+    public function addMessagery(Messagerie $messagery): self
+    {
+        if (!$this->messageries->contains($messagery)) {
+            $this->messageries[] = $messagery;
+            $messagery->setIdExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagery(Messagerie $messagery): self
+    {
+        if ($this->messageries->contains($messagery)) {
+            $this->messageries->removeElement($messagery);
+            // set the owning side to null (unless already changed)
+            if ($messagery->getIdExpediteur() === $this) {
+                $messagery->setIdExpediteur(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getRoles(){
-        return array("ROLE_USER"); // retourne le role de l'utilissateur
+        return array("ROLE_USER") ;
     }
 
     public function getSalt(){}
@@ -170,4 +221,29 @@ class Membres implements UserInterface
     }
 
     public function eraseCredentials(){}
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getMainimage(): ?string
+    {
+        return $this->mainimage;
+    }
+
+    public function setMainimage(?string $mainimage): self
+    {
+        $this->mainimage = $mainimage;
+
+        return $this;
+    }
+
 }
