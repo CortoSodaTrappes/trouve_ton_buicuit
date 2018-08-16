@@ -242,5 +242,4 @@ class Membres implements UserInterface
         return $this;
     }
 
-
 }
