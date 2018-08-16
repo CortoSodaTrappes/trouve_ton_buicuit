@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
  */
@@ -33,6 +34,11 @@ class Membres implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\Length(
+     * min = 8,
+     * max = 15,
+     * minMessage = " Entrez un password superieur à 8 carac. ",
+     * maxMessage = " Entrez un password inferieur à 15 carac. ")
      */
     private $password;
 
@@ -174,6 +180,7 @@ class Membres implements UserInterface
         return $this;
     }
 
+
     /**
      * @return Collection|Messagerie[]
      */
@@ -208,6 +215,7 @@ class Membres implements UserInterface
     public function getRoles(){
         return array("ROLE_USER") ;
 
+
     }
 
     public function getSalt(){}
@@ -218,29 +226,7 @@ class Membres implements UserInterface
 
     public function eraseCredentials(){}
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
 
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    public function getMainimage(): ?string
-    {
-        return $this->mainimage;
-    }
-
-    public function setMainimage(?string $mainimage): self
-    {
-        $this->mainimage = $mainimage;
-
-        return $this;
-    }
 
 
 }
