@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -40,6 +41,8 @@ class MembresController extends Controller
         // Instanciation de la classe Membres
         $message="" ;
         $membre = new Membres();
+        $date = new \DateTime();
+
 
         // Définition du formulaire
         $form = $this->createFormBuilder($membre)
@@ -47,6 +50,12 @@ class MembresController extends Controller
             ->add('password', PasswordType::class)
             ->add('email', EmailType::class)
             ->add('mainimage', FileType::class, array('label' => 'Image', 'required'=>false))
+            ->add('ville')
+            ->add('naissance', DateType::class, array(
+                'widget' => 'choice',
+                'years' => range(1950,$date->format('Y')),
+                'format' => 'dd-MM-yyyy')
+            )
             ->add('save', SubmitType::class)
             ->setMethod("POST")
             ->getForm();

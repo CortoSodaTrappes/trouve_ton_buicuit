@@ -64,6 +64,16 @@ class Membres implements UserInterface
      */
     private $mainimage;
 
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $naissance;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
@@ -238,6 +248,30 @@ class Membres implements UserInterface
     public function setMainimage(?string $mainimage): self
     {
         $this->mainimage = $mainimage;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getNaissance(): ?\DateTimeInterface
+    {
+        return $this->naissance;
+    }
+
+    public function setNaissance(\DateTimeInterface $naissance): self
+    {
+        $this->naissance = $naissance;
 
         return $this;
     }
