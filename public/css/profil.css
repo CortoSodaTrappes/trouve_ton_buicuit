@@ -13,7 +13,7 @@
 .profil .container .row .profil-photos .profil-main-img {
   width: 100%;
   padding: 0%;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -32,12 +32,17 @@
   font-weight: bold;
 }
 
+.profil .container .row .profil-main-information .fas {
+  color: black;
+  margin-left: 2%;
+}
+
 .profil .container .row .profil-main-information #phase-courte {
   font-style: italic;
 }
 
 .profil .container .row .profil-main-information #bottonprofil {
-  margin-top: 2%;
+  margin-top: 0%;
 }
 
 .dating-profile .barre-bas .container {

@@ -9,10 +9,12 @@
 {% block body %}
 
     <p>Template show.html.twig</p>
-    <p>Controlleur Membres : icil'affichage d'un membre.</p>
+    <p>Controlleur Membres : ici l'affichage d'un membre.</p>
 
 {% endblock %}
 
+
+        
                     {% block formulaire %}
                     <div class="dating-profil-formulaires col-8">
                         <div class="formulaire">
@@ -219,6 +221,11 @@
                                 </div>
 
                                 </fieldset>
+                                <!-- Button -->
+                                <div class="form-group button-enregistrer">
+                                
+                                    <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                </div>
                                 </div>
                             </form>
                         
@@ -227,3 +234,4 @@
                     
                     <div>
                     {% endblock %}
+  
