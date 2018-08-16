@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
+use App\Entity\Presentations;
+use App\Entity\Recherches;
 
 
 
@@ -87,6 +89,22 @@ class MembresController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($membre);
                 $em->flush();
+                $id = $membre->getId();
+
+                // Initialisation de la présentation
+                $presentation = new Presentations($membre);
+                $presentation->init();
+                $membre->addPresentation($presentation);
+                $em->persist($presentation);
+                $em->flush();
+
+                // Initialisation de la recherche
+                $recherche = new Recherches($membre);
+                $recherche->init();
+                $membre->addRecherche($recherche);
+                $em->persist($recherche);
+                $em->flush();
+
 
                 // Après l'enregistrement, affichage de la liste de membres
                 return $this->redirectToRoute('test_login');

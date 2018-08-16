@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PresentationsRepository")
  */
@@ -36,6 +37,10 @@ class Presentations
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_membre;
+
+    public function __construct($id_membre){
+        $this->setIdMembre($id_membre);
+    }
 
     public function getId()
     {
@@ -88,5 +93,11 @@ class Presentations
         $this->id_membre = $id_membre;
 
         return $this;
+    }
+
+    public function init(){
+        $this->setPresentation("Présentation par défaut.");
+        $this->setTypePersonne('h');
+        $this->setTypeRelation("1");
     }
 }

@@ -130,23 +130,23 @@ class Membres implements UserInterface
         return $this->recherches;
     }
 
-    public function addRecherch(Recherches $recherch): self
+    public function addRecherche(Recherches $recherche): self
     {
-        if (!$this->recherches->contains($recherch)) {
-            $this->recherches[] = $recherch;
-            $recherch->setIdMembre($this);
+        if (!$this->recherches->contains($recherche)) {
+            $this->recherches[] = $recherche;
+            $recherche->setIdMembre($this);
         }
 
         return $this;
     }
 
-    public function removeRecherch(Recherches $recherch): self
+    public function removeRecherche(Recherches $recherche): self
     {
-        if ($this->recherches->contains($recherch)) {
-            $this->recherches->removeElement($recherch);
+        if ($this->recherches->contains($recherche)) {
+            $this->recherches->removeElement($recherche);
             // set the owning side to null (unless already changed)
-            if ($recherch->getIdMembre() === $this) {
-                $recherch->setIdMembre(null);
+            if ($recherche->getIdMembre() === $this) {
+                $recherche->setIdMembre(null);
             }
         }
 
