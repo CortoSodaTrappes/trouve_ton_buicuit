@@ -33,11 +33,6 @@ class Membres implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=80)
-     * @Assert\Length(
-     * min = 8,
-     * max = 15,
-     * minMessage = " Entrez un password superieur à 8 carac. ",
-     * maxMessage = " Entrez un password inferieur à 15 carac. ")
      */
     private $password;
 
@@ -212,6 +207,7 @@ class Membres implements UserInterface
 
     public function getRoles(){
         return array("ROLE_USER") ;
+
     }
 
     public function getSalt(){}

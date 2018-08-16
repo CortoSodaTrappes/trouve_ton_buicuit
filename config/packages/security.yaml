@@ -1,13 +1,18 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+
+
         user_provider:
+
             entity:
                 class: App\Entity\Membres
                 property: email
 
     encoders:
+
         App\Entity\Membres: plaintext
+
 
     firewalls:
         dev:
@@ -17,6 +22,8 @@ security:
         main:
             anonymous: ~
             http_basic: ~
+
+
             provider: user_provider
             form_login:
                 post_only: true
@@ -29,6 +36,7 @@ security:
                 password_parameter: login[password]
                 require_previous_session: false
                 always_use_default_target_path: false
+
 
             logout:
                 target: /tests
@@ -44,7 +52,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-
         - { path: ^/test/secret, roles: ROLE_USER }
         - { path: ^/test/profil, roles: ROLE_USER }
         - { path: ^/test/admin, roles: ROLE_USER }
