@@ -49,22 +49,53 @@ admin_membres:
     defaults:
         template: admin/membres.html.twig
 
+testst:
+    path: /tests
+    controller: App\Controller\MembresController::testList 
+
 test_list:
     path: /test/list
-    controller: App\Controller\MembresController::list 
+    controller: App\Controller\MembresController::testList 
 
 test_show:
     path: /test/show/{id}
-    controller: App\Controller\MembresController::show 
+    controller: App\Controller\MembresController::testShow 
 
 test_new:
     path: /test/new
-    controller: App\Controller\MembresController::new 
+    controller: App\Controller\MembresController::testNew 
 
 test_edit:
     path: /test/edit/{id}
-    controller: App\Controller\MembresController::edit 
+    controller: App\Controller\MembresController::testEdit 
 
 test_delete:
     path: /test/delete/{id}
-    controller: App\Controller\MembresController::delete 
+    controller: App\Controller\MembresController::testDelete 
+
+test_newmessage:
+    path: /test/newmessage/{id}
+    controller: App\Controller\MessagerieController::testNew 
+
+test_showmessage:
+    path: /test/showmessage/{id}
+    controller: App\Controller\MessagerieController::testShow 
+
+test_messagerie:
+    path: /test/profil/messagerie
+    # controller: App\Controller\MessagerieController::testAllMessagerie 
+    controller: App\Controller\MessagerieController::testMessagerie 
+
+test_login:
+    path: /test/login
+    controller: App\Controller\MembresController::testLogin 
+    
+test_logout:
+    path: /test/logout
+    controller: App\Controller\MembresController::testLogout 
+    
+test_secret:
+    path: /test/secret
+    controller:  Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: tests/secret.html.twig
