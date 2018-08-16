@@ -1,0 +1,33 @@
+{% extends 'test.html.twig' %}
+{% block body %}
+    {% if app.user is not null %}
+        <p>Connecté en tant que {{app.user.pseudo}} (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+    <h2>Messagerie de 
+        {{ app.user.pseudo }}</h2>
+    {% else %}
+        <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
+        <h2>Tous les messages enregistrés</h2>
+    {% endif %}
+
+
+    {% if message is defined %}
+    <h3>{{message.titre}}</h3>
+    <p><small>{{message.date|date("d/m/Y H:i:s")}}</small></p>
+    <p>{{message.message}}</p>
+    <p>Expéditeur et destinataires ????????</p>
+    {% endif %}
+
+    <div>
+        <a href="{{path('test_messagerie')}}">Messagerie</a>
+    </div>
+
+    <div>
+        <a href="{{path('test_secret')}}">Message secret</a>
+    </div>
+
+
+        {# {{dump(messages_recus)}}
+        <br>
+        {{dump(messages_envoyes)}} #}
+
+{% endblock %}

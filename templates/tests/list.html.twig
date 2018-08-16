@@ -1,19 +1,34 @@
-{% extends 'test.html.twig' %}    
-
+{% extends 'test.html.twig' %}
 
 {% block body %}
-{% for membre in membres %}
-    <div>
-        {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
-        <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
-        :
-        {{membre.email}}
+    <h2>Liste des membres</h2>
+    <div style="text-align:right">
+        {% if app.user is not null %}
+            <p>Connecté en tant que <strong>{{app.user.pseudo}}</strong> (<a href="{{path('test_logout')}}">Déconnexion</a>).</p>
+        {% else %}
+            <p>Utilisateur anonyme (<a href="{{path('test_login')}}">connexion</a>).</p>
+        {% endif %}
     </div>
-{% endfor %}
-<div>
-    <a href="/test/new">Nouveau</a>
-</div>
+    <div style="border:1px solid gray; padding:15px;margin:5px 15px 15px 15px;">
+        {% for membre in membres %}
+            <div>
+                {# <a href="{{ path('test_list', {'id': membre.id}) }}">{{membre.pseudo}}</a> #}
+                <a href="{{path('test_show', {id:membre.id}) }}">{{membre.pseudo}}</a>
+                :
+                {{membre.email}}
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="/test/new">Nouveau membre</a>
+    </div>
+
+    <div>
+        <a href="{{path('test_messagerie')}}">Messagerie</a>
+    </div>
+
+    <div>
+        <a href="{{path('test_secret')}}">Message secret</a>
+    </div>
 
 {% endblock %}
-
-
