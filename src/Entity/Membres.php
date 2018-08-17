@@ -252,6 +252,7 @@ class Membres implements UserInterface
         return $this;
     }
 
+
     public function getVille(): ?string
     {
         return $this->ville;
@@ -277,3 +278,4 @@ class Membres implements UserInterface
     }
 
 }
+

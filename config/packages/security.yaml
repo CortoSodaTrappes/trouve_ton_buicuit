@@ -7,7 +7,8 @@ security:
                 property: email
 
     encoders:
-        App\Entity\Membres: plaintext
+        App\Entity\Membres: bcrypt
+
 
     firewalls:
         dev:
@@ -20,19 +21,20 @@ security:
             provider: user_provider
             form_login:
                 post_only: true
-                login_path: test_login
-                check_path: test_login
+                login_path: landing
+                check_path: landing
                 use_referer: false
                 remember_me: false
-                username_parameter: login[email]
-                default_target_path: /tests
-                password_parameter: login[password]
+                username_parameter: email
+                default_target_path: /profil
+                password_parameter: password
                 require_previous_session: false
                 always_use_default_target_path: false
 
+
             logout:
-                target: /tests
-                path: /test/logout
+                target: /
+                path: /logout
                 success_handler: ~
                 invalidate_session: true
 
@@ -44,10 +46,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/test/secret, roles: ROLE_USER }
-        - { path: ^/test/profil, roles: ROLE_USER }
-        - { path: ^/test/admin, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/test/secret, roles: ROLE_USER }
+        # - { path: ^/test/profil, roles: ROLE_USER }
+        # - { path: ^/test/admin, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profil, roles: ROLE_USER }
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
+
