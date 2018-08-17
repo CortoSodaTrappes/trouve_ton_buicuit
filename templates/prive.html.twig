@@ -1,5 +1,7 @@
 {% extends "front.html.twig" %}
 
+
+
 {% block tracabilite %}
     <p>Template prive.html.twig</p>
     
@@ -18,11 +20,23 @@
                     </div>
                 </div>
                 <div class="profil-main-information col-8">
+                <!-- MODIFICATION on click -->
                     <div>
-                        <h4>PSEUDO<i class="fas fa-pen"></i></h4>
-                        <p id="phase-courte">"Je suis bla bla bla"<i class="fas fa-pen"></i></p>
-                        <p>AGE<i class="fas fa-pen"></i></p>
-                        <p>VILLE<i class="fas fa-pen"></i></p>
+                        <div id="status_change">
+                            <h4 id="pseudo">PSEUDO<i class="fas fa-pen"></i></h4>
+                            <div id="status_cotainer_change">
+                                <div>
+                                    <input type="text" id="status_val"><button id="save_status">Sauvegarder</button>
+                                
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <p id="presentation-courte" class="phase-courte">"Je suis bla bla bla"<i class="fas fa-pen"></i></p>
+                        <p id="age">AGE<i class="fas fa-pen"></i></p>
+                        <p id="ville">VILLE<i class="fas fa-pen"></i></p>
+                <!--  END MODIFICATION on click -->
                         <button type="button" class="btn btn-secondary" id="bottonprofil"><a href="{{ path('membre_show')  }}">Voir mon profil</a></button>
                     </div>
                 </div>
@@ -282,7 +296,36 @@
 
     
 </section>
+
+<script>
+
+$(document).ready(function(){
+    // open
+    $('#pseudo').click(function(){
+        $('#status_val').val($('#pseudo').text());
+        $('#status_cotainer_change').show();
+        $('#pseudo').hide();
+        
+        
+    });
+    
+    // save
+    $('#save_status').click(function(){
+        $('#pseudo').text($.trim($('#status_val').val()))
+        $('#status_cotainer_change').hide();
+        $('#pseudo').show();
+        $('i').show();
+       
+    });
+})
+
+</script>
+
+
 </body>
+
+
+
 
 {% endblock %}
 
