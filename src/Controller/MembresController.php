@@ -7,13 +7,18 @@ use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+// use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+// use Symfony\Component\Form\Extension\Core\Type\EmailType;
+// use Symfony\Component\Form\Extension\Core\Type\FileType;
+// use Symfony\Component\Form\Extension\Core\Type\DateType;
+// use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
+use App\Form\NewEditMembreType;
+use App\Form\PresentationType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
+use App\Entity\Presentations;
+use App\Entity\Recherches;
 
 
 
@@ -21,18 +26,30 @@ use App\Entity\Membres;
 class MembresController extends Controller
 {
 
+    // Ctrl pour afficher tous les membres
     public function testList(MembresRepository $membresRepository): Response
     {
-        // Liste de tous les membres
         return $this->render('tests/list.html.twig', 
             ['membres' => $membresRepository->findAll()]);
     }
 
-    public function testShow(Membres $pseudo): Response
+    // Ctrl pour afficher les détails d'un membre
+    public function testShow(Membres $membre): Response
     {
-        // Apparemment, en passant un id en argument sf4 s'arrange 
-        // pour que show() reçoive un objet Membre complet.
-        return $this->render('tests/show.html.twig', ['pseudo' => $pseudo]);
+        $presentations = $membre->getPresentations()->getValues() ;
+        $recherches = $membre->getRecherches()->getValues();
+
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
+
+        return $this->render('tests/show.html.twig', array(
+            'membre' => $membre, 
+            'presentation'=>$presentations[0]->getAllElement(), 
+            'recherche'=>$recherches[0]->getAllElement(),
+            'age'=>$age)
+        );
     }
 
     public function testNew(Request $request): Response
@@ -40,24 +57,15 @@ class MembresController extends Controller
         // Instanciation de la classe Membres
         $message="" ;
         $membre = new Membres();
+        // $date = new \DateTime();
+        $form = $this->createForm(NewEditMembreType::class, $membre);
+        $form->handleRequest($request);
 
-        // Définition du formulaire
-        $form = $this->createFormBuilder($membre)
-            ->add('pseudo')
-            ->add('password', PasswordType::class)
-            ->add('email', EmailType::class)
-            ->add('mainimage', FileType::class, array('label' => 'Image', 'required'=>false))
-            ->add('save', SubmitType::class)
-            ->setMethod("POST")
-            ->getForm();
-
-            $form->handleRequest($request);
-
-            // Récupération d'éventuels membres qui auraient les 
-            // mêmes email et pseudo que ceux saisis.
-            $repository = $this->getDoctrine()->getRepository(Membres::class);
-            $tempmemberemail = $repository->findOneBy(["email" => $membre->getEmail()]);
-            $tempmemberpseudo = $repository->findOneBy(["pseudo" => $membre->getPseudo()]);
+        // Récupération d'éventuels membres qui auraient les 
+        // mêmes email et pseudo que ceux saisis.
+        $repository = $this->getDoctrine()->getRepository(Membres::class);
+        $tempmemberemail = $repository->findOneBy(["email" => $membre->getEmail()]);
+        $tempmemberpseudo = $repository->findOneBy(["pseudo" => $membre->getPseudo()]);
 
         // email et pseudos inconnus, on tente l'enregistrement.
         if(!$tempmemberemail && !$tempmemberpseudo){
@@ -78,6 +86,21 @@ class MembresController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($membre);
                 $em->flush();
+                $id = $membre->getId();
+
+                // Initialisation de la présentation
+                $presentation = new Presentations($membre);
+                $presentation->init();
+                $membre->addPresentation($presentation);
+                $em->persist($presentation);
+                $em->flush();
+
+                // Initialisation de la recherche
+                $recherche = new Recherches($membre);
+                $recherche->init();
+                $membre->addRecherche($recherche);
+                $em->persist($recherche);
+                $em->flush();
 
                 // Après l'enregistrement, affichage de la liste de membres
                 return $this->redirectToRoute('test_login');
@@ -96,14 +119,8 @@ class MembresController extends Controller
 
     public function testEdit(Request $request, Membres $membre): Response
     {
-        $form = $this->createFormBuilder($membre)
-        ->add('pseudo')
-        ->add('password')
-        ->add('email')
-        ->add('mainimage', FileType::class, array('label' => 'Image', 'data_class' => null, 'required'=>false))
-        ->add('save', SubmitType::class)
-        ->getForm();
 
+        $form = $this->createForm(NewEditMembreType::class, $membre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,6 +134,28 @@ class MembresController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    
+    public function testEditPresentation(Request $request, Membres $membre): Response
+    {
+        $presentations = $membre->getPresentations()->getValues() ;
+        $presentation = $presentations[0]->getAllElement();
+
+        $form = $this->createForm(PresentationType::class, $presentation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('test_list', ['id' => $membre->getId()]);
+        }
+
+        return $this->render('tests/formpresentation.html.twig', [
+            'membre' => $membre,
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     public function testDelete(Request $request, Membres $membre): Response
     {

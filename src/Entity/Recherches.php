@@ -37,6 +37,11 @@ class Recherches
      */
     private $id_membre;
 
+
+    public function __construct($id_membre){
+        $this->setIdMembre($id_membre);
+    }
+
     public function getId()
     {
         return $this->id;
@@ -89,4 +94,19 @@ class Recherches
 
         return $this;
     }
+
+    public function init(){
+        $this->setTypePersonne('f');
+        $this->setTypeRelation('2');
+        $this->setTitreRecherche('Recherche type');
+    }
+
+    public function getAllElement(){
+        return array(
+            "id" => $this->getId(),
+            "titre_recherche" => $this->getTitreRecherche(),
+            "type_personne" => $this->getTypePersonne(),
+            "type_relation" => $this->getTypeRelation(),
+        );
+    }    
 }

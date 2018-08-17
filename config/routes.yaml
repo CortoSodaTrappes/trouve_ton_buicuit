@@ -70,6 +70,10 @@ test_edit:
     path: /test/edit/{id}
     controller: App\Controller\MembresController::testEdit 
 
+test_edit_presentation:
+    path: /test/editpresentation/{id}
+    controller: App\Controller\MembresController::testEditPresentation 
+
 test_delete:
     path: /test/delete/{id}
     controller: App\Controller\MembresController::testDelete 

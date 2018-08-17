@@ -64,6 +64,16 @@ class Membres implements UserInterface
      */
     private $mainimage;
 
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $naissance;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
@@ -120,23 +130,23 @@ class Membres implements UserInterface
         return $this->recherches;
     }
 
-    public function addRecherch(Recherches $recherch): self
+    public function addRecherche(Recherches $recherche): self
     {
-        if (!$this->recherches->contains($recherch)) {
-            $this->recherches[] = $recherch;
-            $recherch->setIdMembre($this);
+        if (!$this->recherches->contains($recherche)) {
+            $this->recherches[] = $recherche;
+            $recherche->setIdMembre($this);
         }
 
         return $this;
     }
 
-    public function removeRecherch(Recherches $recherch): self
+    public function removeRecherche(Recherches $recherche): self
     {
-        if ($this->recherches->contains($recherch)) {
-            $this->recherches->removeElement($recherch);
+        if ($this->recherches->contains($recherche)) {
+            $this->recherches->removeElement($recherche);
             // set the owning side to null (unless already changed)
-            if ($recherch->getIdMembre() === $this) {
-                $recherch->setIdMembre(null);
+            if ($recherche->getIdMembre() === $this) {
+                $recherche->setIdMembre(null);
             }
         }
 
@@ -242,4 +252,30 @@ class Membres implements UserInterface
         return $this;
     }
 
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getNaissance(): ?\DateTimeInterface
+    {
+        return $this->naissance;
+    }
+
+    public function setNaissance(\DateTimeInterface $naissance): self
+    {
+        $this->naissance = $naissance;
+
+        return $this;
+    }
+
 }
+
