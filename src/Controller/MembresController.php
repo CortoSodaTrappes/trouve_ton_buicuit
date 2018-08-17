@@ -19,6 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
 use App\Entity\Presentations;
 use App\Entity\Recherches;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 
@@ -52,7 +53,7 @@ class MembresController extends Controller
         );
     }
 
-    public function testNew(Request $request): Response
+    public function testNew(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         // Instanciation de la classe Membres
         $message="" ;
@@ -72,6 +73,8 @@ class MembresController extends Controller
             $membre->setRole("ROLE_USER");
             // Si tout se passe bien, enregistrement du membre dans la base
             if ($form->isSubmitted() && $form->isValid()) {
+
+            $membre->setPassword( $encoder->encodePassword($membre, $request->get("password")) );
 
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 if($file = $form->get('mainimage')->getData()){
@@ -145,6 +148,9 @@ class MembresController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('test_list', ['id' => $membre->getId()]);

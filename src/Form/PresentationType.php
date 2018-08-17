@@ -21,7 +21,7 @@ class PresentationType extends AbstractType
                     'f' => "Femme",
                     'hf' => "Couple",
                     'hh' => "Couple d'hommes",
-                    'ff' => "Copule de femmes",
+                    'ff' => "Couple de femmes",
                 )))
             ->add('type_relation')
             ->add('id_membre')
