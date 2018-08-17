@@ -1,7 +1,7 @@
 {% extends 'test.html.twig' %}
 {% block body %}
 
-    <h2>{{pseudo.pseudo}}</h2>
+    <h2>{{membre.pseudo}}</h2>
     <div style="text-align:right">
         {% if app.user is not null %}
             <p>Connecté en tant que
@@ -12,33 +12,53 @@
         {% endif %}
     </div>
     <p>Contacter au
-        {{pseudo.email}}</p>
+        {{membre.email}}</p>
 
-    <p>Ville : {{pseudo.ville}}</p>
-    <p>Date de naissance : {{pseudo.naissance|date("m/d/Y")}}
+    <p>Ville : {{membre.ville}}</p>
+    <p>Date de naissance : {{membre.naissance|date("m/d/Y")}}
     <p>
         <a href="{{path('test_list')}}">Liste des membres</a>
     </p>
 
     {% if is_granted('ROLE_USER') %}
-        {% if pseudo.id == app.user.id %}
+        {% if membre.id == app.user.id %}
             <p>
-                <a href="{{path('test_edit', {id: pseudo.id }) }}">Edit
-                    {{pseudo.pseudo}}</a>
+                <a href="{{path('test_edit', {id: membre.id }) }}">Edit
+                    {{membre.pseudo}}</a>
             </p>
             <p>
-                <a href="{{path('test_delete', {id: pseudo.id }) }}">Supprimer
-                    {{pseudo.pseudo}}</a>
+                <a href="{{path('test_delete', {id: membre.id }) }}">Supprimer
+                    {{membre.pseudo}}</a>
             </p>
         {% else %}
             <p>
-                <a href="{{path('test_newmessage', {id: pseudo.id }) }}">Ecrire à
-                    {{pseudo.pseudo}}</a>
+                <a href="{{path('test_newmessage', {id: membre.id }) }}">Ecrire à
+                    {{membre.pseudo}}</a>
             </p>
         {% endif %}
     {% endif %}
 
-    {% if pseudo.mainimage is not null %}
-        <img src="/uploads/images/{{pseudo.mainimage}}" width="200px">
+    {% if membre.mainimage is not null %}
+        <img src="/uploads/images/{{membre.mainimage}}" width="200px">
     {% endif %}
+    <div>
+        <div style="display:inline-block;">
+        <h3>Ma présentation</h3>
+        <p>{{presentation.presentation}}</p>
+        <p>Je suis : {{presentation.type_personne}}</p>
+        <p>Champ non défini : {{presentation.type_relation}}</p>
+        </div>
+
+        <div style="display:inline-block;">
+        <h3>Je cherche</h3>
+        <p>{{recherche.titre_recherche}} </p>
+        <p>La personne que je cherche : {{recherche.type_personne}}</p>
+        <p>La relation que je cherche : {{recherche.type_relation}}</p>
+       
+        </div>
+    </div>
+
+    {# {{dump(membre)}} #}
+    {{dump(presentation)}}
+    {{dump(recherche)}}
 {% endblock %}

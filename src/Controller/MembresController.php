@@ -24,18 +24,43 @@ use App\Entity\Recherches;
 class MembresController extends Controller
 {
 
+    // Ctrl pour afficher tous les membres
     public function testList(MembresRepository $membresRepository): Response
     {
-        // Liste de tous les membres
         return $this->render('tests/list.html.twig', 
             ['membres' => $membresRepository->findAll()]);
     }
 
-    public function testShow(Membres $pseudo): Response
+    // Ctrl pour afficher les détails d'un membre
+    public function testShow(Membres $membre): Response
     {
-        // Apparemment, en passant un id en argument sf4 s'arrange 
-        // pour que show() reçoive un objet Membre complet.
-        return $this->render('tests/show.html.twig', ['pseudo' => $pseudo]);
+        $presentations = $membre->getPresentations()->getValues() ;
+        $recherches = $membre->getRecherches()->getValues();
+
+
+        // foreach($presentations as $key => $presentations){
+        //     echo $presentations->presentation;
+        // }
+            dump($presentations);
+
+        // echo "<pre>" ; print_r($presentations);echo "</pre>";
+        // $presentation = $this
+        //     ->getDoctrine()
+        //     ->getRepository(Presentations::class)
+        //     ->find($id);
+
+
+
+        return $this->render('tests/show.html.twig', array(
+            'membre' => $membre, 
+            'presentation'=>$presentations[0]->getAllElement(), 
+            'recherche'=>$recherches[0]->getAllElement())
+        );
+        
+            
+            
+            
+            
     }
 
     public function testNew(Request $request): Response

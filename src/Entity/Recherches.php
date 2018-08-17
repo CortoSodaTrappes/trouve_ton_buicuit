@@ -100,4 +100,13 @@ class Recherches
         $this->setTypeRelation('2');
         $this->setTitreRecherche('Recherche type');
     }
+
+    public function getAllElement(){
+        return array(
+            "id" => $this->getId(),
+            "titre_recherche" => $this->getTitreRecherche(),
+            "type_personne" => $this->getTypePersonne(),
+            "type_relation" => $this->getTypeRelation(),
+        );
+    }    
 }

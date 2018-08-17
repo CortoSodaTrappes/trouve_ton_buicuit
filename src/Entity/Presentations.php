@@ -100,4 +100,13 @@ class Presentations
         $this->setTypePersonne('h');
         $this->setTypeRelation("1");
     }
+
+    public function getAllElement(){
+        return array(
+            "id" => $this->getId(),
+            "presentation" => $this->getPresentation(),
+            "type_personne" => $this->getTypePersonne(),
+            "type_relation" => $this->getTypeRelation(),
+        );
+    }
 }
