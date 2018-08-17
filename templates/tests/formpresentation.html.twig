@@ -1,0 +1,12 @@
+{% extends 'test.html.twig' %}
+
+{% block body %}
+    <h2>Edition présentation</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    {% if error is defined %}
+        {{error}}
+    {% endif %}
+    <p><a href="{{path('test_list')}}">Liste des membres</a></p>
+{% endblock %}

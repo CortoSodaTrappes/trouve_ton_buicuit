@@ -21,7 +21,6 @@ class NewEditMembreType extends AbstractType
             ->add('pseudo')
             ->add('password', PasswordType::class)
             ->add('email', EmailType::class)
-            ->add('role')
             ->add('mainimage', FileType::class, array('label' => 'Image', 'data_class' => null, 'required'=>false))
             ->add('ville')
             ->add('naissance', DateType::class, array(
