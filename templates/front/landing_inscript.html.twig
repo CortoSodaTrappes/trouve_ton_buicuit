@@ -5,7 +5,7 @@
 
         <div id="cookie"> 
             <h1>Trouve ton Biscuit</h1>
-            <p style="text-align: center"> Click sur le biscuit pour t'inscrire! </P>
+            <h5 style="text-align: center"> Click sur le biscuit pour t'inscrire! <i class="fas fa-user-edit"></i> </h5>
             
                 <!-- Button trigger modal -->
                 <div id="img_cookie">
@@ -20,7 +20,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Inscription </h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Inscription <i class="fas fa-user-edit"></i> </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -78,13 +78,16 @@
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="{{path('landing')}}">Trouve ton Biscuit</a></h1> 
+        <img src="images/oreologo.jpg" class="d-inline-block align-top" style="float: left" alt="">
+            <p style="float:right" class="d-inline-block align-top">
+                <h1 style="float:right"><a href="{{path('landing')}}"> &nbsp Trouve ton Biscuit </a></h1>
+            </p>
         
       </div>
       <!-- ################################################################################################ -->
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li><a href="{{path('landing')}}">Connexion</a></li>
+          <li><a href="{{path('landing')}}"> Connexion <i class="fas fa-sign-in-alt"></i> </a></li>
           {# <li class="active"><a class="drop" href="#">Pages</a>
             <ul>
               <li><a href="gallery.html">Gallery</a></li>
