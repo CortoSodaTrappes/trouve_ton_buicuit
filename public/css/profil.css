@@ -32,17 +32,12 @@
   font-weight: bold;
 }
 
-.profil .container .row .profil-main-information .fas {
-  color: black;
-  margin-left: 2%;
-}
-
 .profil .container .row .profil-main-information #phase-courte {
   font-style: italic;
 }
 
 .profil .container .row .profil-main-information #bottonprofil {
-  margin-top: 0%;
+  margin-top: 2%;
 }
 
 .dating-profile .barre-bas .container {
@@ -131,5 +126,9 @@ button {
 
 .form-control {
   color: #6e6d6d;
+}
+
+.fas {
+  padding-left: 1%;
 }
 /*# sourceMappingURL=profil.css.map */

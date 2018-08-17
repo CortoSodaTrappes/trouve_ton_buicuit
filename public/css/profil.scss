@@ -24,15 +24,11 @@
                     text-decoration: underline;
                     font-weight: bold;
                 }
-                .fas {
-                    color: black;
-                    margin-left: 2%;
-                }
                 #phase-courte {
                     font-style: italic;
                 }
                 #bottonprofil {
-                    margin-top: 0%;
+                    margin-top: 2%;
                 }
             }
         }
@@ -119,4 +115,8 @@ button {
 
 .form-control {
     color: rgb(110, 109, 109)
+}
+
+.fas {
+    padding-left: 1%;
 }

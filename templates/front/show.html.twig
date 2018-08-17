@@ -13,8 +13,55 @@
 
 {% endblock %}
 
-
+{% block main %}
+{% block barretop %}
+<body>
+<section class="profil">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
+                <div class="profil-photos col-4">
+                    <div>
+                        <img class="profil-main-img" src="images/femme1a.jpg" alt="image-profil">
+                    </div>
+                </div>
+                <div class="profil-main-information col-8">
+                    <div>
+                        <h4>PSEUDO</i></h4>
+                        <p id="phase-courte">"Je suis bla bla bla"</i></p>
+                        <p>AGE</p>
+                        <p>VILLE</p>
+                        <p>Le button EDITER est visible seulement si le profil de l'utilisateur qui est connecté est affiché</p>
+                        <button type="button" class="btn btn-secondary" id="bottonprofil"><a href="{{ path('prive_profil')  }}">Editer mon profil mon profil</a></button>
+                        <p>Ramplacer les select par variable pour resupere les données de la BDD</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+<!-- ZONE HOBBY AND FORMULAIRES -->   
+       
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
         
+                <section class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div class="description">
+                            <form class="form-horizontal" id="padding-hobby">
+                                <h2>Ce que j'aime</h2>
+                                <p>choisir dans la liste:</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                                <p>lkjlkjlkjlkjlkj</p>
+                            </form>
+                        </div>
+
+                    </div>
+        <!-- ZONE INFORMATION FORMULAIRE --> 
                     {% block formulaire %}
                     <div class="dating-profil-formulaires col-8">
                         <div class="formulaire">
@@ -221,11 +268,6 @@
                                 </div>
 
                                 </fieldset>
-                                <!-- Button -->
-                                <div class="form-group button-enregistrer">
-                                
-                                    <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
-                                </div>
                                 </div>
                             </form>
                         
@@ -234,4 +276,16 @@
                     
                     <div>
                     {% endblock %}
-  
+                 </section>
+           </div>
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
+</body>
+
+{% endblock %}

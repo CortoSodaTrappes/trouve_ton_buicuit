@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block main %}
+{% block barretop %}
 <body>
 <section class="profil">
     <div class="barre-top">
@@ -18,18 +19,17 @@
                 </div>
                 <div class="profil-main-information col-8">
                     <div>
-                        <h4>PSEUDO<a href="mapage.php?action=edit&id=monid"><i class="fas fa-pen"></i></a></h4>
-                       
+                        <h4>PSEUDO<i class="fas fa-pen"></i></h4>
                         <p id="phase-courte">"Je suis bla bla bla"<i class="fas fa-pen"></i></p>
-                        <p>AGE<a href="mapage.php?action=edit&id=monid"><i class="fas fa-pen"></i></a></p>
-                        <p>VILLE<a href="mapage.php?action=edit&id=monid"><i class="fas fa-pen"></i></a></p>
-                        <p>Si la page "show.html.twig = pas de cutton ici!!!!!</p>
-                        <button type="button" class="btn btn-secondary" id="bottonprofil"><a href="/show">Voir mon profil</a></button>
+                        <p>AGE<i class="fas fa-pen"></i></p>
+                        <p>VILLE<i class="fas fa-pen"></i></p>
+                        <button type="button" class="btn btn-secondary" id="bottonprofil"><a href="{{ path('membre_show')  }}">Voir mon profil</a></button>
                     </div>
                 </div>
             </section>
         </div>
     </div>
+{% endblock %}
     
  <!-- ZONE HOBBY AND FORMULAIRES -->   
        
