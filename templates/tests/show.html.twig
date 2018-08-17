@@ -15,7 +15,7 @@
         {{membre.email}}</p>
 
     <p>Ville : {{membre.ville}}</p>
-    <p>Date de naissance : {{membre.naissance|date("m/d/Y")}}
+    <p>Age : {{age}}
     <p>
         <a href="{{path('test_list')}}">Liste des membres</a>
     </p>
@@ -42,14 +42,14 @@
         <img src="/uploads/images/{{membre.mainimage}}" width="200px">
     {% endif %}
     <div>
-        <div style="display:inline-block;">
+        <div style="display:inline-block;border:1px solid black;width:45%;padding:5px;">
         <h3>Ma présentation</h3>
         <p>{{presentation.presentation}}</p>
         <p>Je suis : {{presentation.type_personne}}</p>
         <p>Champ non défini : {{presentation.type_relation}}</p>
         </div>
 
-        <div style="display:inline-block;">
+        <div style="display:inline-block;border:1px solid black;width:45%;padding:5px;">
         <h3>Je cherche</h3>
         <p>{{recherche.titre_recherche}} </p>
         <p>La personne que je cherche : {{recherche.type_personne}}</p>

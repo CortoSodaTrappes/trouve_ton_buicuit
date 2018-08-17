@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
+use App\Form\NewEditMembreType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
 use App\Entity\Presentations;
@@ -38,6 +39,12 @@ class MembresController extends Controller
         $recherches = $membre->getRecherches()->getValues();
 
 
+
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
+
         // foreach($presentations as $key => $presentations){
         //     echo $presentations->presentation;
         // }
@@ -54,7 +61,8 @@ class MembresController extends Controller
         return $this->render('tests/show.html.twig', array(
             'membre' => $membre, 
             'presentation'=>$presentations[0]->getAllElement(), 
-            'recherche'=>$recherches[0]->getAllElement())
+            'recherche'=>$recherches[0]->getAllElement(),
+            'age'=>$age)
         );
         
             
@@ -68,24 +76,25 @@ class MembresController extends Controller
         // Instanciation de la classe Membres
         $message="" ;
         $membre = new Membres();
-        $date = new \DateTime();
+        // $date = new \DateTime();
+        $form = $this->createForm(NewEditMembreType::class, $membre);
 
 
         // Définition du formulaire
-        $form = $this->createFormBuilder($membre)
-            ->add('pseudo')
-            ->add('password', PasswordType::class)
-            ->add('email', EmailType::class)
-            ->add('mainimage', FileType::class, array('label' => 'Image', 'required'=>false))
-            ->add('ville')
-            ->add('naissance', DateType::class, array(
-                'widget' => 'choice',
-                'years' => range(1950,$date->format('Y')),
-                'format' => 'dd-MM-yyyy')
-            )
-            ->add('save', SubmitType::class)
-            ->setMethod("POST")
-            ->getForm();
+        // $form = $this->createFormBuilder($membre)
+        //     ->add('pseudo')
+        //     ->add('password', PasswordType::class)
+        //     ->add('email', EmailType::class)
+        //     ->add('mainimage', FileType::class, array('label' => 'Image', 'required'=>false))
+        //     ->add('ville')
+        //     ->add('naissance', DateType::class, array(
+        //         'widget' => 'choice',
+        //         'years' => range(1950,$date->format('Y')),
+        //         'format' => 'dd-MM-yyyy')
+        //     )
+        //     ->add('save', SubmitType::class)
+        //     ->setMethod("POST")
+        //     ->getForm();
 
             $form->handleRequest($request);
 
@@ -148,13 +157,16 @@ class MembresController extends Controller
 
     public function testEdit(Request $request, Membres $membre): Response
     {
-        $form = $this->createFormBuilder($membre)
-        ->add('pseudo')
-        ->add('password')
-        ->add('email')
-        ->add('mainimage', FileType::class, array('label' => 'Image', 'data_class' => null, 'required'=>false))
-        ->add('save', SubmitType::class)
-        ->getForm();
+
+        $form = $this->createForm(NewEditMembreType::class, $membre);
+
+        // $form = $this->createFormBuilder($membre)
+        // ->add('pseudo')
+        // ->add('password')
+        // ->add('email')
+        // ->add('mainimage', FileType::class, array('label' => 'Image', 'data_class' => null, 'required'=>false))
+        // ->add('save', SubmitType::class)
+        // ->getForm();
 
         $form->handleRequest($request);
 
