@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+{% block container_fluid %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Admin</a>
+        </li>
+    </ol>
+
+    <!-- Icon Cards-->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="mr-5">Mails</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="{{ path('admin_mail') }}">Mails recept</a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                    <div class="card-body-icon">
+                        <i class="fas fa-fw fa-list"></i>
+                    </div>
+                    <div class="mr-5">Tasks</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="{{ path('admin_tasks') }}">Tasks</a>
+            </span>
+        </div>
+    </div>
+</div>
+{% endblock %}

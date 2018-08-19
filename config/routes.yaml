@@ -50,6 +50,21 @@ prive_messagerie:
 #     defaults:
 #         template: admin/membres.html.twig
 
+admin3_test:
+    path: /admin3/test
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: admin3/testadmin3.html.twig
+
+admin3_index:
+    path: /admin3
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: admin3/admin.html.twig
+
+###########################################
+
+
 admin2:
     path: /admin2
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
