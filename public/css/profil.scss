@@ -116,3 +116,32 @@ button {
 .form-control {
     color: rgb(110, 109, 109)
 }
+
+#pseudo {
+    cursor: pointer;
+}
+
+#status_change {
+    position: relative;
+}
+
+#status_cotainer_change {
+    position: relative;
+    width: 400px;
+    top: 0px;
+    padding: 2px;
+    margin: 1%;
+    display: none;
+}
+
+#status_val {
+    margin: none;
+    width: 312px;
+}
+
+#save_status {
+    padding: 0px;
+    font-size: 11px;
+    float: right;
+    margin-top: -7%;
+}
