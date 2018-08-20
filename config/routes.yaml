@@ -161,8 +161,9 @@ admin_tasks:
 
 
 
+########################### TESTS
 
-testst:
+tests:
     path: /tests
     controller: App\Controller\MembresController::testList 
 

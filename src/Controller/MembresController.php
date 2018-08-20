@@ -40,15 +40,27 @@ class MembresController extends Controller
         $presentations = $membre->getPresentations()->getValues() ;
         $recherches = $membre->getRecherches()->getValues();
 
-        $datetime1 = $membre->getNaissance();
-        $datetime2 = new \DateTime();
-        $interval = $datetime1->diff($datetime2);
-        $age = $interval->format('%Y ans');
+        if(isset($presentations[0])){
+            $presentation = $presentations[0]->getAllElement();
+        }else{
+            $presentation = $presentations ;
+        }
+
+        if(isset($recherches[0])){
+            $recherche = $recherches[0]->getAllElement();
+        }else{
+            $recherche = $recherches ;
+        }
+
+            $datetime1 = $membre->getNaissance();
+            $datetime2 = new \DateTime();
+            $interval = $datetime1->diff($datetime2);
+            $age = $interval->format('%Y ans');
 
         return $this->render('tests/show.html.twig', array(
             'membre' => $membre, 
-            'presentation'=>$presentations[0]->getAllElement(), 
-            'recherche'=>$recherches[0]->getAllElement(),
+            'presentation'=>$presentation, 
+            'recherche'=>$recherche,
             'age'=>$age)
         );
     }
@@ -58,7 +70,7 @@ class MembresController extends Controller
         // Instanciation de la classe Membres
         $message="" ;
         $membre = new Membres();
-        // $date = new \DateTime();
+        
         $form = $this->createForm(NewEditMembreType::class, $membre);
         $form->handleRequest($request);
 
@@ -76,6 +88,7 @@ class MembresController extends Controller
 
             $membre->setPassword( $encoder->encodePassword($membre, $request->get("password")) );
 
+                // Upload de l'une image
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 if($file = $form->get('mainimage')->getData()){
                     $fileName = $form->get('pseudo')->getData().'.'.$file->guessExtension();
@@ -86,6 +99,7 @@ class MembresController extends Controller
                     $membre->setMainimage($fileName);
                 }
 
+                // Enregistremenrt du nouveau membre
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($membre);
                 $em->flush();
@@ -137,23 +151,35 @@ class MembresController extends Controller
             'form' => $form->createView(),
         ]);
     }
-
     
     public function testEditPresentation(Request $request, Membres $membre): Response
     {
-        $presentations = $membre->getPresentations()->getValues() ;
-        $presentation = $presentations[0]->getAllElement();
+        $presentation = new Presentations($membre);
+
+        $pres = $membre->getPresentations()->getValues() ;
+        $pre = $pres[0]->getAllElement();
+
+        // Option 1 : on essaye de récupérer presentation avec le membre, qui est lié à Presentations
+        // Presentation est un array et doctrine n'en veut pas.
+        $presentation = $pre ;
+
+        // Option 2 : on essaye de récupérer la présentation de façon détournée, avec l'id
+        // Mais Doctrine ne veut pas parce que 'ArrayAcces' n'est pas implémenté.
+        // $id_presentation = $pre['id'];
+        // $presentation = $this->getDoctrine()
+        // ->getRepository(Presentations::class)
+        // ->find($id_presentation);
 
         $form = $this->createForm(PresentationType::class, $presentation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-
-
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('test_list', ['id' => $membre->getId()]);
+            try{
+                $presentation->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('test_show', ['id' => $membre->getId()]);
+            }catch(Exception  $e){
+                echo "erreur" ; 
+            }
         }
 
         return $this->render('tests/formpresentation.html.twig', [
@@ -191,4 +217,8 @@ class MembresController extends Controller
     public function testLogout(){
         return $this->redirectToRoute('test_login');
     }    
+
+
+
+
 }

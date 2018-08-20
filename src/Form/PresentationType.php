@@ -17,16 +17,15 @@ class PresentationType extends AbstractType
             ->add('presentation')
             ->add('type_personne', ChoiceType::class, array(
                 'choices'  => array(
-                    'h' => "Homme",
-                    'f' => "Femme",
-                    'hf' => "Couple",
-                    'hh' => "Couple d'hommes",
-                    'ff' => "Couple de femmes",
+                    "Homme" => 'Homme',
+                    "Femme" => 'Femme',
+                    "Couple" => 'Couple',
+                    "Couple d'hommes" => "Couple d'hommes",
+                    "Couple de femmes" => 'Couple de femmes',
                 )))
             ->add('type_relation')
-            ->add('id_membre')
+            // ->add('id_membre')
             ->add('save', SubmitType::class)
-
         ;
     }
 
