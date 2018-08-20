@@ -21,10 +21,10 @@
                 </div>
                 <div class="profil-main-information col-8">
                     <div>
-                        <h4>PSEUDO</h4>
+                        <h4> {{app.user.pseudo}} </h4>
                         <p id="phase-courte">"Je suis bla bla bla"</p>
                         <p>AGE</p>
-                        <p>VILLE</p>
+                        <p>{{app.user.ville}}</p>
                         <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
                     </div>
                 </div>
@@ -123,6 +123,7 @@
                                     <option value="2">calme</option>
                                     <option value="3">sociable</option>
                                     <option value="3">drôle</option>
+                                    <option value="4">timide</option>
                                     </select>
                                 </div>
                                 </div>
@@ -219,6 +220,7 @@
                                     <option value="1">jamais marié</option>
                                     <option value="2">divorcé</option>
                                     <option value="3">veuve</option>
+                                    <option value="4">Pacés</option>
                                     </select>
                                 </div>
                                 </div>
@@ -249,7 +251,7 @@
 
                                 <!-- Mes animaux de compagnie :   -->
                                 <div class="form-group row">
-                                <label class="col-md-4 control-label" for="selectbasic">Mes animaux de compagnie :  </label>
+                                <label class="col-md-4 control-label" for="selectbasic">Des animaux de compagnie ? :  </label>
                                 <div class="col-md-8">
                                     <select id="selectbasic" name="selectbasic" class="form-control">
                                     <option value="1">oui</option>
