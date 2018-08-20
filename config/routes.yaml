@@ -109,20 +109,6 @@ admin3_admin_tasks:
 
 ###########################################
 
-# A supprimer ?
-admin2:
-    path: /admin2
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin2/index.html.twig
-
-# A supprimer ?
-admin2_charts:
-    path: /admin2/charts
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin2/charts.html.twig
-
        
 admin:
     path: /admin
