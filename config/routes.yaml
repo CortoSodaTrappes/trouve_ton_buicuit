@@ -38,17 +38,17 @@ prive_messagerie:
     defaults:
         template: prive/messagerie.html.twig
 
-# admin_config:
-#     path: /config
-#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-#     defaults:
-#         template: admin/config.html.twig
+admin_config:
+    path: /config
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: admin/config.html.twig
 
-# admin_membres:
-#     path: /membres
-#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-#     defaults:
-#         template: admin/membres.html.twig
+admin_membres:
+    path: /membres
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: admin/membres.html.twig
 
 admin3_test:
     path: /admin3/test
@@ -123,14 +123,11 @@ Users_management:
     defaults:
         template: /admin2/Users_management.html.twig   
 
-
-
 permissions:
     path: /permissions
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: /admin2/permissions.html.twig
-
 
 moderation:
     path: /moderation
