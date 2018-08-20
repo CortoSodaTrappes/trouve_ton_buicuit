@@ -6,11 +6,53 @@ Author URI: https://www.os-templates.com/
 Licence: <a href="https://www.os-templates.com/template-terms">Website Template Licence</a>
 */
 
-#portfolio{display:block; width:100%; line-height:1.6em;}
-#portfolio ul, #portfolio p{margin:0; padding:0; list-style:none;}
-#portfolio li{display:block; float:left; width:210px; margin:0 40px 40px 0; padding:0;}
-#portfolio li.last{margin-right:0;}
-#portfolio article, #portfolio article figure{display:block; width:100%;}
-#portfolio article figure img{width:210px; height:150px;}
-#portfolio article figure figcaption{padding:10px; color:#000000; background-color:#CCCCCC; text-align:center;}
-#portfolio article figure figcaption header{margin:0 0 5px 0; padding:0; font-size:14px;}
+#portfolio {
+    display: block;
+    width: 100%;
+    line-height: 1.6em;
+    padding: 0 326px;
+    background-color: #2A2D34;
+}
+
+#portfolio ul,
+#portfolio p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#portfolio li {
+    display: block;
+    float: left;
+    width: 210px;
+    margin: 0 40px 40px 0;
+    padding: 0;
+}
+
+#portfolio li.last {
+    margin-right: 0;
+}
+
+#portfolio article,
+#portfolio article figure {
+    display: block;
+    width: 100%;
+}
+
+#portfolio article figure img {
+    width: 210px;
+    height: 150px;
+}
+
+#portfolio article figure figcaption {
+    padding: 10px;
+    color: #000000;
+    background-color: #CCCCCC;
+    text-align: center;
+}
+
+#portfolio article figure figcaption header {
+    margin: 0 0 5px 0;
+    padding: 0;
+    font-size: 14px;
+}

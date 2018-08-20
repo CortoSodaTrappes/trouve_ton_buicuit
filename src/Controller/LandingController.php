@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 
@@ -19,7 +20,7 @@ class LandingController extends Controller {
     // Methode d'Inscription
     public function landing_inscript(Request $request, UserPasswordEncoderInterface $encoder)
     {
-
+        dump($request);
         $membre = new Membres();
 
         if(!filter_var($request->get("email"), FILTER_VALIDATE_EMAIL)){
@@ -37,8 +38,13 @@ class LandingController extends Controller {
             $membre->setEmail($request->get("email"));
             $membre->setPassword( $encoder->encodePassword($membre, $request->get("password")) );
             $membre->setmainimage($request->get("mainimage"));
+            $datedefaut = new \DateTime("2000-01-15");
+            $membre->setnaissance($datedefaut);
+            $membre->setville("Paris");
             $membre->setRole("ROLE_USER");
             // $membre->setUpdated();
+
+    
 
             try{
                 $em->persist($membre);
