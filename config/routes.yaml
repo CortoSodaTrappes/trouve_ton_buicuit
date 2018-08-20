@@ -62,15 +62,61 @@ admin3_index:
     defaults:
         template: admin3/admin.html.twig
 
+admin3_users_management:
+    path: /admin3/users_management
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/users_management.html.twig  
+
+admin3_permissions:
+    path: /admin3/permissions
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/permissions.html.twig  
+
+admin3_moderation:
+    path: /admin3/moderation
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/moderation.html.twig  
+
+admin3_send_mailing:
+    path: /admin3/send_mailing
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/send_mailing.html.twig  
+
+admin3_private_messages:
+    path: /admin3/private_messages
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/private_messages.html.twig  
+
+admin3_admin_mails:
+    path: /admin3/admin_mail
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/admin_mail.html.twig  
+
+admin3_admin_tasks:
+    path: /admin3/admin_tasks
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin3/admin_tasks.html.twig  
+
+
+
+
 ###########################################
 
-
+# A supprimer ?
 admin2:
     path: /admin2
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: admin2/index.html.twig
 
+# A supprimer ?
 admin2_charts:
     path: /admin2/charts
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
@@ -106,29 +152,23 @@ moderation:
     defaults:
         template: /admin2/moderation.html.twig 
         
-        
 send_mailing:
     path: /send_mailing
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: /admin2/send_mailing.html.twig  
 
-
-
 private_messages:
     path: /private_messages
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: /admin2/private_messages.html.twig 
-        
-        
 
 admin_mail:
     path: /admin_mail
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: /admin2/admin_mail.html.twig
-        
         
 admin_tasks:
     path: /admin_tasks

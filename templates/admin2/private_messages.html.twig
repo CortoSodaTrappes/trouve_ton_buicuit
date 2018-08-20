@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<title>Private messages</title>
+    <title>Private messages</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -10,27 +10,22 @@
     <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/admin2/sb-admin.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
+    <body>
 
-    
-<body>
+        <h1 class="text-center mt-3 font-weight-light">Private messages</h1>
 
-<h1 class="text-center mt-3 font-weight-light">Private messages</h1>
+        <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+            Name:<br>
+            <input type="text" name="name"><br>
+            E-mail:<br>
+            <input type="text" name="mail"><br>
+            Comment:<br>
+            <input type="text" name="comment" size="50"><br><br>
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+        </form>
 
-<form action="mailto:someone@example.com" method="post" enctype="text/plain">
-Name:<br>
-<input type="text" name="name"><br>
-E-mail:<br>
-<input type="text" name="mail"><br>
-Comment:<br>
-<input type="text" name="comment" size="50"><br><br>
-<input type="submit" value="Send">
-<input type="reset" value="Reset">
-</form>
-
-</body>
+    </body>
 </html>
-
-
-
