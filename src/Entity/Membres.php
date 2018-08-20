@@ -74,11 +74,72 @@ class Membres implements UserInterface
      */
     private $naissance;
 
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $trait_caractere;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $type_relation;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $taille;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $silhouette;
+
+    /**
+     * @ORM\Column(type="string", length=48, nullable=true)
+     */
+    private $yeux;
+
+    /**
+     * @ORM\Column(type="string", length=48, nullable=true)
+     */
+    private $cheveux;
+
+    /**
+     * @ORM\Column(type="string", length=18, nullable=true)
+     */
+    private $fume;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $mange;
+
+    /**
+     * @ORM\Column(type="string", length=48)
+     */
+    private $jesuis;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $jeveux;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
         $this->presentations = new ArrayCollection();
         $this->messageries = new ArrayCollection();
+
+        $this->setTraitCaractere("Non renseigné");
+        $this->setTypeRelation("Non renseigné");
+        $this->setTaille("Non renseigné");
+        $this->setCheveux("Non renseigné");
+        $this->setFume("Non renseigné");
+        $this->setJesuis("Non renseigné");
+        $this->setJeveux("Non renseigné");
+        $this->setMange("Non renseigné");
+        $this->setSilhouette("Non renseigné");
+        $this->setYeux("Non renseigné");
     }
 
     public function getId()
@@ -276,6 +337,125 @@ class Membres implements UserInterface
 
         return $this;
     }
-//@return Collection|Presentations[]
+
+    public function getTraitCaractere(): ?string
+    {
+        return $this->trait_caractere;
+    }
+
+    public function setTraitCaractere(?string $trait_caractere): self
+    {
+        $this->trait_caractere = $trait_caractere;
+
+        return $this;
+    }
+
+    public function getTypeRelation(): ?string
+    {
+        return $this->type_relation;
+    }
+
+    public function setTypeRelation(?string $type_relation): self
+    {
+        $this->type_relation = $type_relation;
+
+        return $this;
+    }
+
+    public function getTaille(): ?string
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(?string $taille): self
+    {
+        $this->taille = $taille;
+
+        return $this;
+    }
+
+    public function getSilhouette(): ?string
+    {
+        return $this->silhouette;
+    }
+
+    public function setSilhouette(?string $silhouette): self
+    {
+        $this->silhouette = $silhouette;
+
+        return $this;
+    }
+
+    public function getYeux(): ?string
+    {
+        return $this->yeux;
+    }
+
+    public function setYeux(?string $yeux): self
+    {
+        $this->yeux = $yeux;
+
+        return $this;
+    }
+
+    public function getCheveux(): ?string
+    {
+        return $this->cheveux;
+    }
+
+    public function setCheveux(?string $cheveux): self
+    {
+        $this->cheveux = $cheveux;
+
+        return $this;
+    }
+
+    public function getFume(): ?string
+    {
+        return $this->fume;
+    }
+
+    public function setFume(?string $fume): self
+    {
+        $this->fume = $fume;
+
+        return $this;
+    }
+
+    public function getMange(): ?string
+    {
+        return $this->mange;
+    }
+
+    public function setMange(?string $mange): self
+    {
+        $this->mange = $mange;
+
+        return $this;
+    }
+
+    public function getJesuis(): ?string
+    {
+        return $this->jesuis;
+    }
+
+    public function setJesuis(string $jesuis): self
+    {
+        $this->jesuis = $jesuis;
+
+        return $this;
+    }
+
+    public function getJeveux(): ?string
+    {
+        return $this->jeveux;
+    }
+
+    public function setJeveux(?string $jeveux): self
+    {
+        $this->jeveux = $jeveux;
+
+        return $this;
+    }
 }
 

@@ -37,20 +37,20 @@ class MembresController extends Controller
     // Ctrl pour afficher les détails d'un membre
     public function testShow(Membres $membre): Response
     {
-        $presentations = $membre->getPresentations()->getValues() ;
-        $recherches = $membre->getRecherches()->getValues();
+        // $presentations = $membre->getPresentations()->getValues() ;
+        // $recherches = $membre->getRecherches()->getValues();
 
-        if(isset($presentations[0])){
-            $presentation = $presentations[0]->getAllElement();
-        }else{
-            $presentation = $presentations ;
-        }
+        // if(isset($presentations[0])){
+        //     $presentation = $presentations[0]->getAllElement();
+        // }else{
+        //     $presentation = $presentations ;
+        // }
 
-        if(isset($recherches[0])){
-            $recherche = $recherches[0]->getAllElement();
-        }else{
-            $recherche = $recherches ;
-        }
+        // if(isset($recherches[0])){
+        //     $recherche = $recherches[0]->getAllElement();
+        // }else{
+        //     $recherche = $recherches ;
+        // }
 
             $datetime1 = $membre->getNaissance();
             $datetime2 = new \DateTime();
@@ -59,8 +59,8 @@ class MembresController extends Controller
 
         return $this->render('tests/show.html.twig', array(
             'membre' => $membre, 
-            'presentation'=>$presentation, 
-            'recherche'=>$recherche,
+            // 'presentation'=>$presentation, 
+            // 'recherche'=>$recherche,
             'age'=>$age)
         );
     }
@@ -106,18 +106,18 @@ class MembresController extends Controller
                 $id = $membre->getId();
 
                 // Initialisation de la présentation
-                $presentation = new Presentations($membre);
-                $presentation->init();
-                $membre->addPresentation($presentation);
-                $em->persist($presentation);
-                $em->flush();
+                // $presentation = new Presentations($membre);
+                // $presentation->init();
+                // $membre->addPresentation($presentation);
+                // $em->persist($presentation);
+                // $em->flush();
 
                 // Initialisation de la recherche
-                $recherche = new Recherches($membre);
-                $recherche->init();
-                $membre->addRecherche($recherche);
-                $em->persist($recherche);
-                $em->flush();
+                // $recherche = new Recherches($membre);
+                // $recherche->init();
+                // $membre->addRecherche($recherche);
+                // $em->persist($recherche);
+                // $em->flush();
 
                 // Après l'enregistrement, affichage de la liste de membres
                 return $this->redirectToRoute('test_login');
@@ -154,14 +154,14 @@ class MembresController extends Controller
     
     public function testEditPresentation(Request $request, Membres $membre): Response
     {
-        $presentation = new Presentations($membre);
+        // $presentation = new Presentations($membre);
 
-        $pres = $membre->getPresentations()->getValues() ;
-        $pre = $pres[0]->getAllElement();
+        // $pres = $membre->getPresentations()->getValues() ;
+        // $pre = $pres[0]->getAllElement();
 
         // Option 1 : on essaye de récupérer presentation avec le membre, qui est lié à Presentations
         // Presentation est un array et doctrine n'en veut pas.
-        $presentation = $pre ;
+        // $presentation = $pre ;
 
         // Option 2 : on essaye de récupérer la présentation de façon détournée, avec l'id
         // Mais Doctrine ne veut pas parce que 'ArrayAcces' n'est pas implémenté.
@@ -170,13 +170,13 @@ class MembresController extends Controller
         // ->getRepository(Presentations::class)
         // ->find($id_presentation);
 
-        $form = $this->createForm(PresentationType::class, $presentation);
+        $form = $this->createForm(PresentationType::class, $membre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try{
-                $presentation->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('test_show', ['id' => $membre->getId()]);
+                $membre->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('test_show');
             }catch(Exception  $e){
                 echo "erreur" ; 
             }

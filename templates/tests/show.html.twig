@@ -47,7 +47,28 @@
     {% if membre.mainimage is not null %}
         <img src="/uploads/images/{{membre.mainimage}}" width="200px">
     {% endif %}
-    <div>
+{{dump(membre)}}
+        <h3>Ma présentation</h3>
+        <p>Je suis : {{membre.jesuis}}</p>
+        {# Se rappeler que ce sont les méthodes qui sont appelées et non les propriétés.
+        Pour cette raison, il faut afficher membre.TraitCaractere et non membre.trait_caractere,
+        comme le dump de membre laisserait penser. #}
+        <p>Trait de caractère : {{membre.TraitCaractere}}</p>
+        <p>Type de relation : {{membre.TypeRelation}}</p>
+        <p>Je cherche : {{membre.jeveux}}</p>
+        <p>Taille : {{membre.taille}}</p>
+        <p>Couleur des yeux : {{membre.yeux}}</p>
+        <p>Couleur des cheveux : {{membre.cheveux}}</p>
+        <p>Silhouette : {{membre.silhouette}}</p>
+        <p>Fume : {{membre.fume}}</p>
+        <p>Mange : {{membre.mange}}</p>
+
+
+
+
+
+
+    {# <div>
         {% if presentation is not empty %}
         <div style="display:inline-block;border:1px solid black;width:45%;padding:5px;">
         <h3>Ma présentation</h3>
@@ -65,10 +86,8 @@
         <p>La relation que je cherche : {{recherche.type_relation}}</p>
         </div>
         {% endif %}
-
-    </div>
+    </div> #}
 
     {# {{dump(membre)}} #}
-    {{dump(presentation)}}
-    {{dump(recherche)}}
+
 {% endblock %}
