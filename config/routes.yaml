@@ -62,11 +62,11 @@ admin3_index:
     defaults:
         template: admin3/admin.html.twig
 
-admin3_users_management:
-    path: /admin3/users_management
+admin3_Users_management:
+    path: /admin3/Users_management
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
-        template: /admin3/users_management.html.twig  
+        template: /admin3/Users_management.html.twig  
 
 admin3_permissions:
     path: /admin3/permissions
@@ -131,50 +131,50 @@ admin:
         template: /admin2/admin.html.twig
 
 
-Users_management:
-    path: /Users_management
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/Users_management.html.twig   
+# # Users_management:
+#     path: /Users_management
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/Users_management.html.twig   
 
 
 
-permissions:
-    path: /permissions
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/permissions.html.twig
+# permissions:
+#     path: /permissions
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/permissions.html.twig
 
 
-moderation:
-    path: /moderation
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/moderation.html.twig 
+# moderation:
+#     path: /moderation
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/moderation.html.twig 
         
-send_mailing:
-    path: /send_mailing
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/send_mailing.html.twig  
+# send_mailing:
+#     path: /send_mailing
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/send_mailing.html.twig  
 
-private_messages:
-    path: /private_messages
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/private_messages.html.twig 
+# private_messages:
+#     path: /private_messages
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/private_messages.html.twig 
 
-admin_mail:
-    path: /admin_mail
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/admin_mail.html.twig
+# admin_mail:
+#     path: /admin_mail
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/admin_mail.html.twig
         
-admin_tasks:
-    path: /admin_tasks
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin2/admin_tasks.html.twig         
+# admin_tasks:
+#     path: /admin_tasks
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/admin_tasks.html.twig         
 
 
 
