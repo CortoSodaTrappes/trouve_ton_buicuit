@@ -46,35 +46,25 @@ Les noms des id et les name doivent être attachés. #}
         <!-- ZONE HOBBY --> 
                     <div class="dating-profil-banner-hobby col-4">
                         <div class="description">
+                            <form method="post">
 
-                            <form method="post"{# class="form-horizontal dating-profile" id="padding-hobby"#}>
-                            <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
-                                <h2>Je cherche</h2>
-                                <div class="form-group row">
-                                    <label class="col-md-4 control-label" for="jeveux">Choisir</label>
-                                    <div class="col-md-8">
-                                        <select id="jeveux" name="jeveux" class="form-control">
-
-                                            {% for option in optionspersonnes %}
-                                                {% if option == app.user.jeveux %}
-                                                    <option value="{{option}}" selected>{{option}}</option>
-                                                {% else %}
-                                                    <option value="{{option}}">{{option}}</option>
-                                                {% endif %}
-                                            {% endfor %}
-
-                                            {# <option value="1">Homme</option>
-                                            <option value="2">Femme</option>
-                                            <option value="3">Troisième sexe</option>
-                                            <option value="3">Couple hf</option>
-                                            <option value="3">Couple hh</option>
-                                            <option value="3">Couple ff</option>
-                                            <option value="3">Orgie</option> #}
-                                        </select>
+                                <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
+                                    <h2>Je cherche</h2>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="jeveux">Choisir</label>
+                                        <div class="col-md-8">
+                                            <select id="jeveux" name="jeveux" class="form-control">
+                                                {% for option in optionspersonnes %}
+                                                    {% if option == app.user.jeveux %}
+                                                        <option value="{{option}}" selected>{{option}}</option>
+                                                    {% else %}
+                                                        <option value="{{option}}">{{option}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </fieldset>
-                            {# </form> #}
+                                </fieldset>
                         </div>
                     </div>
 
@@ -83,8 +73,6 @@ Les noms des id et les name doivent être attachés. #}
                         <div class="formulaire">
             <!-- DESCRIPTION TEXTE-->
                             <div class="description padding-formulaires">
-
-                                {# <form> #}
                                 <fieldset class="form-horizontal">
 
                                     <!-- Form Name -->
@@ -96,7 +84,27 @@ Les noms des id et les name doivent être attachés. #}
                                             <input type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                         </div>
                                     </div>
-                                <div class="form-group row">
+
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="jesuis">Choisir</label>
+                                        <div class="col-md-8">
+                                            <select id="jesuis" name="jesuis" class="form-control">
+                                                {% for option in optionspersonnes %}
+                                                    {% if option == app.user.jesuis %}
+                                                        <option value="{{option}}" selected>{{option}}</option>
+                                                    {% else %}
+                                                        <option value="{{option}}">{{option}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Je suis -->
+                                {# <div class="form-group row">
                                     <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
                                     <div class="col-md-8">
                                         <select id="jesuis" name="jesuis" class="form-control">
@@ -109,7 +117,7 @@ Les noms des id et les name doivent être attachés. #}
                                             {% endfor %}
                                         </select>
                                     </div>
-                                </div>
+                                </div> #}
                                     <!-- Textarea -->
                                     <div class="form-group" >
                                         <div class="col-md-12" id="description-longue">                     
@@ -411,13 +419,6 @@ Les noms des id et les name doivent être attachés. #}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
                                             {% endfor %}
-
-{# 
-                                    <option value="1">Chien</option>
-                                    <option value="2">Chat</option>
-                                    <option value="1">Oiseau</option>
-                                    <option value="2">Reptile</option>
-                                    <option value="2">Autre</option> #}
                                     </select>
                                 </div>
                                 </div>
@@ -435,18 +436,11 @@ Les noms des id et les name doivent être attachés. #}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
                                             {% endfor %}
-
-                                        {# <option value="1">Nature</option>
-                                        <option value="2">Arts</option>
-                                        <option value="2">Sport</option>
-                                        <option value="2">Voyages</option>
-                                        <option value="2">Musique</option>
-                                        <option value="2">Littérature</option> #}
                                     </select>
                                 </div>
                                 </div>
-
                                 </fieldset>
+
                                 <!-- Button -->getOptionsHobby
                                 <div class="form-group button-enregistrer">
                                 
