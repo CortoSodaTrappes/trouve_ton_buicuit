@@ -124,6 +124,31 @@ class Membres implements UserInterface
      */
     private $jeveux;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $punchline;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $animaux;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $hobby;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $statut;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
@@ -454,6 +479,66 @@ class Membres implements UserInterface
     public function setJeveux(?string $jeveux): self
     {
         $this->jeveux = $jeveux;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPunchline(): ?string
+    {
+        return $this->punchline;
+    }
+
+    public function setPunchline(?string $punchline): self
+    {
+        $this->punchline = $punchline;
+
+        return $this;
+    }
+
+    public function getAnimaux(): ?string
+    {
+        return $this->animaux;
+    }
+
+    public function setAnimaux(?string $animaux): self
+    {
+        $this->animaux = $animaux;
+
+        return $this;
+    }
+
+    public function getHobby(): ?string
+    {
+        return $this->hobby;
+    }
+
+    public function setHobby(?string $hobby): self
+    {
+        $this->hobby = $hobby;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

@@ -1,0 +1,342 @@
+{% extends "prive.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+{# <link rel="stylesheet" href="css/portfolio.css"> #}
+<link rel="stylesheet" href="{{asset('css/profil.css')}}">
+{% endblock %}
+
+
+
+{% block main %}
+<body>
+<section class="profil">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
+                <div class="profil-photos col-4">
+                    <div>
+                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                    </div>
+                </div>
+                <div class="profil-main-information col-8">
+                    <div>
+                        <h4>{{app.user.pseudo}}</h4>
+                        <p id="phase-courte">{{app.user.punchline}}</p>
+                        <p>AGE</p>
+                        <p>Ville : {{app.user.ville}}</p>
+                        <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    {{dump(app.user)}}
+    
+ <!-- ZONE HOBBY AND FORMULAIRES -->   
+       
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
+        
+                <section class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div class="description">
+                            <form class="form-horizontal" id="padding-hobby">
+                                <h2>Je cherche</h2>
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Choisir</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">Homme</option>
+                                    <option value="2">Femme</option>
+                                    <option value="3">Troisième sexe</option>
+                                    <option value="3">Couple hf</option>
+                                    <option value="3">Couple hh</option>
+                                    <option value="3">Couple ff</option>
+                                    <option value="3">Orgie</option>
+                                    </select>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+        <!-- ZONE INFORMATION FORMULAIRE -->          
+                    <div class="dating-profil-formulaires col-8">
+                        <div class="formulaire">
+            <!-- DESCRIPTION TEXTE-->
+                            <div class="description padding-formulaires">
+
+                                    <form class="form-horizontal ">
+                                        <fieldset>
+
+                                        <!-- Form Name -->
+                                        <h2>Ma description</h2>
+
+                                        <!-- Punchline -->
+                                        <div class="form-group" >
+                                            <div class="col-md-12" id="description-longue">                     
+                                                <input type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            </div>
+                                        </div>
+
+                                        <!-- Textarea -->
+                                        <div class="form-group" >
+                                            <div class="col-md-12" id="description-longue">                     
+                                                <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Date naissance -->
+                                        <div class="form-group" >
+                                            <div class="col-md-12" id="description-longue">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                <input type="date" value="26-03-1966">
+                                            </div>
+                                        </div>
+
+                                        </fieldset>
+                                    </form>
+                                    <p class="commentaires-profil">6 / 2000 caractères</p>
+                                    <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
+                                                
+                                                
+                            </div>
+            <!-- PERSONALITE -->
+                            <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Ma personnalité</h2>
+
+                                <!-- Relation -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Prêt à m'engager dans une relation ?</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.TypeRelation}}</option>
+                                    <option value="2">Durable</option>
+                                    <option value="3">Sans prise de tête</option>
+                                    <option value="4">Sex-friend</option>
+                                    <option value="5">One Shot</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Enfants -->
+                                {# <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je veux des enfants :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">oui</option>
+                                    <option value="2">non</option>
+                                    <option value="3">rien est décidé</option>
+                                    </select>
+                                </div>
+                                </div> #}
+
+                                </fieldset>
+
+                                <!-- Caractere -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Trait de caractère le plus marqué :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                        <option value="1">Aventureux</option>
+                                        <option value="2">Calme</option>
+                                        <option value="3">Sociable</option>
+                                        <option value="4">Drôle</option>
+                                        <option value="5">Timide</option>
+                                        <option value="6">Extravagant</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            </form>
+                            
+                            
+                            </div>
+                            
+            <!-- PHYSIQUE -->
+                        <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Mon physique</h2>
+
+                                <!-- Taille -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Ma taille :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.taille}}</option>
+                                    <option value="1">140-160</option>
+                                    <option value="2">160-170</option>
+                                    <option value="3">170-180</option>
+                                    <option value="3">180-190</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Ma silhouette : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Ma silhouette :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.silhouette}}</option>
+                                    <option value="1">normal</option>
+                                    <option value="2">sportif</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">quelques kilos en trop</option>
+                                    <option value="3">ronde</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes yeux : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes yeux :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.yeux}}</option>
+                                    <option value="1">marron</option>
+                                    <option value="2">bleus</option>
+                                    <option value="3">verts</option>
+                                    <option value="3">noisettes</option>
+                                    <option value="3">gris</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes cheveux :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes cheveux : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.cheveux}}</option>
+                                    <option value="1">chatains</option>
+                                    <option value="2">noirs</option>
+                                    <option value="3">blonds</option>
+                                    <option value="3">blancs</option>
+                                    <option value="3">roux</option>
+                                    <option value="3">autres</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            </form>
+                            
+                            
+                            </div>
+            <!-- MON MODE DE VIE -->
+                        <div class="description padding-formulaires">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                <!-- Form Name -->
+                                <h2>Mon mode de vie</h2>
+
+                                <!-- Mon statut marital : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mon statut marital :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                        <option value="1">jamais marié</option>
+                                        <option value="2">divorcé</option>
+                                        <option value="3">veuve</option>
+                                    </select>
+                                </div>
+                                </div> 
+
+                                <!-- Je fume :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je fume : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.fume}}</option>
+                                    <option value="1">Un peu</option>
+                                    <option value="1">Beaucoup</option>
+                                    <option value="1">Enormement</option>
+                                    <option value="2">Jamais</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                            <!-- Je mange :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je mange : </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">{{app.user.mange}}</option>
+                                    <option value="1">tout</option>
+                                    <option value="2">végétarien</option>
+                                    <option value="3">hallal</option>
+                                    <option value="3">casher</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes animaux de compagnie :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes animaux de compagnie :  </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">Chien</option>
+                                    <option value="2">Chat</option>
+                                    <option value="1">Oiseau</option>
+                                    <option value="2">Reptile</option>
+                                    <option value="2">Autre</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                <!-- Mes hobbies :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Mes centres d'intérêt :  </label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                        <option value="1">Nature</option>
+                                        <option value="2">Arts</option>
+                                        <option value="2">Sport</option>
+                                        <option value="2">Voyages</option>
+                                        <option value="2">Musique</option>
+                                        <option value="2">Littérature</option>
+                                    </select>
+                                </div>
+                                </div>
+
+                                </fieldset>
+                                <!-- Button -->
+                                <div class="form-group button-enregistrer">
+                                
+                                    <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                </div>
+                                </div>
+                            </form>
+                        
+                        
+                        </div>
+                    
+                    <div>
+                 </section>
+           </div>
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
+</body>
+
+{% endblock %}
+

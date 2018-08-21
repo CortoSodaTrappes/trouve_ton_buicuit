@@ -27,10 +27,8 @@ membre_show:
         template: front/show.html.twig
 
 prive_profil:
-    path: /profil
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: prive/profil.html.twig
+    path: /profil/{id}
+    controller: App\Controller\MembresController::profilEdit
 
 prive_messagerie:
     path: /messagerie
