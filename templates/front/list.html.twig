@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="css/portfolio.css">
 {% endblock %}
 
+{% block title %} Trouve ton Biscuit {% endblock %}
+
 {% block nav %}
  <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');"> 
 
@@ -24,8 +26,8 @@
             <li><a href="{{path('membre_list')}}"> Home <i class="fas fa-home"></i></a></li>
             <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
-                    <li><a href="{{path('prive_profil')}}">Profil<i class="fas fa-user-alt"></i></a></li>
-                    <li><a href="{{path('prive_messagerie')}}">Messagerie<i class="far fa-envelope"></i></a></li>
+                    <li><a href="{{path('prive_profil')}}">Profil <i class="fas fa-user-alt"></i></a></li>
+                    <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>
             </li>
@@ -55,9 +57,9 @@
       <ul>
         <li>
           <article>
-            <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
+            <figure><a href="#"><img src="images/{{app.user.mainimage}}" alt=""></a>
               <figcaption>
-                <header>Metridiculis conseque quis</header>
+                <header>{{app.user.pseudo}}</header>
                 <p class="more"><a href="#">View Full Details &raquo;</a></p>
               </figcaption>
             </figure>
