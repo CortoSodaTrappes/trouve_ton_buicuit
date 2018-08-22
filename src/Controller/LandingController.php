@@ -42,6 +42,10 @@ class LandingController extends Controller {
             $membre->setnaissance($datedefaut);
             $membre->setville("Paris");
             $membre->setRole("ROLE_USER");
+            // $membre->setnaissance("2000-01-15");
+            $datedefaut = new \DateTime("2000-01-15");
+            $membre->setnaissance($datedefaut);
+            $membre->setville("Paris");
             // $membre->setUpdated();
 
     

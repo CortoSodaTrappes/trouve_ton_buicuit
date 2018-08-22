@@ -97,8 +97,8 @@ class Presentations
 
     public function init(){
         $this->setPresentation("Présentation par défaut.");
-        $this->setTypePersonne('h');
-        $this->setTypeRelation("1");
+        $this->setTypePersonne('Indéterminé');
+        $this->setTypeRelation("Indéterminé");
     }
 
     public function getAllElement(){

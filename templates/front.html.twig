@@ -20,8 +20,8 @@
             <ul>
               <li><a href="gallery.html">Gallery</a></li>
               <li class="active"><a href="{{path('membre_list')}}">Liste</a></li>
-              <li><a href="{{path('membre_show')}}">Show</a></li>
-              <li><a href="{{path('prive_profil')}}">Profil</a></li>
+              <li><a href="{{path('membre_show', {id:app.user.id})}}">Show</a></li>
+              <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil</a></li>
               <li><a href="{{path('prive_messagerie')}}">Messagerie</a></li>
               <li><a href="{{path('admin_config')}}">Font Icons</a></li>
               <li><a href="{{path('admin_membres')}}">Font Icons</a></li>
@@ -43,7 +43,7 @@
           <li><a href="#">Link Text</a></li>
           <li><a href="#">Link Text</a></li>
           <li><a href="#">Link Text</a></li>
-          <li><a href="#">Long Link Text</a></li>
+          <li><a href="{{path('logout')}}">{{app.user.pseudo}} [Déconnexion]</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
