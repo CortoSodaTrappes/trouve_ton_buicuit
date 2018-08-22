@@ -1,4 +1,4 @@
-{% extends "prive.html.twig" %}
+{% extends "front.html.twig" %}
 
 {# Mes id doievent être uniques
 Les noms des id et les name doivent être attachés. #}
@@ -20,7 +20,7 @@ Les noms des id et les name doivent être attachés. #}
                 <div class="profil-photos col-4">
                     <div>
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
                         
                     </div>
                 </div>

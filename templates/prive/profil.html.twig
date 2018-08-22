@@ -1,4 +1,5 @@
-{% extends "prive.html.twig" %}
+{# {% extends "prive.html.twig" %} #}
+{% extends "front.html.twig" %}
 
 {# Mes id doievent être uniques
 Les noms des id et les name doivent être attachés. #}
@@ -20,7 +21,7 @@ Les noms des id et les name doivent être attachés. #}
                 <div class="profil-photos col-4">
                     <div>
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
                         
                     </div>
                 </div>
@@ -203,8 +204,9 @@ Les noms des id et les name doivent être attachés. #}
                                     
                                     
                                     <!-- Punchline -->
-                                    <div class="form-group" >
-                                        <div class="col-md-12" id="description-punchline">                     
+                                    <div class="form-group row" >
+                                        <label class="col-md-12 control-label" for="punchline">Racontez qui vous êtes : </label>
+                                        <div class="col-md-12" id="description-punchline-modification">                     
                                             <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
                                         </div>
