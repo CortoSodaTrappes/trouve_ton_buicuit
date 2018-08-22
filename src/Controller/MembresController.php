@@ -23,12 +23,13 @@ use App\Entity\Recherches;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
-
-
 class MembresController extends Controller
 {
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
+        if(is_null($membre)){
+            $user = $this->getUser();
+        }
 
         $membre->setJeveux($request->get('jeveux'));
         $membre->setPunchline($request->get('punchline'));
@@ -93,6 +94,17 @@ dump($file);
         ));
     }
 
+
+    public function listMembres(): Response{
+
+        $repository = $this->getDoctrine()->getRepository(Membres::class);
+        $membres = $repository->findAll();
+dump($membres);
+        return $this->render('front/list.html.twig', array(
+            'membres' => $membres)
+        );
+
+    }
 
     public function profilShow(Membres $membre): Response{
 
