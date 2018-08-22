@@ -26,7 +26,8 @@ security:
                 use_referer: false
                 remember_me: false
                 username_parameter: email
-                default_target_path: /profil
+                # default_target_path: /profil
+                default_target_path: /list
                 password_parameter: password
                 require_previous_session: false
                 always_use_default_target_path: false

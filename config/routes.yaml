@@ -16,21 +16,19 @@ logout:
 
 membre_list:
     path: /list
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: front/list.html.twig
+    controller: App\Controller\MembresController::listMembres
 
 membre_show:
-    path: /show
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: front/show.html.twig
+    path: /show/{id}
+    controller: App\Controller\MembresController::profilShow
+
+prive_profil_own:
+    path: /profil
+    controller: App\Controller\MembresController::profilShow
 
 prive_profil:
-    path: /profil
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: prive/profil.html.twig
+    path: /profil/{id}
+    controller: App\Controller\MembresController::profilEdit
 
 prive_messagerie:
     path: /messagerie
@@ -109,20 +107,6 @@ admin3_admin_tasks:
 
 ###########################################
 
-# A supprimer ?
-admin2:
-    path: /admin2
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin2/index.html.twig
-
-# A supprimer ?
-admin2_charts:
-    path: /admin2/charts
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin2/charts.html.twig
-
        
 admin:
     path: /admin
@@ -137,14 +121,11 @@ Users_management:
     defaults:
         template: /admin2/Users_management.html.twig   
 
-
-
 permissions:
     path: /permissions
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: /admin2/permissions.html.twig
-
 
 moderation:
     path: /moderation
@@ -178,8 +159,9 @@ admin_tasks:
 
 
 
+########################### TESTS
 
-testst:
+tests:
     path: /tests
     controller: App\Controller\MembresController::testList 
 
