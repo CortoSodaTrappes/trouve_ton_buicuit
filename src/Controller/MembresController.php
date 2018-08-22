@@ -122,14 +122,6 @@ dump($membres);
 
     }
 
-    public function profilShow(Membres $membre): Response{
-
-        return $this->render('front/show.html.twig', array(
-            'membre' => $membre)
-        );
-    }
-
-
 
     ///////////////////////////////// CONTROLEURS DE TEST /////////////////////////////////////////////////////
 

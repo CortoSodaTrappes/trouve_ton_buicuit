@@ -1,0 +1,1150 @@
+{% extends "prive.html.twig" %}
+
+{% block stylesheets %}
+{{ parent() }}
+{# <link rel="stylesheet" href="css/portfolio.css"> #}
+<link rel="stylesheet" href="css/profil.css">
+{% endblock %}
+
+{# Mes id doievent être uniques
+Les noms des id et les name doivent être attachés. #}
+
+{% block stylesheets %}
+{{ parent() }}
+{# <link rel="stylesheet" href="css/portfolio.css"> #}
+<link rel="stylesheet" href="{{asset('css/profil.css')}}">
+{% endblock %}
+
+{{dump(membre)}}
+
+{% endblock %}
+
+
+
+{# Mes id doievent être uniques
+Les noms des id et les name doivent être attachés. #}
+
+
+{% block main %}
+<body>
+<section class="profil">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
+                <div class="profil-photos col-4">
+                    <!-- Button trigger modal -->
+                    <div class="profil-main-img" id="img_profil" alt="image-profil">
+                        <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                    </div>
+                        </button>
+                </div>
+                <!-- MODAL -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                
+                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Ajoutez une nouvelle photo <i class="fas fa-sign-in-alt"></i> </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="mainimage">Ajouter une image</label>
+                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                        </div>
+                                        <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN MODAL -->
+
+                <div class="profil-main-information col-8">
+                <!-- MODIFICATION on click -->
+                        
+                    <div class="modif-direct">
+                        <!-- MODIF PSEUDO -->
+                        <div id="status_change" class="margins-top-barre">
+                            <div class="icons-inline">
+                                <h4>{{app.user.pseudo}}</h4>
+                            </div>
+                            
+                        </div>
+                        <!-- MODIF PHRASE-COURTE -->
+                        {# <div id="phrase_change" class="phase-courte margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="phase-courte"><a class="help" href="#">{{app.user.punchline}}</p><span class="airhelp">Modifier la phrase d'accroche</span><i id="icone-phrase" class="fas fa-pen"></i></a>
+                            </div>   
+                            <div id="phrase_cotainer_change"><!-- la même -->
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="phrase_val"><button type="submit" id="save_phrase">Sauvegarder</button>
+                                
+                                </div>
+                            </div>
+                        </div> #}
+                        <!-- MODIF AGE -->
+                        <div id="age_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p>AGE</p><span class="airhelp">Modifier l'age</span><i id="icone-age" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="age_cotainer_change">
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="age_val"><button type="submit" id="save_age">Sauvegarder</button>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="ville"><a class="help" href="#">Ville : {{app.user.ville}}</p>
+                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="ville_cotainer_change">
+                                <div class="margins-modif">
+                                    <input class="input
+                                    -direct" type="text" id="ville_val"><button type="submit" id="save_ville">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!--  END MODIFICATION on click -->
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show', {id:app.user.id})}}">Voir mon profil</a></button>        
+                                
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    
+ <!-- ZONE HOBBY AND FORMULAIRES -->   
+       
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
+        
+                <section class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div class="description">
+
+                            <form method="post"{# class="form-horizontal dating-profile" id="padding-hobby"#}>
+                            <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
+                            <!-- Form Name -->
+                                <h2>Je cherche</h2>
+                                <div class="form-group row">
+                                    <label class="col-md-4 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-8">
+                                        {{membre.jeveux}}
+                                        {# <select id="jeveux" name="jeveux" class="form-control">
+
+                                            {% for option in optionspersonnes %}
+                                                {% if option == app.user.jeveux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                            {# <option value="1">Homme</option>
+                                            <option value="2">Femme</option>
+                                            <option value="3">Troisième sexe</option>
+                                            <option value="3">Couple hf</option>
+                                            <option value="3">Couple hh</option>
+                                            <option value="3">Couple ff</option>
+                                            <option value="3">Orgie</option> #}
+                                        {# </select> #}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {# </form> #}
+                        </div>
+                    </div>
+
+        <!-- ZONE INFORMATION FORMULAIRE -->          
+                    <div class="dating-profil-formulaires col-8">
+                        <div class="formulaire">
+            <!-- DESCRIPTION TEXTE-->
+                            <div class="description padding-formulaires">
+
+                                {# <form> #}
+                                <fieldset class="form-horizontal">
+                                
+
+                                    <!-- Form Name -->
+                                    <h2>Ma description</h2>
+                                    <!-- JE SUIS -->
+                                    <div class="form-group row">
+                                        <label class="col-md-2 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-10">
+                                        {{membre.jesuis}}
+                                            {# <select id="jesuis" name="jesuis" class="form-control">
+                                                {% for option in optionspersonnes %}
+                                                    {% if option == app.user.jesuis %}
+                                                        <option value="{{option}}" selected>{{option}}</option>
+                                                    {% else %}
+                                                        <option value="{{option}}">{{option}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select> #}
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Punchline -->
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-longue">                     
+                                            <input placeholder="Decrivez vous en une phrase" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <!-- Textarea -->
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-longue">                     
+                                            <textarea placeholder="Decrivez vous en quelques phrases" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                            
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Date naissance -->
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-longue">                     
+                                            {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                            <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                    {# </form> #}
+                                
+                                <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
+                            </div>
+
+                            <!-- PERSONALITE -->
+                            <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                    <!-- Form Name -->
+                                    <h2>Ma personnalité</h2>
+
+                                    <!-- Relation -->
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
+                                        <div class="col-md-8">
+                                        {{membre.TypeRelation}}
+
+                                            {# <select id="selectrelations" name="selectrelations" class="form-control"> #}
+
+                                            {# {% for option in optionsrelations %}
+                                                {% if option == app.user.TypeRelation %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                            {# <option value="1">{{app.user.TypeRelation}}</option>
+                                            <option value="2">Durable</option>
+                                            <option value="3" selected>Sans prise de tête</option>
+                                            <option value="4">Sex-friend</option>
+                                            <option value="5">One Shot</option> #}
+                                            {# </select> #}
+                                        </div>
+                                    </div>
+
+                                <!-- Enfants -->
+                                {# <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je veux des enfants :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">oui</option>
+                                    <option value="2">non</option>
+                                    <option value="3">rien est décidé</option>
+                                    </select>
+                                </div>
+                                </div> #}
+
+                                </fieldset>
+
+                                <!-- Caractere -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
+                                <div class="col-md-8">
+                                {{membre.TraitCaractere}}
+                                    {# <select id="selectcaracteres" name="selectcaracteres" class="form-control">
+
+                                            {% for option in optionscaracteres %}
+                                                {% if option == app.user.TraitCaractere %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                        {# <option value="1">Aventureux</option>
+                                        <option value="2">Calme</option>
+                                        <option value="3">Sociable</option>
+                                        <option value="4">Drôle</option>
+                                        <option value="5">Timide</option>
+                                        <option value="6">Extravagant</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
+                            </div>
+                            
+            <!-- PHYSIQUE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                <!-- Form Name -->
+                                <h2>Mon physique</h2>
+
+                                <!-- Taille -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
+                                <div class="col-md-8">
+                                {{membre.taille}}
+                                    {# <select id="selecttaille" name="selecttaille" class="form-control">
+
+                                            {% for option in optionstailles %}
+                                                {% if option == app.user.taille %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.taille}}</option>
+                                    <option value="1">140-160</option>
+                                    <option value="2">160-170</option>
+                                    <option value="3">170-180</option>
+                                    <option value="3">180-190</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Ma silhouette : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
+                                <div class="col-md-8">
+                                {{membre.silhouette}}
+                                    {# <select id="selectsilhouette" name="selectsilhouette" class="form-control">
+
+                                            {% for option in optionssilhouettes %}
+                                                {% if option == app.user.silhouette %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+{# 
+                                    <option value="1">{{app.user.silhouette}}</option>
+                                    <option value="1">normal</option>
+                                    <option value="2">sportif</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">quelques kilos en trop</option>
+                                    <option value="3">ronde</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes yeux : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
+                                <div class="col-md-8">
+                                {{membre.yeux}}
+                                    {# <select id="selectyeux" name="selectyeux" class="form-control">
+                                    
+
+                                            {% for option in optionsyeux %}
+                                                {% if option == app.user.yeux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.yeux}}</option>
+                                    <option value="1">marron</option>
+                                    <option value="2">bleus</option>
+                                    <option value="3">verts</option>
+                                    <option value="3">noisettes</option>
+                                    <option value="3">gris</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes cheveux :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
+                                <div class="col-md-8">
+                                {{membre.cheveux}}
+                                    {# <select id="selectcheveux" name="selectcheveux" class="form-control">
+
+
+                                            {% for option in optionscheveux %}
+                                                {% if option == app.user.cheveux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.cheveux}}</option>
+                                    <option value="1">chatains</option>
+                                    <option value="2">noirs</option>
+                                    <option value="3">blonds</option>
+                                    <option value="3">blancs</option>
+                                    <option value="3">roux</option>
+                                    <option value="3">autres</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
+                            </div>
+            <!-- MON MODE DE VIE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                <!-- Form Name -->
+                                <h2>Mon mode de vie</h2>
+
+                                <!-- Mon statut marital : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
+                                <div class="col-md-8">
+                                {{membre.statut}}
+                                    {# <select id="selectstatut" name="selectstatut" class="form-control">
+
+                                            {% for option in optionsstatut %}
+                                                {% if option == app.user.statut %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+{# 
+                                        <option value="1">jamais marié</option>
+                                        <option value="2">divorcé</option>
+                                        <option value="3">veuve</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div> 
+
+                                <!-- Je fume :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
+                                <div class="col-md-8">
+                                {{membre.fume}}
+                                    {# <select id="selectfume" name="selectfume" class="form-control"> #}
+                                    {# <option value="1">{{app.user.fume}}</option>
+                                    <option value="1">Un peu</option>
+                                    <option value="1">Beaucoup</option>
+                                    <option value="1">Enormement</option>
+                                    <option value="2">Jamais</option> #}
+
+                                            {# {% for option in optionsfume %}
+                                                {% if option == app.user.fume %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                    </select> #}
+                                </div>
+                                </div>
+
+                            <!-- Je mange :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
+                                <div class="col-md-8">
+                                {{membre.mange}}
+                                    {# <select id="selectmange" name="selectmange" class="form-control">
+
+
+                                            {% for option in optionsmange %}
+                                                {% if option == app.user.mange %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+
+                                    {# <option value="1">{{app.user.mange}}</option>
+                                    <option value="1">tout</option>
+                                    <option value="2">végétarien</option>
+                                    <option value="3">hallal</option>
+                                    <option value="3">casher</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes animaux de compagnie :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
+                                <div class="col-md-8 form-control">
+                                {{membre.animaux}}
+                                    {# <select id="selectanimaux" name="selectanimaux" class="">
+
+                                            {% for option in optionsanimaux %}
+                                                {% if option == app.user.animaux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+{# 
+                                    <option value="1">Chien</option>
+                                    <option value="2">Chat</option>
+                                    <option value="1">Oiseau</option>
+                                    <option value="2">Reptile</option>
+                                    <option value="2">Autre</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes hobbies :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
+                                <div class="col-md-8 form-control">
+                                {{membre.hobby}}
+                                    {# <select id="selecthobby" name="selecthobby" class="">
+
+                                            {% for option in optionshobby %}
+                                                {% if option == app.user.hobby %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                        {# <option value="1">Nature</option>
+                                        <option value="2">Arts</option>
+                                        <option value="2">Sport</option>
+                                        <option value="2">Voyages</option>
+                                        <option value="2">Musique</option>
+                                        <option value="2">Littérature</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                                
+                                </div>
+                            </form>
+                        
+                        
+                        </div>
+                    
+                    <div>
+                 </section>
+           </div>
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
+
+
+
+
+</body>
+
+{% endblock %}
+
+
+
+
+{% block main %}
+<body>
+<section class="profil">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
+                <div class="profil-photos col-4">
+                    <div>
+                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        
+                    </div>
+                </div>
+                    {# <!-- Button trigger modal -->
+                    <div class="profil-main-img" id="img_profil" alt="image-profil">
+                        <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                    </div>
+                        </button>
+                </div>
+                <!-- MODAL -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                
+                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Ajoutez une nouvelle photo <i class="fas fa-sign-in-alt"></i> </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="mainimage">Ajouter une image</label>
+                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                        </div>
+                                        <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN MODAL --> #}
+
+                <div class="profil-main-information col-8">
+                <!-- MODIFICATION on click -->
+                        
+                    <div class="modif-direct">
+                        <!-- MODIF PSEUDO -->
+                        <div id="status_change" class="margins-top-barre">
+                            <div class="icons-inline">
+                                <h4>{{app.user.pseudo}}</h4>
+                            </div>
+                        </div>
+                        <!-- MODIF PHRASE-COURTE -->
+                        {# <div id="phrase_change" class="phase-courte margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="phase-courte"><a class="help" href="#">{{app.user.punchline}}</p><span class="airhelp">Modifier la phrase d'accroche</span><i id="icone-phrase" class="fas fa-pen"></i></a>
+                            </div>   
+                            <div id="phrase_cotainer_change"><!-- la même -->
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="phrase_val"><button type="submit" id="save_phrase">Sauvegarder</button>
+                                
+                                </div>
+                            </div>
+                        </div> #}
+                        <!-- MODIF AGE -->
+                        <div class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p >AGE</p>
+                            </div>
+                            
+                        </div> 
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p>Ville : {{app.user.ville}}</p>
+                            </div>
+                        </div>
+                    </div>
+                <!--  END MODIFICATION on click -->
+                        <p>ce button n'est pas vicible si le user regarde les profils des autres users</p>
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Modifier mon profil</a></button>        
+                                
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    
+ <!-- ZONE HOBBY AND FORMULAIRES -->   
+       
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
+        
+                <section class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div id="description-hobby" class="description">
+
+                            <form method="post" enctype="multipart/form-data">
+                            <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
+                            <!-- Form Name -->
+                                <h2>Je cherche</h2>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-9">
+                                    {{membre.jeveux}}
+                                        {# <select id="jeveux" name="jeveux" class="form-control">
+
+                                            {% for option in optionspersonnes %}
+                                                {% if option == app.user.jeveux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                            {# <option value="1">Homme</option>
+                                            <option value="2">Femme</option>
+                                            <option value="3">Troisième sexe</option>
+                                            <option value="3">Couple hf</option>
+                                            <option value="3">Couple hh</option>
+                                            <option value="3">Couple ff</option>
+                                            <option value="3">Orgie</option> #}
+                                        {# </select> #}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {# </form> #}
+                        </div>
+                    </div>
+
+        <!-- ZONE INFORMATION FORMULAIRE -->          
+                    <div class="dating-profil-formulaires col-8">
+                        <div class="formulaire">
+            <!-- DESCRIPTION TEXTE-->
+                            <div class="description padding-formulaires">
+
+                                {# <form> #}
+                                <fieldset class="form-horizontal">
+                                
+
+                                    <!-- Form Name -->
+                                    <h2>Ma description</h2>
+                                    <!-- Date naissance -->
+                                    <div class="form-group row" >
+                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-9">
+                                            <div id="date-naissance">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- JE SUIS -->
+                                    <div class="form-group row">
+                                        <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-9">
+                                        {{membre.jesuis}}
+                                            {# <select id="jesuis" name="jesuis" class="form-control">
+                                            
+                                                {% for option in optionspersonnes %}
+                                                    {% if option == app.user.jesuis %}
+                                                        <option value="{{option}}" selected>{{option}}</option>
+                                                    {% else %}
+                                                        <option value="{{option}}">{{option}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select> #}
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                    <!-- Punchline -->
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-punchline">                     
+                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            
+                                        </div>
+                                        
+                                    </div>
+
+                            
+                                    
+                                    <!-- Description longue -->
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-longue" >                     
+                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                            
+                                        </div>
+                                    </div>
+
+
+                                    
+
+                                </fieldset>
+                                    {# </form> #}
+                                
+                                <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
+                            </div>
+
+                            <!-- PERSONALITE -->
+                            <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                    <!-- Form Name -->
+                                    <h2>Ma personnalité</h2>
+
+                                    <!-- Relation -->
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
+                                        <div class="col-md-8">
+                                        {{membre.TypeRelation}}
+
+                                            {# <select id="selectrelations" name="selectrelations" class="form-control">
+
+                                            {% for option in optionsrelations %}
+                                                {% if option == app.user.TypeRelation %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                            {# <option value="1">{{app.user.TypeRelation}}</option>
+                                            <option value="2">Durable</option>
+                                            <option value="3" selected>Sans prise de tête</option>
+                                            <option value="4">Sex-friend</option>
+                                            <option value="5">One Shot</option> #}
+                                            {# </select> #}
+                                        </div>
+                                    </div>
+
+                                <!-- Enfants -->
+                                {# <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectbasic">Je veux des enfants :</label>
+                                <div class="col-md-8">
+                                    <select id="selectbasic" name="selectbasic" class="form-control">
+                                    <option value="1">oui</option>
+                                    <option value="2">non</option>
+                                    <option value="3">rien est décidé</option>
+                                    </select>
+                                </div>
+                                </div> #}
+
+                                </fieldset>
+
+                                <!-- Caractere -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
+                                <div class="col-md-8">
+                                {{membre.TraitCaractere}}
+                                    {# <select id="selectcaracteres" name="selectcaracteres" class="form-control">
+
+                                            {% for option in optionscaracteres %}
+                                                {% if option == app.user.TraitCaractere %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                        {# <option value="1">Aventureux</option>
+                                        <option value="2">Calme</option>
+                                        <option value="3">Sociable</option>
+                                        <option value="4">Drôle</option>
+                                        <option value="5">Timide</option>
+                                        <option value="6">Extravagant</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
+                            </div>
+                            
+            <!-- PHYSIQUE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                <!-- Form Name -->
+                                <h2>Mon physique</h2>
+
+                                <!-- Taille -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
+                                <div class="col-md-8">
+                                {{membre.taille}}
+                                    {# <select id="selecttaille" name="selecttaille" class="form-control">
+
+                                            {% for option in optionstailles %}
+                                                {% if option == app.user.taille %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.taille}}</option>
+                                    <option value="1">140-160</option>
+                                    <option value="2">160-170</option>
+                                    <option value="3">170-180</option>
+                                    <option value="3">180-190</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Ma silhouette : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
+                                <div class="col-md-8">
+                                {{membre.silhouette}}
+                                    {# <select id="selectsilhouette" name="selectsilhouette" class="form-control">
+
+                                            {% for option in optionssilhouettes %}
+                                                {% if option == app.user.silhouette %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+{# 
+                                    <option value="1">{{app.user.silhouette}}</option>
+                                    <option value="1">normal</option>
+                                    <option value="2">sportif</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">mince</option>
+                                    <option value="3">quelques kilos en trop</option>
+                                    <option value="3">ronde</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes yeux : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
+                                <div class="col-md-8">
+                                {{membre.yeux}}
+                                    {# <select id="selectyeux" name="selectyeux" class="form-control">
+                                    
+
+                                            {% for option in optionsyeux %}
+                                                {% if option == app.user.yeux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.yeux}}</option>
+                                    <option value="1">marron</option>
+                                    <option value="2">bleus</option>
+                                    <option value="3">verts</option>
+                                    <option value="3">noisettes</option>
+                                    <option value="3">gris</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes cheveux :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
+                                <div class="col-md-8">
+                                {{membre.cheveux}}
+                                    {# <select id="selectcheveux" name="selectcheveux" class="form-control">
+
+
+                                            {% for option in optionscheveux %}
+                                                {% if option == app.user.cheveux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                    {# <option value="1">{{app.user.cheveux}}</option>
+                                    <option value="1">chatains</option>
+                                    <option value="2">noirs</option>
+                                    <option value="3">blonds</option>
+                                    <option value="3">blancs</option>
+                                    <option value="3">roux</option>
+                                    <option value="3">autres</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
+                            </div>
+            <!-- MON MODE DE VIE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                <!-- Form Name -->
+                                <h2>Mon mode de vie</h2>
+
+                                <!-- Mon statut marital : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
+                                <div class="col-md-8">
+                                {{membre.statut}}
+                                    {# <select id="selectstatut" name="selectstatut" class="form-control">
+
+                                            {% for option in optionsstatut %}
+                                                {% if option == app.user.statut %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+{#  #}
+                                        {# <option value="1">jamais marié</option>
+                                        <option value="2">divorcé</option>
+                                        <option value="3">veuve</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div> 
+
+                                <!-- Je fume :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
+                                <div class="col-md-8">
+                                {{membre.fume}}
+                                    {# <select id="selectfume" name="selectfume" class="form-control"> #}
+                                    {# <option value="1">{{app.user.fume}}</option>
+                                    <option value="1">Un peu</option>
+                                    <option value="1">Beaucoup</option>
+                                    <option value="1">Enormement</option>
+                                    <option value="2">Jamais</option> #}
+
+                                            {# {% for option in optionsfume %}
+                                                {% if option == app.user.fume %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                    </select> #}
+                                </div>
+                                </div>
+
+                            <!-- Je mange :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
+                                <div class="col-md-8">
+                                {{membre.mange}}
+                                    {# <select id="selectmange" name="selectmange" class="form-control">
+
+
+                                            {% for option in optionsmange %}
+                                                {% if option == app.user.mange %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+
+                                    {# <option value="1">{{app.user.mange}}</option>
+                                    <option value="1">tout</option>
+                                    <option value="2">végétarien</option>
+                                    <option value="3">hallal</option>
+                                    <option value="3">casher</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes animaux de compagnie :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
+                                <div class="col-md-8">
+                                 {{membre.animaux}}
+                                    {# <select id="selectanimaux" name="selectanimaux" class="form-control">
+
+                                            {% for option in optionsanimaux %}
+                                                {% if option == app.user.animaux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+{# 
+                                    <option value="1">Chien</option>
+                                    <option value="2">Chat</option>
+                                    <option value="1">Oiseau</option>
+                                    <option value="2">Reptile</option>
+                                    <option value="2">Autre</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                <!-- Mes hobbies :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
+                                <div class="col-md-8">
+                                {{membre.hobby}}
+                                    {# <select id="selecthobby" name="selecthobby" class="form-control">
+
+                                            {% for option in optionshobby %}
+                                                {% if option == app.user.hobby %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %} #}
+
+                                        {# <option value="1">Nature</option>
+                                        <option value="2">Arts</option>
+                                        <option value="2">Sport</option>
+                                        <option value="2">Voyages</option>
+                                        <option value="2">Musique</option>
+                                        <option value="2">Littérature</option> #}
+                                    {# </select> #}
+                                </div>
+                                </div>
+
+                                </fieldset>
+                                
+                                </div>
+                            </form>
+                        
+                        
+                        </div>
+                    
+                    <div>
+                 </section>
+           </div>
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
+
+</body>
+
+{% endblock %}
+

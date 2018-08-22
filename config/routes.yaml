@@ -71,19 +71,6 @@ admin3_users_management:
     defaults:
         template: /admin3/users_management.html.twig  
 
-
-admin_config:
-    path: /config
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin/config.html.twig
-
-admin_membres:
-    path: /membres
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: admin/membres.html.twig
-
 admin3_permissions:
     path: /admin3/permissions
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction

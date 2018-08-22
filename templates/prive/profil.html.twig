@@ -13,7 +13,8 @@ Les noms des id et les name doivent être attachés. #}
 {% block title %} Trouve ton Biscuit {% endblock %}
 
 {% block nav %}
- <div class="bgded overlay" style="background-image:url('/images/demo/backgrounds/01.png');"> 
+{{ parent() }}
+ {# <div class="bgded overlay" style="background-image:url('/images/demo/backgrounds/01.png');"> 
 
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
@@ -26,25 +27,25 @@ Les noms des id et les name doivent être attachés. #}
         
       </div>
       <!-- ################################################################################################ -->
-      <nav id="mainav" class="fl_right">
+      {# <nav id="mainav" class="fl_right">
         <ul class="clear">
 
             <li><a href="{{path('membre_list')}}"> Home <i class="fas fa-home"></i></a></li>
             <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
-                    <li><a href="{{path('prive_profil')}}">Profil <i class="fas fa-user-alt"></i></a></li>
+                    <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil <i class="fas fa-user-alt"></i></a></li>
                     <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>
             </li>
           
         </ul>
-      </nav>
+      </nav> #}
       <!-- ################################################################################################ -->
-    </header>
-  </div>
+    {# </header>
+  </div>#}
 
-{% endblock %}
+{% endblock %}  
 
 {% block main %}
 <body>
