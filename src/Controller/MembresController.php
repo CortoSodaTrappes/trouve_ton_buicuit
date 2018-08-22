@@ -7,6 +7,7 @@ use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File;
 // use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 // use Symfony\Component\Form\Extension\Core\Type\EmailType;
 // use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -20,8 +21,6 @@ use App\Entity\Membres;
 use App\Entity\Presentations;
 use App\Entity\Recherches;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
-
 
 
 class MembresController extends Controller
@@ -61,9 +60,21 @@ class MembresController extends Controller
                 $membre->setMainimage($fileName);
             }
             
-dump($request);
-dump($file);
 
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                // $file = $request->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+
+
+                $membre->setMainimage($fileName);
+            }
 
         if(!is_null($request->get("submit"))){
             try{
@@ -98,6 +109,29 @@ dump($file);
             'membre' => $membre)
         );
     }
+
+
+    public function listMembres(): Response{
+
+        $repository = $this->getDoctrine()->getRepository(Membres::class);
+        $membres = $repository->findAll();
+dump($membres);
+        return $this->render('front/list.html.twig', array(
+            'membres' => $membres)
+        );
+
+    }
+
+    public function profilShow(Membres $membre): Response{
+
+        return $this->render('front/show.html.twig', array(
+            'membre' => $membre)
+        );
+    }
+
+
+
+    ///////////////////////////////// CONTROLEURS DE TEST /////////////////////////////////////////////////////
 
 
 
@@ -215,7 +249,23 @@ dump($file);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $form->get('mainimage')->getData()){
+                $fileName = $form->get('pseudo')->getData().'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+                $membre->setMainimage($fileName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
+
+
+
+
 
             return $this->redirectToRoute('test_list', ['id' => $membre->getId()]);
         }
@@ -291,6 +341,12 @@ dump($file);
     public function testLogout(){
         return $this->redirectToRoute('test_login');
     }    
+
+// --------------------------------------------- FIN DE CONTROLEURS DE TEST ---------------------------------------------
+
+
+//////////////////////////////////////////////// FONCTIONS GENERATRICES DE SELECT-OPTIONS //////////////////////////////////////////
+
 
 
     public function getOptionsRelations(){
