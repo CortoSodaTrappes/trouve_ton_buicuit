@@ -18,7 +18,13 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <!-- Button trigger modal -->
+                    <div>
+                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
+                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        
+                    </div>
+                </div>
+                    {# <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
@@ -53,7 +59,7 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div>
                     </div>
-                    <!-- FIN MODAL -->
+                    <!-- FIN MODAL --> #}
 
                 <div class="profil-main-information col-8">
                 <!-- MODIFICATION on click -->
@@ -84,17 +90,12 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div> #}
                         <!-- MODIF AGE -->
-                        <div id="age_change" class="margins-top-barre">
+                        <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p id="age"><a class="help" href="#">AGE</p><span class="airhelp">Modifier l'age</span><i id="icone-age" class="fas fa-pen"></i></a>
+                                <p >AGE</p>
                             </div>
-                            <div id="age_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="age_val"><button type="submit" id="save_age">Sauvegarder</button>
-                                
-                                </div>
-                            </div>
-                        </div>
+                            
+                        </div> 
                         <!-- MODIF VILLE -->
                         <div id="ville_change" class="margins-top-barre">
                             <div class="icons-inline-p">
@@ -109,7 +110,7 @@ Les noms des id et les name doivent être attachés. #}
                         </div>
                     </div>
                 <!--  END MODIFICATION on click -->
-                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show')  }}">Voir mon profil</a></button>        
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show',{id:app.user.id})}}">Voir mon profil</a></button>        
                                 
                     </div>
                 </div>
@@ -129,13 +130,13 @@ Les noms des id et les name doivent être attachés. #}
                     <div class="dating-profil-banner-hobby col-4">
                         <div id="description-hobby" class="description">
 
-                            <form method="post"{# class="form-horizontal dating-profile" id="padding-hobby"#}>
+                            <form method="post" enctype="multipart/form-data">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
                                 <div class="form-group row">
-                                    <label class="col-md-4 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-9">
                                         <select id="jeveux" name="jeveux" class="form-control">
 
                                             {% for option in optionspersonnes %}
@@ -173,6 +174,16 @@ Les noms des id et les name doivent être attachés. #}
 
                                     <!-- Form Name -->
                                     <h2>Ma description</h2>
+                                    <!-- Date naissance -->
+                                    <div class="form-group row" >
+                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-9">
+                                            <div id="date-naissance">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- JE SUIS -->
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
@@ -189,30 +200,23 @@ Les noms des id et les name doivent être attachés. #}
                                         </div>
                                     </div>
 
-                                    <!-- Date naissance -->
-                                    <div class="form-group row" >
-                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
-                                        <div class="col-md-9">
-                                            <div id="date-naissance">                     
-                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     
                                     <!-- Punchline -->
                                     <div class="form-group" >
                                         <div class="col-md-12" id="description-punchline">                     
-                                            <input placeholder="Decrivez vous en une phrase" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
                                         </div>
                                         
                                     </div>
+
+                                    <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg, image/jpg" />
                                     
                                     <!-- Description longue -->
                                     <div class="form-group" >
                                         <div class="col-md-12" id="description-longue" >                     
-                                            <textarea placeholder="Decrivez vous en quelques phrases" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             
                                         </div>
                                     </div>
@@ -568,6 +572,7 @@ Les noms des id et les name doivent être attachés. #}
 
 $(document).ready(function()
 {
+    ///////// PSEUDO
     // open
     $('#icone-pseudo').click(function(){
         $('#status_val').val($('#pseudo').text());
@@ -616,7 +621,7 @@ $(document).ready(function()
 
 
 ///////// AGE
-$(document).ready(function()
+{# $(document).ready(function()
 {
     // open
     $('#icone-age').click(function(){
@@ -638,7 +643,7 @@ $(document).ready(function()
        
     });
     
-})
+}) #}
 
 
 

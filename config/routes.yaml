@@ -21,10 +21,8 @@ membre_list:
         template: front/list.html.twig
 
 membre_show:
-    path: /show
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: front/show.html.twig
+    path: /show/{id}
+    controller: App\Controller\MembresController::profilShow
 
 prive_profil:
     path: /profil/{id}

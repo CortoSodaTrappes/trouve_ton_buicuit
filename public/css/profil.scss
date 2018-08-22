@@ -1,7 +1,15 @@
+/// variables ///
+:root {
+    --font-color-botton: #474747;
+    --background-color-sections: #e4e1e1;
+}
+
+/// end variables ///
+/// ZONE PROFIL TOP BARRE ///
 .profil {
-    padding-bottom: 5%;
+    padding-bottom: 0%;
     .container {
-        padding: 0px 20px 0px 20px;
+        padding: 0px;
         .profil-block-top-marge {
             padding: 0%;
         }
@@ -13,7 +21,7 @@
                     border-radius: 5px;
                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
                     .btn {
-                        background-color: #e4e1e1;
+                        background-color: var(--background-color-sections);
                         border-color: #737171;
                     }
                     #bouton-photo-profil {
@@ -22,7 +30,7 @@
                 }
             }
             .profil-main-information {
-                background-color: #e4e1e1;
+                background-color: var(--background-color-sections);
                 color: black;
                 padding-top: 1.5%;
                 border-radius: 5px;
@@ -35,7 +43,7 @@
                     font-style: italic;
                 }
                 #bottonprofil {
-                    margin-top: 2%;
+                    margin-top: 0%;
                 }
                 .btn {
                     color: #474743;
@@ -44,7 +52,7 @@
                     background-color: #e0dddc;
                     border-color: #737171;
                     a {
-                        color: #474747;
+                        color: var(--font-color-botton);
                     }
                 }
             }
@@ -52,15 +60,16 @@
     }
 }
 
-// ZONE HOBBY AND FORMULAIRES
+/// END ZONE PROFIL TOP BARRE ///
+/// ZONE HOBBY AND FORMULAIRES ///
 .dating-profile {
     .barre-bas {
         .container {
             padding-top: 30px;
             .dating-profil-banner-hobby {
                 #description-hobby {
-                    height: 24%;
-                    background-color: #e4e1e1;
+                    height: 29.5%;
+                    background-color: var(--background-color-sections);
                     #padding-hobby {
                         padding: 5%;
                         h2 {
@@ -72,8 +81,8 @@
                             color: black;
                         }
                         #description-text-hobby {
-                            padding: 0%;
-                            margin-top: -2%;
+                            // padding: 0%;
+                            // margin-top: -2%;
                             #hobby {
                                 height: 200px;
                             }
@@ -91,19 +100,25 @@
                 #description-punchline {
                     padding-left: 0%;
                     padding-right: 0%;
+                    input {
+                        font-style: italic;
+                        font-size: 0.9em;
+                    }
                 }
                 #description-longue {
                     padding-left: 0%;
                     padding-right: 0%;
                     textarea {
                         height: 100px;
+                        font-style: italic;
+                        font-size: 0.9em;
                     }
                 }
                 #date-naissance {
                     padding-left: 0%;
                     padding-right: 0%;
                     #naissance {
-                        color: #474747;
+                        color: var(--font-color-botton);
                         padding-left: 50px;
                     }
                 }
@@ -137,6 +152,7 @@
     }
 }
 
+/// END ZONE HOBBY AND FORMULAIRES ///
 *,
 *::before,
 *::after {
@@ -153,7 +169,7 @@ h2 {
 }
 
 .description {
-    background-color: #e4e1e1;
+    background-color: var(--background-color-sections);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -195,6 +211,7 @@ button {
 
 #status_change {
     position: relative;
+    margin-top: 5px;
 }
 
 #status_cotainer_change {
@@ -317,7 +334,7 @@ button {
 }
 
 .margins-top-barre {
-    margin-bottom: 10px;
+    margin: 30px 0px;
 }
 
 .fas {
@@ -391,14 +408,16 @@ a:hover {
 }
 
 #bottonprofiledition {
-    background-color: #e4e1e1;
+    background-color: var(--background-color-sections);
+    ;
     border-color: #737171;
     a {
-        color: #474747;
+        color: var(--font-color-botton);
     }
 }
 
 #bouton-photo-profil-voir {
     padding: 8px;
-    background-color: #e4e1e1;
+    background-color: var(--background-color-sections);
+    ;
 }

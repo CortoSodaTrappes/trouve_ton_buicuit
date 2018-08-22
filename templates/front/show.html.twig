@@ -1,24 +1,14 @@
 {% extends "prive.html.twig" %}
 
+{# Mes id doievent être uniques
+Les noms des id et les name doivent être attachés. #}
+
 {% block stylesheets %}
 {{ parent() }}
 {# <link rel="stylesheet" href="css/portfolio.css"> #}
-<link rel="stylesheet" href="css/profil.css">
+<link rel="stylesheet" href="{{asset('css/profil.css')}}">
 {% endblock %}
 
-{% block body %}
-
-    <p>Template show.html.twig</p>
-    <p>Controlleur Membres : icil'affichage d'un membre.</p>
-
-
-
-{% endblock %}
-
-
-
-{# Mes id doievent être uniques
-Les noms des id et les name doivent être attachés. #}
 
 
 {% block main %}
@@ -28,7 +18,13 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <!-- Button trigger modal -->
+                    <div>
+                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
+                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        
+                    </div>
+                </div>
+                    {# <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
@@ -63,7 +59,7 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div>
                     </div>
-                    <!-- FIN MODAL -->
+                    <!-- FIN MODAL --> #}
 
                 <div class="profil-main-information col-8">
                 <!-- MODIFICATION on click -->
@@ -72,13 +68,7 @@ Les noms des id et les name doivent être attachés. #}
                         <!-- MODIF PSEUDO -->
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
-                                <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
-                            </div>
-                            <div id="status_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="status_val"><button type="submit" id="save_status">Sauvegarder</button>
-                                
-                                </div>
+                                <h4>{{app.user.pseudo}}</h4>
                             </div>
                         </div>
                         <!-- MODIF PHRASE-COURTE -->
@@ -94,32 +84,22 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div> #}
                         <!-- MODIF AGE -->
-                        <div id="age_change" class="margins-top-barre">
+                        <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p id="age"><a class="help" href="#">AGE</p><span class="airhelp">Modifier l'age</span><i id="icone-age" class="fas fa-pen"></i></a>
+                                <p >AGE</p>
                             </div>
-                            <div id="age_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="age_val"><button type="submit" id="save_age">Sauvegarder</button>
-                                
-                                </div>
-                            </div>
-                        </div>
+                            
+                        </div> 
                         <!-- MODIF VILLE -->
                         <div id="ville_change" class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p id="ville"><a class="help" href="#">Ville : {{app.user.ville}}</p>
-                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
-                            </div>
-                            <div id="ville_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="ville_val"><button type="submit" id="save_ville">Sauvegarder</button>
-                                </div>
+                                <p>Ville : {{app.user.ville}}</p>
                             </div>
                         </div>
                     </div>
                 <!--  END MODIFICATION on click -->
-                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show')  }}">Voir mon profil</a></button>        
+                        <p>ce button n'est pas vicible si le user regarde les profils des autres users</p>
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Modifier mon profil</a></button>        
                                 
                     </div>
                 </div>
@@ -137,16 +117,17 @@ Les noms des id et les name doivent être attachés. #}
                 <section class="dating-profil-main row">
         <!-- ZONE HOBBY --> 
                     <div class="dating-profil-banner-hobby col-4">
-                        <div class="description">
+                        <div id="description-hobby" class="description">
 
-                            <form method="post"{# class="form-horizontal dating-profile" id="padding-hobby"#}>
+                            <form method="post" enctype="multipart/form-data">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
                                 <div class="form-group row">
-                                    <label class="col-md-4 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
-                                    <div class="col-md-8">
-                                        <select id="jeveux" name="jeveux" class="form-control">
+                                    <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-9">
+                                    {{membre.jeveux}}
+                                        {# <select id="jeveux" name="jeveux" class="form-control">
 
                                             {% for option in optionspersonnes %}
                                                 {% if option == app.user.jeveux %}
@@ -154,7 +135,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                             {# <option value="1">Homme</option>
                                             <option value="2">Femme</option>
@@ -163,7 +144,7 @@ Les noms des id et les name doivent être attachés. #}
                                             <option value="3">Couple hh</option>
                                             <option value="3">Couple ff</option>
                                             <option value="3">Orgie</option> #}
-                                        </select>
+                                        {# </select> #}
                                     </div>
                                 </div>
                             </fieldset>
@@ -183,11 +164,23 @@ Les noms des id et les name doivent être attachés. #}
 
                                     <!-- Form Name -->
                                     <h2>Ma description</h2>
+                                    <!-- Date naissance -->
+                                    <div class="form-group row" >
+                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-9">
+                                            <div id="date-naissance">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- JE SUIS -->
                                     <div class="form-group row">
-                                        <label class="col-md-2 control-label" for="jesuis">Je suis : </label>
-                                        <div class="col-md-10">
-                                            <select id="jesuis" name="jesuis" class="form-control">
+                                        <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-9">
+                                        {{membre.jesuis}}
+                                            {# <select id="jesuis" name="jesuis" class="form-control">
+                                            
                                                 {% for option in optionspersonnes %}
                                                     {% if option == app.user.jesuis %}
                                                         <option value="{{option}}" selected>{{option}}</option>
@@ -195,35 +188,33 @@ Les noms des id et les name doivent être attachés. #}
                                                         <option value="{{option}}">{{option}}</option>
                                                     {% endif %}
                                                 {% endfor %}
-                                            </select>
+                                            </select> #}
                                         </div>
                                     </div>
+
+                                    
                                     
                                     <!-- Punchline -->
                                     <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            <input placeholder="Decrivez vous en une phrase" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                        <div class="col-md-12" id="description-punchline">                     
+                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
                                         </div>
                                         
                                     </div>
+
+                            
                                     
-                                    <!-- Textarea -->
+                                    <!-- Description longue -->
                                     <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            <textarea placeholder="Decrivez vous en quelques phrases" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                        <div class="col-md-12" id="description-longue" >                     
+                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             
                                         </div>
                                     </div>
 
 
-                                    <!-- Date naissance -->
-                                    <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                            <input type="date" id="naissance" name="naissance" value="26-03-1966">
-                                        </div>
-                                    </div>
+                                    
 
                                 </fieldset>
                                     {# </form> #}
@@ -243,8 +234,9 @@ Les noms des id et les name doivent être attachés. #}
                                     <div class="form-group row">
                                         <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
                                         <div class="col-md-8">
+                                        {{membre.TypeRelation}}
 
-                                            <select id="selectrelations" name="selectrelations" class="form-control">
+                                            {# <select id="selectrelations" name="selectrelations" class="form-control">
 
                                             {% for option in optionsrelations %}
                                                 {% if option == app.user.TypeRelation %}
@@ -252,14 +244,14 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                             {# <option value="1">{{app.user.TypeRelation}}</option>
                                             <option value="2">Durable</option>
                                             <option value="3" selected>Sans prise de tête</option>
                                             <option value="4">Sex-friend</option>
                                             <option value="5">One Shot</option> #}
-                                            </select>
+                                            {# </select> #}
                                         </div>
                                     </div>
 
@@ -281,7 +273,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
                                 <div class="col-md-8">
-                                    <select id="selectcaracteres" name="selectcaracteres" class="form-control">
+                                {{membre.TraitCaractere}}
+                                    {# <select id="selectcaracteres" name="selectcaracteres" class="form-control">
 
                                             {% for option in optionscaracteres %}
                                                 {% if option == app.user.TraitCaractere %}
@@ -289,7 +282,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                         {# <option value="1">Aventureux</option>
                                         <option value="2">Calme</option>
@@ -297,7 +290,7 @@ Les noms des id et les name doivent être attachés. #}
                                         <option value="4">Drôle</option>
                                         <option value="5">Timide</option>
                                         <option value="6">Extravagant</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -319,7 +312,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
                                 <div class="col-md-8">
-                                    <select id="selecttaille" name="selecttaille" class="form-control">
+                                {{membre.taille}}
+                                    {# <select id="selecttaille" name="selecttaille" class="form-control">
 
                                             {% for option in optionstailles %}
                                                 {% if option == app.user.taille %}
@@ -327,14 +321,14 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.taille}}</option>
                                     <option value="1">140-160</option>
                                     <option value="2">160-170</option>
                                     <option value="3">170-180</option>
                                     <option value="3">180-190</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -342,7 +336,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
                                 <div class="col-md-8">
-                                    <select id="selectsilhouette" name="selectsilhouette" class="form-control">
+                                {{membre.silhouette}}
+                                    {# <select id="selectsilhouette" name="selectsilhouette" class="form-control">
 
                                             {% for option in optionssilhouettes %}
                                                 {% if option == app.user.silhouette %}
@@ -350,7 +345,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
 {# 
                                     <option value="1">{{app.user.silhouette}}</option>
@@ -360,7 +355,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">mince</option>
                                     <option value="3">quelques kilos en trop</option>
                                     <option value="3">ronde</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -368,7 +363,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
                                 <div class="col-md-8">
-                                    <select id="selectyeux" name="selectyeux" class="form-control">
+                                {{membre.yeux}}
+                                    {# <select id="selectyeux" name="selectyeux" class="form-control">
                                     
 
                                             {% for option in optionsyeux %}
@@ -377,7 +373,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.yeux}}</option>
                                     <option value="1">marron</option>
@@ -385,7 +381,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">verts</option>
                                     <option value="3">noisettes</option>
                                     <option value="3">gris</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -393,7 +389,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
                                 <div class="col-md-8">
-                                    <select id="selectcheveux" name="selectcheveux" class="form-control">
+                                {{membre.cheveux}}
+                                    {# <select id="selectcheveux" name="selectcheveux" class="form-control">
 
 
                                             {% for option in optionscheveux %}
@@ -402,7 +399,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.cheveux}}</option>
                                     <option value="1">chatains</option>
@@ -411,7 +408,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">blancs</option>
                                     <option value="3">roux</option>
                                     <option value="3">autres</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -432,7 +429,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
                                 <div class="col-md-8">
-                                    <select id="selectstatut" name="selectstatut" class="form-control">
+                                {{membre.statut}}
+                                    {# <select id="selectstatut" name="selectstatut" class="form-control">
 
                                             {% for option in optionsstatut %}
                                                 {% if option == app.user.statut %}
@@ -441,11 +439,11 @@ Les noms des id et les name doivent être attachés. #}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
                                             {% endfor %}
-{# 
-                                        <option value="1">jamais marié</option>
+{#  #}
+                                        {# <option value="1">jamais marié</option>
                                         <option value="2">divorcé</option>
                                         <option value="3">veuve</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div> 
 
@@ -453,14 +451,15 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
                                 <div class="col-md-8">
-                                    <select id="selectfume" name="selectfume" class="form-control">
+                                {{membre.fume}}
+                                    {# <select id="selectfume" name="selectfume" class="form-control"> #}
                                     {# <option value="1">{{app.user.fume}}</option>
                                     <option value="1">Un peu</option>
                                     <option value="1">Beaucoup</option>
                                     <option value="1">Enormement</option>
                                     <option value="2">Jamais</option> #}
 
-                                            {% for option in optionsfume %}
+                                            {# {% for option in optionsfume %}
                                                 {% if option == app.user.fume %}
                                                     <option value="{{option}}" selected>{{option}}</option>
                                                 {% else %}
@@ -468,7 +467,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% endif %}
                                             {% endfor %}
 
-                                    </select>
+                                    </select> #}
                                 </div>
                                 </div>
 
@@ -476,7 +475,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
                                 <div class="col-md-8">
-                                    <select id="selectmange" name="selectmange" class="form-control">
+                                {{membre.mange}}
+                                    {# <select id="selectmange" name="selectmange" class="form-control">
 
 
                                             {% for option in optionsmange %}
@@ -485,7 +485,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
 
                                     {# <option value="1">{{app.user.mange}}</option>
@@ -493,7 +493,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="2">végétarien</option>
                                     <option value="3">hallal</option>
                                     <option value="3">casher</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -501,7 +501,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
                                 <div class="col-md-8">
-                                    <select id="selectanimaux" name="selectanimaux" class="form-control">
+                                 {{membre.animaux}}
+                                    {# <select id="selectanimaux" name="selectanimaux" class="form-control">
 
                                             {% for option in optionsanimaux %}
                                                 {% if option == app.user.animaux %}
@@ -509,7 +510,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
 {# 
                                     <option value="1">Chien</option>
@@ -517,7 +518,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="1">Oiseau</option>
                                     <option value="2">Reptile</option>
                                     <option value="2">Autre</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -525,7 +526,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
                                 <div class="col-md-8">
-                                    <select id="selecthobby" name="selecthobby" class="form-control">
+                                {{membre.hobby}}
+                                    {# <select id="selecthobby" name="selecthobby" class="form-control">
 
                                             {% for option in optionshobby %}
                                                 {% if option == app.user.hobby %}
@@ -533,7 +535,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                         {# <option value="1">Nature</option>
                                         <option value="2">Arts</option>
@@ -541,7 +543,7 @@ Les noms des id et les name doivent être attachés. #}
                                         <option value="2">Voyages</option>
                                         <option value="2">Musique</option>
                                         <option value="2">Littérature</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -564,9 +566,6 @@ Les noms des id et les name doivent être attachés. #}
 
     
 </section>
-
-
-
 
 </body>
 

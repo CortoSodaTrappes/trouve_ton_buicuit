@@ -464,7 +464,7 @@ class Membres implements UserInterface
         return $this->jesuis;
     }
 
-    public function setJesuis(string $jesuis): self
+    public function setJesuis(?string $jesuis): self
     {
         $this->jesuis = $jesuis;
 

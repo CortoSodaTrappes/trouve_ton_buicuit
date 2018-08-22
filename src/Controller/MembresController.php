@@ -28,36 +28,57 @@ class MembresController extends Controller
 {
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
-        $entityManager = $this->getDoctrine()->getManager();
 
-        dump($request);
-
-        // $user->setEmail($request->get('email'));
-
+        $membre->setJeveux($request->get('jeveux'));
+        $membre->setPunchline($request->get('punchline'));
+        $membre->setJesuis($request->get('jesuis'));
+        $membre->setDescription($request->get('description'));
         // $membre->setNaissance($request->get('naissance'));
-        $membre->setTraitCaractere($request->get('selectcaracteres'));
         $membre->setTypeRelation($request->get('selectrelations'));
+        $membre->setTraitCaractere($request->get('selectcaracteres'));
+
         $membre->setTaille($request->get('selecttaille'));
         $membre->setSilhouette($request->get('selectsilhouette'));
         $membre->setYeux($request->get('selectyeux'));
         $membre->setCheveux($request->get('selectcheveux'));
         $membre->setFume($request->get('selectfume'));
         $membre->setMange($request->get('selectmange'));
-        // $membre->setJesuis($request->get('jesuis'));
-        $membre->setJeveux($request->get('jeveux'));
-        $membre->setDescription($request->get('description'));
-        $membre->setPunchline($request->get('punchline'));
         $membre->setAnimaux($request->get('selectanimaux'));
         $membre->setHobby($request->get('selecthobby'));
         $membre->setStatut($request->get('selectstatut'));
 
-  
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                // $file = $request->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+
+                $membre->setMainimage($fileName);
+            }
+            
+dump($request);
+dump($file);
 
 
+        if(!is_null($request->get("submit"))){
+            try{
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($membre);
+                $entityManager->flush();
+                // return $this->redirectToRoute('prive_profil', array('id' => $membre->getId()));
+            }catch(\Doctrine\ORM\EntityNotFoundException $e){
+                // return $this->returnJson(array("path" =>"/register", "Error : invalid request."), 501) ;
+            }
+        }
 
         return $this->render('prive/profil.html.twig', array(
-            'optionsrelations' => $this->getOptionsRelations(),
             'optionspersonnes' => $this->getOptionsPersonnes(),
+            'optionsrelations' => $this->getOptionsRelations(),
             'optionstailles' => $this->getOptionsTaille(),
             'optionscaracteres' => $this->getOptionsCaracteres(),
             'optionssilhouettes' => $this->getOptionsSilhouette(),
@@ -69,6 +90,13 @@ class MembresController extends Controller
             'optionsanimaux' => $this->getOptionsAnimaux(),
             'optionshobby' => $this->getOptionsHobby(),
         ));
+    }
+
+    public function profilShow(Membres $membre): Response{
+
+        return $this->render('front/show.html.twig', array(
+            'membre' => $membre)
+        );
     }
 
 
