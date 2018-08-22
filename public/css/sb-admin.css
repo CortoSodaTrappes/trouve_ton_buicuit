@@ -347,13 +347,13 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 footer.sticky-footer {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    /* display: flex; */
     position: absolute;
     right: 0;
     bottom: 0;
     width: calc(100% - 90px);
-    height: 80px;
-    background-color: #e9ecef;
+    height: 120px;
+    /* background-color: #e9ecef; */
 }
 
 footer.sticky-footer .copyright {
