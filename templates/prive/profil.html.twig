@@ -1,4 +1,5 @@
-{% extends "prive.html.twig" %}
+{# {% extends "prive.html.twig" %} #}
+{% extends "front.html.twig" %}
 
 {# Mes id doievent être uniques
 Les noms des id et les name doivent être attachés. #}
@@ -20,21 +21,106 @@ Les noms des id et les name doivent être attachés. #}
                 <div class="profil-photos col-4">
                     <div>
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        
                     </div>
                 </div>
+                    {# <!-- Button trigger modal -->
+                    <div class="profil-main-img" id="img_profil" alt="image-profil">
+                        <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+
+                    </div>
+                        </button>
+                </div>
+                <!-- MODAL -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                
+                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Ajoutez une nouvelle photo <i class="fas fa-sign-in-alt"></i> </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="mainimage">Ajouter une image</label>
+                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                        </div>
+                                        <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN MODAL --> #}
+
                 <div class="profil-main-information col-8">
-                    <div>
-                        <h4>{{app.user.pseudo}}</h4>
-                        <p id="phase-courte">{{app.user.punchline}}</p>
-                        <p>AGE</p>
-                        <p>Ville : {{app.user.ville}}</p>
-                        <button type="button" class="btn btn-secondary" id="bottonprofil">Voir mon profil</button>
+                <!-- MODIFICATION on click -->
+                        
+                    <div class="modif-direct">
+                        <!-- MODIF PSEUDO -->
+                        <div id="status_change" class="margins-top-barre">
+                            <div class="icons-inline">
+                                <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="status_cotainer_change">
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="status_val"><button type="submit" id="save_status">Sauvegarder</button>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MODIF PHRASE-COURTE -->
+                        {# <div id="phrase_change" class="phase-courte margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="phase-courte"><a class="help" href="#">{{app.user.punchline}}</p><span class="airhelp">Modifier la phrase d'accroche</span><i id="icone-phrase" class="fas fa-pen"></i></a>
+                            </div>   
+                            <div id="phrase_cotainer_change"><!-- la même -->
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="phrase_val"><button type="submit" id="save_phrase">Sauvegarder</button>
+                                
+                                </div>
+                            </div>
+                        </div> #}
+                        <!-- MODIF AGE -->
+                        <div class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p >AGE</p>
+                            </div>
+                            
+                        </div> 
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="ville"><a class="help" href="#">Ville : {{app.user.ville}}</p>
+                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="ville_cotainer_change">
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="ville_val"><button type="submit" id="save_ville">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!--  END MODIFICATION on click -->
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show',{id:app.user.id})}}">Voir mon profil</a></button>        
+                                
                     </div>
                 </div>
             </section>
         </div>
     </div>
+
     
  <!-- ZONE HOBBY AND FORMULAIRES -->   
        
@@ -45,24 +131,33 @@ Les noms des id et les name doivent être attachés. #}
                 <section class="dating-profil-main row">
         <!-- ZONE HOBBY --> 
                     <div class="dating-profil-banner-hobby col-4">
-                        <div class="description">
-                            <form method="post" enctype="multipart/form-data">
-                                <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
-                                    <h2>Je cherche</h2>
-                                    <div class="form-group row">
-                                        <label class="col-md-4 control-label" for="jeveux">Choisir</label>
-                                        <div class="col-md-8">
+                        <div id="description-hobby" class="description">
 
-                                            <select id="jeveux" name="jeveux" class="form-control">
-                                                {% for option in optionspersonnes %}
-                                                    {% if option == app.user.jeveux %}
-                                                        <option value="{{option}}" selected>{{option}}</option>
-                                                    {% else %}
-                                                        <option value="{{option}}">{{option}}</option>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </select>
-                                        </div>
+                            <form method="post" enctype="multipart/form-data">
+                            <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
+                            <!-- Form Name -->
+                                <h2>Je cherche</h2>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-9">
+                                        <select id="jeveux" name="jeveux" class="form-control">
+
+                                            {% for option in optionspersonnes %}
+                                                {% if option == app.user.jeveux %}
+                                                    <option value="{{option}}" selected>{{option}}</option>
+                                                {% else %}
+                                                    <option value="{{option}}">{{option}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {# <option value="1">Homme</option>
+                                            <option value="2">Femme</option>
+                                            <option value="3">Troisième sexe</option>
+                                            <option value="3">Couple hf</option>
+                                            <option value="3">Couple hh</option>
+                                            <option value="3">Couple ff</option>
+                                            <option value="3">Orgie</option> #}
+                                        </select>
                                     </div>
                                 </fieldset>
                         </div>
@@ -74,23 +169,26 @@ Les noms des id et les name doivent être attachés. #}
             <!-- DESCRIPTION TEXTE-->
                             <div class="description padding-formulaires">
                                 <fieldset class="form-horizontal">
+                                
 
                                     <!-- Form Name -->
                                     <h2>Ma description</h2>
-
-                                    <!-- Punchline -->
-                                    <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            <input type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                    <!-- Date naissance -->
+                                    <div class="form-group row" >
+                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-9">
+                                            <div id="date-naissance">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                            </div>
                                         </div>
                                     </div>
 
-                                <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg" />
-
-
+                                    <!-- JE SUIS -->
                                     <div class="form-group row">
-                                        <label class="col-md-4 control-label" for="jesuis">Choisir</label>
-                                        <div class="col-md-8">
+                                        <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-9">
+
                                             <select id="jesuis" name="jesuis" class="form-control">
                                                 {% for option in optionspersonnes %}
                                                     {% if option == app.user.jesuis %}
@@ -100,6 +198,7 @@ Les noms des id et les name doivent être attachés. #}
                                                     {% endif %}
                                                 {% endfor %}
                                             </select>
+
                                         </div>
                                     </div>
 
@@ -123,21 +222,38 @@ Les noms des id et les name doivent être attachés. #}
                                     <div class="form-group" >
                                         <div class="col-md-12" id="description-longue">                     
                                             <textarea class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+
                                         </div>
                                     </div>
 
+                                    
+                                    
+                                    <!-- Punchline -->
+                                    <div class="form-group row" >
+                                        <label class="col-md-12 control-label" for="punchline">Racontez qui vous êtes : </label>
+                                        <div class="col-md-12" id="description-punchline-modification">                     
+                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            
+                                        </div>
+                                        
+                                    </div>
 
-                                    <!-- Date naissance -->
+                                    <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg, image/jpg" />
+                                    
+                                    <!-- Description longue -->
                                     <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                            <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                        <div class="col-md-12" id="description-longue" >                     
+                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                            
                                         </div>
                                     </div>
+
+
+                                    
 
                                 </fieldset>
                                     {# </form> #}
-                                <p class="commentaires-profil">6 / 2000 caractères</p>
+                                
                                 <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
                             </div>
 
@@ -460,6 +576,120 @@ Les noms des id et les name doivent être attachés. #}
     </div>
     
 </section>
+
+<script>
+
+$(document).ready(function()
+{
+    ///////// PSEUDO
+    // open
+    $('#icone-pseudo').click(function(){
+        $('#status_val').val($('#pseudo').text());
+        $('#status_cotainer_change').show();
+        $('#pseudo').hide();
+        $('#icone-pseudo').hide();
+        
+        
+    });
+    
+    // save
+    $('#save_status').click(function(){
+        $('#pseudo').text($.trim($('#status_val').val()))
+        $('#status_cotainer_change').hide();
+        $('#pseudo').show();
+        $('#icone-pseudo').show();
+       
+    });
+})
+
+
+///////// PHRASE-COURTE
+{# $(document).ready(function()
+{
+    // open
+    $('#icone-phrase').click(function(){
+        $('#phrase_val').val($('#phrase-courte').text());
+        $('#phrase_cotainer_change').show();
+        $('#phrase-courte').hide();
+        $('#icone-phrase').hide();
+        
+        
+    });
+    
+    // save
+    
+    $('#save_phrase').click(function(){
+        $('#phrase-courte').text($.trim($('#phrase_val').val()))
+        $('#phrase_cotainer_change').hide();
+        $('#phrase-courte').show();
+        $('#icone-phrase').show();
+       
+    });
+    
+}) #}
+
+
+///////// AGE
+{# $(document).ready(function()
+{
+    // open
+    $('#icone-age').click(function(){
+        $('#age_val').val($('#age').text());
+        $('#age_cotainer_change').show();
+        $('#age').hide();
+        $('#icone-age').hide();
+        
+        
+    });
+    
+    // save
+    
+    $('#save_age').click(function(){
+        $('#age').text($.trim($('#age_val').val()))
+        $('#age_cotainer_change').hide();
+        $('#age').show();
+        $('#icone-age').show();
+       
+    });
+    
+}) #}
+
+
+
+///////// VILLE
+$(document).ready(function()
+{
+    // open
+    $('#icone-ville').click(function(){
+        $('#ville_val').val($('#ville').text());
+        $('#ville_cotainer_change').show();
+        $('#ville').hide();
+        $('#icone-ville').hide();
+        
+        
+    });
+    
+    // save
+    
+    $('#save_ville').click(function(){
+        $('#ville').text($.trim($('#ville_val').val()))
+        $('#ville_cotainer_change').hide();
+        $('#ville').show();
+        $('#icone-ville').show();
+       
+    });
+    
+})
+
+
+
+
+
+
+
+</script>
+
+
 </body>
 
 {% endblock %}

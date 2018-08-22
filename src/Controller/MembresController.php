@@ -27,9 +27,6 @@ class MembresController extends Controller
 {
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
-        if(is_null($membre)){
-            $user = $this->getUser();
-        }
 
         $membre->setJeveux($request->get('jeveux'));
         $membre->setPunchline($request->get('punchline'));
@@ -63,9 +60,21 @@ class MembresController extends Controller
                 $membre->setMainimage($fileName);
             }
             
-dump($request);
-dump($file);
 
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                // $file = $request->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+
+
+                $membre->setMainimage($fileName);
+            }
 
         if(!is_null($request->get("submit"))){
             try{
@@ -92,6 +101,13 @@ dump($file);
             'optionsanimaux' => $this->getOptionsAnimaux(),
             'optionshobby' => $this->getOptionsHobby(),
         ));
+    }
+
+    public function profilShow(Membres $membre): Response{
+
+        return $this->render('front/show.html.twig', array(
+            'membre' => $membre)
+        );
     }
 
 

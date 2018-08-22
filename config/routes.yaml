@@ -26,6 +26,7 @@ prive_profil_own:
     path: /profil
     controller: App\Controller\MembresController::profilShow
 
+
 prive_profil:
     path: /profil/{id}
     controller: App\Controller\MembresController::profilEdit

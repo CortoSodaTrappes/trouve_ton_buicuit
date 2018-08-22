@@ -1,7 +1,15 @@
+/// variables ///
+:root {
+    --font-color-botton: #474747;
+    --background-color-sections: #e4e1e1;
+}
+
+/// end variables ///
+/// ZONE PROFIL TOP BARRE ///
 .profil {
-    padding-bottom: 5%;
+    padding-top: 5%;
     .container {
-        padding: 0px 20px 0px 20px;
+        padding: 0px;
         .profil-block-top-marge {
             padding: 0%;
         }
@@ -10,15 +18,22 @@
                 .profil-main-img {
                     width: 100%;
                     padding: 0%;
-                    border-radius: 10px;
+                    border-radius: 5px;
                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                    .btn {
+                        background-color: var(--background-color-sections);
+                        border-color: #737171;
+                    }
+                    #bouton-photo-profil {
+                        padding: 8px 8px;
+                    }
                 }
             }
             .profil-main-information {
-                background-color: rgb(156, 156, 156);
+                background-color: var(--background-color-sections);
                 color: black;
                 padding-top: 1.5%;
-                border-radius: 10px;
+                border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
                 h4 {
                     text-decoration: underline;
@@ -28,28 +43,49 @@
                     font-style: italic;
                 }
                 #bottonprofil {
-                    margin-top: 2%;
+                    margin-top: 4%;
+                }
+                .btn {
+                    color: #474743;
+                }
+                .btn-primary {
+                    background-color: #e0dddc;
+                    border-color: #737171;
+                    a {
+                        color: var(--font-color-botton);
+                    }
                 }
             }
         }
     }
 }
 
-// ZONE HOBBY AND FORMULAIRES
+/// END ZONE PROFIL TOP BARRE ///
+/// ZONE HOBBY AND FORMULAIRES ///
 .dating-profile {
     .barre-bas {
         .container {
             padding-top: 30px;
             .dating-profil-banner-hobby {
-                #padding-hobby {
-                    padding: 5%;
-                    h2 {
-                        text-decoration: underline;
-                        font-weight: bold;
-                    }
-                    p {
-                        font-weight: 0.5em;
-                        color: black;
+                #description-hobby {
+                    background-color: var(--background-color-sections);
+                    #padding-hobby {
+                        padding: 5%;
+                        h2 {
+                            text-decoration: underline;
+                            font-weight: bold;
+                        }
+                        p {
+                            font-weight: 0.5em;
+                            color: black;
+                        }
+                        #description-text-hobby {
+                            // padding: 0%;
+                            // margin-top: -2%;
+                            #hobby {
+                                height: 200px;
+                            }
+                        }
                     }
                 }
             }
@@ -60,13 +96,37 @@
             .padding-formulaires {
                 padding: 1.5% 2%;
                 margin-bottom: 2%;
+                #description-punchline {
+                    padding-right: 0px;
+                    padding-left: 0px;
+                    input {
+                        font-style: italic;
+                        font-size: 0.9em;
+                    }
+                }
                 #description-longue {
                     padding-left: 0%;
                     padding-right: 0%;
                     textarea {
-                        height: 20%;
                         height: 100px;
+                        font-style: italic;
+                        font-size: 0.9em;
                     }
+                }
+                #date-naissance {
+                    padding-left: 0%;
+                    padding-right: 0%;
+                    #naissance {
+                        color: var(--font-color-botton);
+                        padding-left: 50px;
+                    }
+                }
+                /// Date naissance ///
+                input {
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #ced4da;
+                    border-radius: .25rem;
                 }
                 .commentaires-profil {
                     font-size: 0.8em;
@@ -84,9 +144,14 @@
     .button-enregistrer {
         margin-top: 3rem;
         text-align: center;
+        .btn {
+            background-color: #e0dddc;
+            border-color: #737171;
+        }
     }
 }
 
+/// END ZONE HOBBY AND FORMULAIRES ///
 *,
 *::before,
 *::after {
@@ -103,13 +168,13 @@ h2 {
 }
 
 .description {
-    background-color: rgb(156, 156, 156);
-    border-radius: 10px;
+    background-color: var(--background-color-sections);
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 button {
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -117,12 +182,35 @@ button {
     color: rgb(110, 109, 109)
 }
 
-#pseudo {
+///// PSEUDO modif
+.icons-inline {
+    #pseudo {
+        cursor: pointer;
+    }
+    h4 {
+        display: inline;
+    }
+    i {
+        display: inline;
+    }
+}
+
+#icone-pseudo {
     cursor: pointer;
+}
+
+.icons-inline-p {
+    p {
+        display: inline;
+    }
+    i {
+        display: inline;
+    }
 }
 
 #status_change {
     position: relative;
+    margin-top: 5px;
 }
 
 #status_cotainer_change {
@@ -132,6 +220,7 @@ button {
     padding: 2px;
     margin: 1%;
     display: none;
+    margin-left: -1%;
 }
 
 #status_val {
@@ -144,4 +233,190 @@ button {
     font-size: 11px;
     float: right;
     margin-top: -7%;
+}
+
+///// phrase courte modif
+#phrase-courte {
+    cursor: pointer;
+}
+
+#phrase_val {
+    margin: none;
+    width: 312px;
+}
+
+#phrase_cotainer_change {
+    position: relative;
+    width: 400px;
+    top: 0px;
+    padding: 2px;
+    margin: 1%;
+    display: none;
+    margin-left: -1%;
+}
+
+.margins-modif {
+    width: 390px;
+}
+
+#save_phrase {
+    padding: 0px;
+    font-size: 11px;
+    float: right;
+    margin-top: -7%;
+}
+
+#icone-phrase {
+    cursor: pointer;
+}
+
+///// AGE modif
+#age {
+    cursor: pointer;
+}
+
+#age_val {
+    margin: none;
+    width: 312px;
+}
+
+#age_cotainer_change {
+    position: relative;
+    width: 400px;
+    top: 0px;
+    padding: 2px;
+    margin: 1%;
+    display: none;
+    margin-left: -1%;
+}
+
+#save_age {
+    padding: 0px;
+    font-size: 11px;
+    float: right;
+    margin-top: -7%;
+}
+
+#icone-age {
+    cursor: pointer;
+}
+
+//// VILLE modif
+#ville {
+    cursor: pointer;
+}
+
+#ville_val {
+    margin: none;
+    width: 312px;
+}
+
+#ville_cotainer_change {
+    position: relative;
+    width: 400px;
+    top: 0px;
+    padding: 2px;
+    margin: 1%;
+    display: none;
+    margin-left: -1%;
+}
+
+#save_ville {
+    padding: 0px;
+    font-size: 11px;
+    float: right;
+    margin-top: -7%;
+}
+
+#icone-ville {
+    cursor: pointer;
+}
+
+.margins-top-barre {
+    margin: 50px 0px;
+}
+
+.fas {
+    margin-left: 1%;
+}
+
+.input-direct {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s
+}
+
+////********  TEXT-HELP ICONS ***************//////
+.help {
+    color: rgb(8, 8, 8);
+    outline: none;
+    /*цвет подсказки*/
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+}
+
+
+/*position de fentre help*/
+
+.help span {
+    margin-left: -999em;
+    position: absolute;
+    //color: #ced4da;
+}
+
+
+/*le block text help*/
+
+.help:hover span {
+    font-family: Verdana, Tahoma, Geneva, sans-serif;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    z-index: 99;
+    margin-left: 0;
+    width: 200px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(48, 47, 47);
+}
+
+
+/*block help*/
+
+.airhelp {
+    background: none repeat scroll 0 0 rgba(251, 251, 252, 0.9);
+    border: 1px solid #1e1e1f;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    color: rgb(48, 47, 47);
+    /*couleur du font du block help*/
+    padding: 5px;
+}
+
+#bottonprofiledition {
+    background-color: var(--background-color-sections);
+    ;
+    border-color: #737171;
+    a {
+        color: var(--font-color-botton);
+    }
+}
+
+#bouton-photo-profil-voir {
+    padding: 8px;
+    background-color: var(--background-color-sections);
+    ;
 }
