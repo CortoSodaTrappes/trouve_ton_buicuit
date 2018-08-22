@@ -13,7 +13,9 @@
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
+
         <img src="{{asset ('images/oreologo.jpg')}}" class="d-inline-block align-top" style="float: left" alt="">
+
             <p style="float:right" class="d-inline-block align-top">
                 <h1 style="float:right"><a href="{{path('landing')}}"> &nbsp Trouve ton Biscuit </a></h1>
             </p>
@@ -27,6 +29,7 @@
             <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
                     <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil <i class="fas fa-user-alt"></i></a></li>
+
                     <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>
@@ -79,7 +82,7 @@
       <ul>
         <li>
           <article>
-            <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
+            <figure><a href="#"><img src="images/{{app.user.mainimage}}" alt=""></a>
               <figcaption>
                 <header>{{app.user.pseudo}}</header>
                 <p class="more"><a href="#">View Full Details &raquo;</a></p>

@@ -22,13 +22,15 @@
           {% if app.user is not null %}
           <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
+                    <li><a href="{{path('prive_profil')}}">Profil <i class="fas fa-user-alt"></i></a></li>
+                    <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>
             </li>
             {% else %}
            <li><a href="{{path('landing')}}"> Connexion </a> </li>
           {% endif %}
-          <li class="active"><a class="drop" href="#">Pages</a>
+          {# <li class="active"><a class="drop" href="#">Pages</a>
             <ul>
               <li><a href="gallery.html">Gallery</a></li>
               <li class="active"><a href="{{path('membre_list')}}">Liste</a></li>
@@ -46,13 +48,13 @@
                 <ul>
                   <li><a href="#">Mes biscuits favoris</a></li>
                   <li><a href="#">Les mauvais biscuits</a></li>
-                  {# <li><a href="#">Level 3</a></li> #}
+                  <li><a href="#">Level 3</a></li>
                 </ul>
               </li>
-              {# <li><a href="#">Level 2</a></li> #}
+              <li><a href="#">Level 2</a></li>
             </ul>
           </li>
-          {# <li><a href="#">Link Text</a></li>
+          <li><a href="#">Link Text</a></li>
           <li><a href="#">Link Text</a></li>
           <li><a href="#">Link Text</a></li>
           <li><a href="#">Long Link Text</a></li> #}
