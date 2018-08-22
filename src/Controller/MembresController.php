@@ -7,6 +7,7 @@ use App\Repository\MembresRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File;
 // use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 // use Symfony\Component\Form\Extension\Core\Type\EmailType;
 // use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -29,13 +30,8 @@ class MembresController extends Controller
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
 
-        dump($request);
-
-        // $user->setEmail($request->get('email'));
-
         $membre->setJeveux($request->get('jeveux'));
         $membre->setPunchline($request->get('punchline'));
-        // $membre->setJesuis("Homme");
         $membre->setJesuis($request->get('jesuis'));
         $membre->setDescription($request->get('description'));
         // $membre->setNaissance($request->get('naissance'));
@@ -52,6 +48,24 @@ class MembresController extends Controller
         $membre->setHobby($request->get('selecthobby'));
         $membre->setStatut($request->get('selectstatut'));
 
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                // $file = $request->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+
+                $membre->setMainimage($fileName);
+            }
+            
+dump($request);
+dump($file);
+
+
         if(!is_null($request->get("submit"))){
             try{
                 $entityManager = $this->getDoctrine()->getManager();
@@ -62,9 +76,6 @@ class MembresController extends Controller
                 // return $this->returnJson(array("path" =>"/register", "Error : invalid request."), 501) ;
             }
         }
-
-
-
 
         return $this->render('prive/profil.html.twig', array(
             'optionspersonnes' => $this->getOptionsPersonnes(),
@@ -81,6 +92,18 @@ class MembresController extends Controller
             'optionshobby' => $this->getOptionsHobby(),
         ));
     }
+
+
+    public function profilShow(Membres $membre): Response{
+
+        return $this->render('front/show.html.twig', array(
+            'membre' => $membre)
+        );
+    }
+
+
+
+    ///////////////////////////////// CONTROLEURS DE TEST /////////////////////////////////////////////////////
 
 
 
@@ -198,7 +221,23 @@ class MembresController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $form->get('mainimage')->getData()){
+                $fileName = $form->get('pseudo')->getData().'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+                $membre->setMainimage($fileName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
+
+
+
+
 
             return $this->redirectToRoute('test_list', ['id' => $membre->getId()]);
         }
@@ -274,6 +313,12 @@ class MembresController extends Controller
     public function testLogout(){
         return $this->redirectToRoute('test_login');
     }    
+
+// --------------------------------------------- FIN DE CONTROLEURS DE TEST ---------------------------------------------
+
+
+//////////////////////////////////////////////// FONCTIONS GENERATRICES DE SELECT-OPTIONS //////////////////////////////////////////
+
 
 
     public function getOptionsRelations(){

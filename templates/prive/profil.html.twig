@@ -19,7 +19,8 @@ Les noms des id et les name doivent être attachés. #}
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
                     <div>
-                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
+                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
                     </div>
                 </div>
                 <div class="profil-main-information col-8">
@@ -34,7 +35,6 @@ Les noms des id et les name doivent être attachés. #}
             </section>
         </div>
     </div>
-    {{dump(app.user)}}
     
  <!-- ZONE HOBBY AND FORMULAIRES -->   
        
@@ -46,13 +46,13 @@ Les noms des id et les name doivent être attachés. #}
         <!-- ZONE HOBBY --> 
                     <div class="dating-profil-banner-hobby col-4">
                         <div class="description">
-                            <form method="post">
-
+                            <form method="post" enctype="multipart/form-data">
                                 <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                                     <h2>Je cherche</h2>
                                     <div class="form-group row">
                                         <label class="col-md-4 control-label" for="jeveux">Choisir</label>
                                         <div class="col-md-8">
+
                                             <select id="jeveux" name="jeveux" class="form-control">
                                                 {% for option in optionspersonnes %}
                                                     {% if option == app.user.jeveux %}
@@ -85,6 +85,7 @@ Les noms des id et les name doivent être attachés. #}
                                         </div>
                                     </div>
 
+                                <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg" />
 
 
                                     <div class="form-group row">
@@ -456,11 +457,7 @@ Les noms des id et les name doivent être attachés. #}
                  </section>
            </div>
         </div>
-
     </div>
-
-    
-
     
 </section>
 </body>
