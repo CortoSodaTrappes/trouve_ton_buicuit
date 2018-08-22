@@ -28,11 +28,22 @@ class MembresController extends Controller
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
 
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
+
         $membre->setJeveux($request->get('jeveux'));
         $membre->setPunchline($request->get('punchline'));
         $membre->setJesuis($request->get('jesuis'));
         $membre->setDescription($request->get('description'));
-        // $membre->setNaissance($request->get('naissance'));
+
+        if($request->get('naissance')!=""){
+            $datetime = new \DateTime($request->get('naissance'));
+            $membre->setNaissance($datetime);
+        }
+
+
         $membre->setTypeRelation($request->get('selectrelations'));
         $membre->setTraitCaractere($request->get('selectcaracteres'));
 
@@ -100,6 +111,7 @@ class MembresController extends Controller
             'optionsmange' => $this->getOptionsMange(),
             'optionsanimaux' => $this->getOptionsAnimaux(),
             'optionshobby' => $this->getOptionsHobby(),
+            'age' => $age ,
         ));
     }
 

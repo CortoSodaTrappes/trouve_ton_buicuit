@@ -132,7 +132,7 @@ Les noms des id et les name doivent être attachés. #}
                         <!-- MODIF AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p >AGE</p>
+                                <p >AGE : {{age}}</p>
                             </div>
                             
                         </div> 
@@ -256,12 +256,12 @@ Les noms des id et les name doivent être attachés. #}
                                     </div>
                                 </div> #}
                                     <!-- Textarea -->
-                                    <div class="form-group" >
+                                    {# <div class="form-group" >
                                         <div class="col-md-12" id="description-longue">                     
                                             <textarea class="form-control" id="description" name="description">{{app.user.description}}</textarea>
 
                                         </div>
-                                    </div>
+                                    </div> #}
 
                                     
                                     
@@ -275,7 +275,9 @@ Les noms des id et les name doivent être attachés. #}
                                         
                                     </div>
 
+                                    <div style="margin:20px;">
                                     <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg, image/jpg" />
+                                    </div>
                                     
                                     <!-- Description longue -->
                                     <div class="form-group" >
@@ -600,7 +602,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                                 </fieldset>
 
-                                <!-- Button -->getOptionsHobby
+                                <!-- Button -->
                                 <div class="form-group button-enregistrer">
                                 
                                     <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
