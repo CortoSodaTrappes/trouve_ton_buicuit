@@ -28,68 +28,73 @@ class MembresController extends Controller
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
 
+        $entityManager = $this->getDoctrine()->getManager();
+        
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
         $interval = $datetime1->diff($datetime2);
         $age = $interval->format('%Y ans');
 
-        $membre->setJeveux($request->get('jeveux'));
-        $membre->setPunchline($request->get('punchline'));
-        $membre->setJesuis($request->get('jesuis'));
-        $membre->setDescription($request->get('description'));
+        if($request->get('jeveux')){
+            $membre->setJeveux($request->get('jeveux'));
+            $membre->setPunchline($request->get('punchline'));
+            $membre->setJesuis($request->get('jesuis'));
+            $membre->setDescription($request->get('description'));
+    
+            if($request->get('naissance')!=""){
+                $datetime = new \DateTime($request->get('naissance'));
+                $membre->setNaissance($datetime);
+            }
+    
+            // $datetime1 = $membre->getNaissance();
+            // $datetime2 = new \DateTime();
+            // $interval = $datetime1->diff($datetime2);
+            // $age = $interval->format('%Y ans');
 
-        if($request->get('naissance')!=""){
-            $datetime = new \DateTime($request->get('naissance'));
-            $membre->setNaissance($datetime);
+            $membre->setTypeRelation($request->get('selectrelations'));
+            $membre->setTraitCaractere($request->get('selectcaracteres'));
+    
+            $membre->setTaille($request->get('selecttaille'));
+            $membre->setSilhouette($request->get('selectsilhouette'));
+            $membre->setYeux($request->get('selectyeux'));
+            $membre->setCheveux($request->get('selectcheveux'));
+            $membre->setFume($request->get('selectfume'));
+            $membre->setMange($request->get('selectmange'));
+            $membre->setAnimaux($request->get('selectanimaux'));
+            $membre->setHobby($request->get('selecthobby'));
+            $membre->setStatut($request->get('selectstatut'));
+            $entityManager->flush();
         }
 
 
-        $membre->setTypeRelation($request->get('selectrelations'));
-        $membre->setTraitCaractere($request->get('selectcaracteres'));
+        // Upload de l'une image
+        /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+        if($file = $request->files->get('mainimage')){
+            // $file = $request->get('mainimage')){
+            $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+            $file->move(
+                $this->getParameter('mainimages_directory'),
+                $fileName
+            );
 
-        $membre->setTaille($request->get('selecttaille'));
-        $membre->setSilhouette($request->get('selectsilhouette'));
-        $membre->setYeux($request->get('selectyeux'));
-        $membre->setCheveux($request->get('selectcheveux'));
-        $membre->setFume($request->get('selectfume'));
-        $membre->setMange($request->get('selectmange'));
-        $membre->setAnimaux($request->get('selectanimaux'));
-        $membre->setHobby($request->get('selecthobby'));
-        $membre->setStatut($request->get('selectstatut'));
-
-
-            // Upload de l'une image
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            if($file = $request->files->get('mainimage')){
-                // $file = $request->get('mainimage')){
-                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-                $file->move(
-                    $this->getParameter('mainimages_directory'),
-                    $fileName
-                );
-
-                $membre->setMainimage($fileName);
-            }
+            $membre->setMainimage($fileName);
+            $entityManager->flush();
+        }
+            
+        // modification Pseudo
+        
+        // if($file = $request->files->get('status_val')){
+        //     // $file = $request->get('status_val')){
+            
+        //     $membre->setPseudo($request->get('status_val'));
+        //     $entityManager->persist($membre);
+        //     $entityManager->flush();
+        // }
             
 
 
-            // Upload de l'une image
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            if($file = $request->files->get('mainimage')){
-                // $file = $request->get('mainimage')){
-                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-                $file->move(
-                    $this->getParameter('mainimages_directory'),
-                    $fileName
-                );
-
-
-                $membre->setMainimage($fileName);
-            }
-
         if(!is_null($request->get("submit"))){
             try{
-                $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($membre);
                 $entityManager->flush();
                 // return $this->redirectToRoute('prive_profil', array('id' => $membre->getId()));
@@ -99,6 +104,7 @@ class MembresController extends Controller
         }
 
         return $this->render('prive/profil.html.twig', array(
+            'membre' => $membre,
             'optionspersonnes' => $this->getOptionsPersonnes(),
             'optionsrelations' => $this->getOptionsRelations(),
             'optionstailles' => $this->getOptionsTaille(),
@@ -111,7 +117,7 @@ class MembresController extends Controller
             'optionsmange' => $this->getOptionsMange(),
             'optionsanimaux' => $this->getOptionsAnimaux(),
             'optionshobby' => $this->getOptionsHobby(),
-            'age' => $age ,
+            'age' => $age,
         ));
     }
 

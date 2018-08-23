@@ -54,18 +54,18 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <div>
+                    {# <div>
 
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
 
-                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        {# <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil"> #}
                         
-                    </div>
-                </div>
-                    {# <!-- Button trigger modal -->
+                    {# </div> #}
+                {# </div> #} 
+                    <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
 
                     </div>
                         </button>
@@ -83,7 +83,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                                 <div class="modal-body">
 
-                                    <form>
+                                    <form method="POST" id="toto" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="mainimage">Ajouter une image</label>
                                             <input type="file" name="mainimage" class="form-control-file" id="mainimage">
@@ -98,7 +98,7 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div>
                     </div>
-                    <!-- FIN MODAL --> #}
+                    <!-- FIN MODAL -->
 
                 <div class="profil-main-information col-8">
 
@@ -106,6 +106,7 @@ Les noms des id et les name doivent être attachés. #}
                         
                     <div class="modif-direct">
                         <!-- MODIF PSEUDO -->
+                        <form method="POST" id="roro" enctype="multipart/form-data">
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
                                 <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
@@ -117,6 +118,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div>
+                        <form>
                         <!-- MODIF PHRASE-COURTE -->
                         {# <div id="phrase_change" class="phase-courte margins-top-barre">
                             <div class="icons-inline-p">
@@ -170,7 +172,7 @@ Les noms des id et les name doivent être attachés. #}
                     <div class="dating-profil-banner-hobby col-4">
                         <div id="description-hobby" class="description">
 
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" id="ogkrepok">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
@@ -267,7 +269,7 @@ Les noms des id et les name doivent être attachés. #}
                                     
                                     <!-- Punchline -->
                                     <div class="form-group row" >
-                                        <label class="col-md-12 control-label" for="punchline">Racontez qui vous êtes : </label>
+                                        <label class="col-md-12 control-label" for="punchline">Ma devise : </label>
                                         <div class="col-md-12" id="description-punchline-modification">                     
                                             <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
@@ -275,12 +277,10 @@ Les noms des id et les name doivent être attachés. #}
                                         
                                     </div>
 
-                                    <div style="margin:20px;">
-                                    <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg, image/jpg" />
-                                    </div>
-                                    
+                                                                
                                     <!-- Description longue -->
                                     <div class="form-group" >
+                                        <label id="label-description-longue" class="col-md-12 control-label" for="punchline">Decrivez votre personalité et votre partenaire ideal : </label>
                                         <div class="col-md-12" id="description-longue" >                     
                                             <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             

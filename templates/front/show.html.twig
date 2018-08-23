@@ -166,8 +166,9 @@ Les noms des id et les name doivent être attachés. #}
                                     <h2>Ma description</h2>
                                     <!-- Date naissance -->
                                     <div class="form-group row" >
-                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
-                                        <div class="col-md-9">
+                                    <label class="col-md-4 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-8">
+                                        {# {{membre.naissance}} #}
                                             <div id="date-naissance">                     
                                                 {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
                                                 <input type="date" id="naissance" name="naissance" value="26-03-1966">
@@ -176,8 +177,8 @@ Les noms des id et les name doivent être attachés. #}
                                     </div>
                                     <!-- JE SUIS -->
                                     <div class="form-group row">
-                                        <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
-                                        <div class="col-md-9">
+                                        <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-8">
                                         {{membre.jesuis}}
                                             {# <select id="jesuis" name="jesuis" class="form-control">
                                             
@@ -195,10 +196,12 @@ Les noms des id et les name doivent être attachés. #}
                                     
                                     
                                     <!-- Punchline -->
-                                    <div class="form-group" >
-                                        <div class="col-md-12" id="description-punchline">                     
-                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
-                                            
+                                    <div class="form-group row" >
+                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma devise : </label>
+                                        <div class="col-md-8" id="description-punchline">         
+                                            <i class="fas fa-quote-right"></i>     {{membre.punchline}}   <i class="fas fa-quote-right"></i>         
+                                            {# <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                             #}
                                         </div>
                                         
                                     </div>
@@ -206,9 +209,11 @@ Les noms des id et les name doivent être attachés. #}
                             
                                     
                                     <!-- Description longue -->
-                                    <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue" >                     
-                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
+                                    <div class="form-group row" >
+                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma personalité et mon partenaire ideal : </label>
+                                        <div class="col-md-8" id="description-longue" >   
+                                            <i class="fas fa-quote-right"></i>   {{membre.description}}    <i class="fas fa-quote-right"></i>                   
+                                            {# <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea> #}
                                             
                                         </div>
                                     </div>
@@ -219,7 +224,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </fieldset>
                                     {# </form> #}
                                 
-                                <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
+                                
                             </div>
 
                             <!-- PERSONALITE -->

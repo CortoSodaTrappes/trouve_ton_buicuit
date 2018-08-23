@@ -420,3 +420,21 @@ a:hover {
     background-color: var(--background-color-sections);
     ;
 }
+
+// correction courante
+#label-description-longue {
+    margin-left: -2%;
+}
+
+label {
+    font-weight: bold;
+}
+
+.fa-quote-right {
+    opacity: 0.5;
+    padding-right: 1%;
+}
+
+#label-description-longue-show {
+    margin: 0%;
+}

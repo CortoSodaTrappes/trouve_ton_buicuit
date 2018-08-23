@@ -542,5 +542,12 @@ class Membres implements UserInterface
 
         return $this;
     }
+
+    public function f(): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
 }
 
