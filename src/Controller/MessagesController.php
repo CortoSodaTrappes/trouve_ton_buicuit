@@ -50,25 +50,54 @@ class MessagesController extends Controller
             ['destinataire' => $destinataire]);
     }
 
-    public function testShow(Messagerie $message){
+    public function testShow(Messages $message){
         // Apparemment, en passant un id en argument sf4 s'arrange 
         // pour que show() reçoive un objet Membre complet.
-        return $this->render('tests/showmessage.html.twig', ['message' => $message]);
+        $correspondant=array();
+        $user = $this->getUser() ;
+        dump($user->getId());
+        dump($message->getExpediteur()->getId());
+
+        if($user->getId() == $message->getDestinataire()->getId()){
+            $correspondant['expediteur'] = $message->getExpediteur() ;            
+            $correspondant['destinataire'] = $user->getPseudo() ;
+            $correspondant['correspondant'] = "expediteur" ;
+        }elseif($user->getId() == $message->getExpediteur()->getId()){
+            $correspondant['expediteur'] = $user->getPseudo() ;            
+            $correspondant['destinataire'] = $message->getDestinataire() ;            
+            $correspondant['correspondant'] = "destinataire" ;
+        }else{
+            // die("Problème de lecture du message.");
+        }
+        dump($correspondant);
+
+        return $this->render('tests/showmessage.html.twig', ['message' => $message, 'correspondant'=>$correspondant]);
     }
 
     public function testAllMessagerie(){
         // Method for testing purposes
         $messages = $this->getDoctrine()->getRepository(Messages::class)->findAll();
-        
+
         return $this->render('tests/allmessages.html.twig', 
         ['messages' => $messages]);            
 
     }
 
     public function testMessagerie(Request $request){
-        // $messagesManager = $this->getDoctrine()->getManager();
 
+
+        $msgRepository = $this->getDoctrine()->getRepository(Messages::class);
         $user = $this->getUser() ;
+
+        // Membre est destinataire
+        $msgExp = $msgRepository->findBy(['destinataire' => $user]) ;
+
+
+        // Membre est expéditeur
+        $msgDest = $msgRepository->findBy(['expediteur' => $user]) ;
+
+
+        // $user = $this->getUser() ;
         $messages_recus = $this
             ->getDoctrine()
             ->getRepository(Messagerie::class)
@@ -83,7 +112,7 @@ class MessagesController extends Controller
         // look for multiple Product objects matching the name, ordered by price
 
         return $this->render('tests/messagerie.html.twig', 
-        ['messages_recus' => $messages_recus, 'messages_envoyes' => $messages_envoyes]);
+        ['messages_recus' => $msgExp, 'messages_envoyes' => $msgDest]);
     }
 
 

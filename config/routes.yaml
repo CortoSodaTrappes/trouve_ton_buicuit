@@ -200,7 +200,7 @@ test_newmessage:
 
 test_showmessage:
     path: /test/showmessage/{id}
-    controller: App\Controller\MessagerieController::testShow 
+    controller: App\Controller\MessagesController::testShow 
 
 test_all_messages: 
     path: /test/messages 
@@ -208,8 +208,7 @@ test_all_messages:
 
 test_messagerie:
     path: /test/profil/messagerie
-    # controller: App\Controller\MessagerieController::testAllMessagerie 
-    controller: App\Controller\MessagerieController::testMessagerie 
+    controller: App\Controller\MessagesController::testMessagerie 
 
 test_login:
     path: /test/login
