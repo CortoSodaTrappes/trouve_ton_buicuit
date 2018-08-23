@@ -2,17 +2,17 @@
 ########################### PENSE-BETE ###########################################
 
 
-Le $ représente ici le prompt de l'OS. Sous Linux et Mac c'est $, sous Windows c'est c:\>. Il ne faut pas copier $ pour exécuter la commande.
+Le $ reprï¿½sente ici le prompt de l'OS. Sous Linux et Mac c'est $, sous Windows c'est c:\>. Il ne faut pas copier $ pour exï¿½cuter la commande.
 
 
-####### Créer un projet symfony 4 ########
-$ composer create-project symfony/website-skeleton monprojet # Avec principales dépendances.
+####### Crï¿½er un projet symfony 4 ########
+$ composer create-project symfony/website-skeleton monprojet # Avec principales dï¿½pendances.
 ou
 $ composer create-project symfony/skeleton monprojet # Nu
 
-La console indique beaucoup de ce qu'il y a à faire par la suite.
+La console indique beaucoup de ce qu'il y a ï¿½ faire par la suite.
 
-####### Première exécution d'un projet ########
+####### Premiï¿½re exï¿½cution d'un projet ########
 $ cd monprojet
 $ php bin/console server:run
 
@@ -23,10 +23,10 @@ Commiter l'installation du projet
 $ git add -all
 $ git commit -m "Initialisation du projet monprojet
 
-Créer une branche dev et s'y placer
+Crï¿½er une branche dev et s'y placer
 $ git checkout -b dev
 
-Selon les circonstances créer différentes branches selon les fonctionnalités ou l'équipe de développeurs.
+Selon les circonstances crï¿½er diffï¿½rentes branches selon les fonctionnalitï¿½s ou l'ï¿½quipe de dï¿½veloppeurs.
 
 $ git branch membres
 $ git branch securite
@@ -35,22 +35,22 @@ $ ...
 
 
 
-####### Création d'un contrôleur ########
+####### Crï¿½ation d'un contrï¿½leur ########
 $ php bin/console make:controller
 ou
 $ php bin/console make:controller moncontroleur
 
-Ceci créé un contrôleur et une route sous un format annotation (en commentaire juste au dessus de la méthode). Mike conseille qu'on utilise plutôt les routes sous format yalm, dans le fichier config/routes.yaml.
+Ceci crï¿½ï¿½ un contrï¿½leur et une route sous un format annotation (en commentaire juste au dessus de la mï¿½thode). Mike conseille qu'on utilise plutï¿½t les routes sous format yalm, dans le fichier config/routes.yaml.
 
-Mettons que nous voulons qu'avec l'url (nom_de_domaine)/lucky, le controlleur LuckyController affiche un numéro aléatoire dans le templante templates/lucky/number.html.twig
+Mettons que nous voulons qu'avec l'url (nom_de_domaine)/lucky, le controlleur LuckyController affiche un numï¿½ro alï¿½atoire dans le templante templates/lucky/number.html.twig
 
-1. On créé la route dans config/routes.yalm :
+1. On crï¿½ï¿½ la route dans config/routes.yalm :
 
 lucky_number:
     path: /
     controller: App\Controller\LuckyController::number
 
-2. On personnalise le contrôleur :
+2. On personnalise le contrï¿½leur :
 
 class LuckyController extends Controller
 {
@@ -63,16 +63,16 @@ class LuckyController extends Controller
     }
 }
 
-Quand on fait hériter notre contrôleur de la classe Controller, on dispose de la méthode $this->render().
+Quand on fait hï¿½riter notre contrï¿½leur de la classe Controller, on dispose de la mï¿½thode $this->render().
 
-3. On créé ou modifie le template par défaut templates/lucky/number.html.twig
+3. On crï¿½ï¿½ ou modifie le template par dï¿½faut templates/lucky/number.html.twig
 
 <h1>Your lucky number is {{ number }}</h1>
 
 
 ###### ROUTING ######
 
-Les routes donnent toutes sortes de possibilités. Par exemple :
+Les routes donnent toutes sortes de possibilitï¿½s. Par exemple :
 
 blog_list:
     path:     /blog
@@ -82,14 +82,14 @@ blog_show:
     path:     /blog/{id_article}
     controller: App\Controller\BlogController::show
 
-Une url telle que (nom_de_domaine)/blog ira sur la méthode (en sf on parle d'actions) du contrôleur BlogController qui affiche une liste d'articles. En revanche, une url telle que (nom_de_domaine)/blog/14 ira sur la méthode show du même contrôleur, qui lui affichera un article donné. Cette méthode recevra en argument le paramètre 'id_article'.
+Une url telle que (nom_de_domaine)/blog ira sur la mï¿½thode (en sf on parle d'actions) du contrï¿½leur BlogController qui affiche une liste d'articles. En revanche, une url telle que (nom_de_domaine)/blog/14 ira sur la mï¿½thode show du mï¿½me contrï¿½leur, qui lui affichera un article donnï¿½. Cette mï¿½thode recevra en argument le paramï¿½tre 'id_article'.
 
     public function show($id_article)
     {
         // instructions pour afficher un seul article.
     }
 
-Pour voir les routes définies :
+Pour voir les routes dï¿½finies :
 
 $ php bin/console debug:router
 
@@ -98,35 +98,35 @@ Plus d'infos sur https://symfony.com/doc/current/routing.html. Sur les exemples,
 ###### CONTROLEURS ######
 Doc ici : https://symfony.com/doc/current/controller.html
 
-A noter une commande potentiellement intéressante, qui permet de créer dans le contrôleur un crud (Create, Read, Update, Delete) complet d'un seul coup. Mais pour ça il faut avoir déjà l'entité.
+A noter une commande potentiellement intï¿½ressante, qui permet de crï¿½er dans le contrï¿½leur un crud (Create, Read, Update, Delete) complet d'un seul coup. Mais pour ï¿½a il faut avoir dï¿½jï¿½ l'entitï¿½.
 
 $ php bin/console make:crud Monentite
 
 
 ########### LA BASE DE DONNEES #################
 
-Le composant normalement utilisé pour les relations de Symfony avec la base de données est Doctrine. Les coordonnées de la base de données sont normalement confifurées dans /.env. Pour créer la base de données depuis la ligne de commande :
+Le composant normalement utilisï¿½ pour les relations de Symfony avec la base de donnï¿½es est Doctrine. Les coordonnï¿½es de la base de donnï¿½es sont normalement confifurï¿½es dans /.env. Pour crï¿½er la base de donnï¿½es depuis la ligne de commande :
 
 $ php bin/console doctrine:database:create
 
-S'il n'y a pas de connexion avec la base c'est peut-être que même si le serveur de sf est lancé, il faut aussi lancer le serveur local (xampp, wamp, easyphp ou autre). Info à vérifier.
+S'il n'y a pas de connexion avec la base c'est peut-ï¿½tre que mï¿½me si le serveur de sf est lancï¿½, il faut aussi lancer le serveur local (xampp, wamp, easyphp ou autre). Info ï¿½ vï¿½rifier.
 
-Une entité est une classe qui représente une table dans la base de données. Ses propriétés, privées, sont le pendant des champs des tables des la base, et elle contient également les getters et les setters associées. Elle comporte des annotations qui vont servir d'indications à symfony pour créer les tables (le mapping). En travaillant sous Symfony, on est invités à raisonner en termes de de classes et d'objets, et oublier que dans la base il y a des tables. Pour créer une entité :
+Une entitï¿½ est une classe qui reprï¿½sente une table dans la base de donnï¿½es. Ses propriï¿½tï¿½s, privï¿½es, sont le pendant des champs des tables des la base, et elle contient ï¿½galement les getters et les setters associï¿½es. Elle comporte des annotations qui vont servir d'indications ï¿½ symfony pour crï¿½er les tables (le mapping). En travaillant sous Symfony, on est invitï¿½s ï¿½ raisonner en termes de de classes et d'objets, et oublier que dans la base il y a des tables. Pour crï¿½er une entitï¿½ :
 
 $ php bin/console make:entity
 
-Ensuite, la console demande le nom de l'entité, puis les noms des champs, leur type, s'il y a lieu leur taille, etc. La console donne toutes les indications pour nous guider. Ne pas faire de champ id, Doctrine le fait tout seul.
+Ensuite, la console demande le nom de l'entitï¿½, puis les noms des champs, leur type, s'il y a lieu leur taille, etc. La console donne toutes les indications pour nous guider. Ne pas faire de champ id, Doctrine le fait tout seul.
 
-Si en cours de route on s'est trompé et qu'on veut annuler la création de l'entité, Ctrl+C. Ne pas oublier de supprimer les fichiers entité et repository qui a été créés (dans /src/Entity et dans /src/Repository).
+Si en cours de route on s'est trompï¿½ et qu'on veut annuler la crï¿½ation de l'entitï¿½, Ctrl+C. Ne pas oublier de supprimer les fichiers entitï¿½ et repository qui a ï¿½tï¿½ crï¿½ï¿½s (dans /src/Entity et dans /src/Repository).
 
-Ensuite, il faut lancer les commandes qui creent la table dans la base. La première créé les requêtes SQL, la seconde les exécute :
+Ensuite, il faut lancer les commandes qui creent la table dans la base. La premiï¿½re crï¿½ï¿½ les requï¿½tes SQL, la seconde les exï¿½cute :
 
 $ php bin/console make:migration
 $ php bin/console doctrine:migrations:migrate
 
-Si on a besoin d'ajouter des propriétés à une entité déjà créé, on réutilise la commande php bin/console make:entity puis les deux autres pour mettre à jour la table dans la base.
+Si on a besoin d'ajouter des propriï¿½tï¿½s ï¿½ une entitï¿½ dï¿½jï¿½ crï¿½ï¿½, on rï¿½utilise la commande php bin/console make:entity puis les deux autres pour mettre ï¿½ jour la table dans la base.
 
-Si l'on a ajouté à la main des propriétés, on peut créer les getters et les setters d'un seul coup avec :
+Si l'on a ajoutï¿½ ï¿½ la main des propriï¿½tï¿½s, on peut crï¿½er les getters et les setters d'un seul coup avec :
 
 $ php bin/console make:entity --regenerate
 
@@ -138,7 +138,7 @@ ou aller sur la doc :
 
 https://symfony.com/doc/current/doctrine.html
 
-On y trouvera les instructions pour enregistrer les données (en symfony on dit "persister les objets"), pour les récupérer, les mettres à jour et les supprimer.
+On y trouvera les instructions pour enregistrer les donnï¿½es (en symfony on dit "persister les objets"), pour les rï¿½cupï¿½rer, les mettres ï¿½ jour et les supprimer.
 
 La doc pour les relations :
 
@@ -159,11 +159,11 @@ Pour un affichage d'aide sur une commande en particulier, par exemple init, tape
 
 $ git --help init
 
-### Uploader un dépôt local vers GitHub
+### Uploader un dï¿½pï¿½t local vers GitHub
 
-Créer le dépôt sur GitHub. Normalement on y trouve les instructions nécessaires.
+Crï¿½er le dï¿½pï¿½t sur GitHub. Normalement on y trouve les instructions nï¿½cessaires.
 
-Créer le projet en local
+Crï¿½er le projet en local
 
 $ git init
 $ git commit -m "first commit"
@@ -171,14 +171,14 @@ $ git remote add origin {url_depot_distant}
 $ git push -u origin master
 
 
-### Récupérer en local un dépôt distant
+### Rï¿½cupï¿½rer en local un dï¿½pï¿½t distant
 
-1. Si on a un projet sur GitHub et qu'on veut le cloner en local, sur l'interface de GitHub, sur le dépôt (repository) cliquer sur Cloner et récupérer l'url.
+1. Si on a un projet sur GitHub et qu'on veut le cloner en local, sur l'interface de GitHub, sur le dï¿½pï¿½t (repository) cliquer sur Cloner et rï¿½cupï¿½rer l'url.
 
-2. En local, cloner avec l'url qu'on a récupéré :
-$ git clone {url dépôt}
+2. En local, cloner avec l'url qu'on a rï¿½cupï¿½rï¿½ :
+$ git clone {url dï¿½pï¿½t}
 
-### Créer un dépôt local :
+### Crï¿½er un dï¿½pï¿½t local :
 Initialiser git
 $ git init
 
@@ -187,40 +187,42 @@ S'il y a besoin de s'identifier :
 $ git config --global user.name 'Prenom NOM'
 $ git config --global user.email 'adresse@mail.com'
 
-Sélectionner toutes les modifications depuis le dernier commit
+Sï¿½lectionner toutes les modifications depuis le dernier commit
 $ git add --all
 
 commiter
 $ git commit -m "{message}"
 
-Pour savoir où on en est dans les modifications :
+Pour savoir oï¿½ on en est dans les modifications :
 $ git status
 
-Git status donne aussi des indications sur comment revenir en arrière. Pour annuler les modifications sur des fichiers qu'on n'a pas encore sélectionnés (c-à-d pour lesquels on n'a pas encore fait git add) :
+Git status donne aussi des indications sur comment revenir en arriï¿½re. Pour annuler les modifications sur des fichiers qu'on n'a pas encore sï¿½lectionnï¿½s (c-ï¿½-d pour lesquels on n'a pas encore fait git add) :
 $ git checkout --<nom_du_fichier>
 
-Créer une branche
+Crï¿½er une branche
 $ git branch nom_de_la_branche
 
 Changer de branche
 $ git checkout nom_de_la_branche
 
-Créer une branche et se placer dans cette branche en une seule commande :
+Crï¿½er une branche et se placer dans cette branche en une seule commande :
 $ git checkout -b nom_de_la_branche
 
-Pour savoir où on en est en matière de branches :
+Pour savoir oï¿½ on en est en matiï¿½re de branches :
 $ git branch
 
-Pour se rappeler des commits effectués :
+Pour se rappeler des commits effectuï¿½s :
 $ git log
 
-La liste s'achève avec un affichage 'END' sans retourner la main sur la ligne de commande. Pour en sortir, taper 'q'.
+La liste s'achï¿½ve avec un affichage 'END' sans retourner la main sur la ligne de commande. Pour en sortir, taper 'q'.
 
-On a créé une branche mabranche à partir de master. On se situe sur machanche et on travaille dessus. Une fois que l'on a terminé, commité, etc., on veut fusionner avec master. On se place alors sur master et effectuons la fusion. Puis, enfin, nous supprimons la branche qui ne sert pas.
+On a crï¿½ï¿½ une branche mabranche ï¿½ partir de master. On se situe sur machanche et on travaille dessus. Une fois que l'on a terminï¿½, commitï¿½, etc., on veut fusionner avec master. On se place alors sur master et effectuons la fusion. Puis, enfin, nous supprimons la branche qui ne sert pas.
 
 $ git checkout master
 $ git merge mabranche 
-$ git branch -d mabranche
+
+
+
 
 
 
@@ -231,61 +233,61 @@ Pour plus d'infos sur les branches et les fusions : https://git-scm.com/book/fr/
 
 
 --- PROPOSITION DE MARCHE A SUIVRE ---
-1. Déterminer fonctionnalités.
-2. Modéliser base de données avec MySQL WorkBench.
-3. Créer entités à partir de la modélisation de la base.
-4. Créer une architecture de base routes/contrôleurs/templates twig à partir de php bin/console make:controller.
-5. Créer autant que possible en dur la navigation dans le site (plus ou moins au fur et à mesure du précédent).
+1. Dï¿½terminer fonctionnalitï¿½s.
+2. Modï¿½liser base de donnï¿½es avec MySQL WorkBench.
+3. Crï¿½er entitï¿½s ï¿½ partir de la modï¿½lisation de la base.
+4. Crï¿½er une architecture de base routes/contrï¿½leurs/templates twig ï¿½ partir de php bin/console make:controller.
+5. Crï¿½er autant que possible en dur la navigation dans le site (plus ou moins au fur et ï¿½ mesure du prï¿½cï¿½dent).
 6. 
 
 
 ############################### Projet biscuit ########################################
 
-Partage des tâches
-* Modélisation de la base de données. - Tous
+Partage des tï¿½ches
+* Modï¿½lisation de la base de donnï¿½es. - Tous
 * Gestion de GitHub. - Alexandre
 * Gestion de Trello. - Emeline ?
 * Gestion de .env et de .env.dist
 * Gestion des routes et du fichier config/routes.yaml
-* Création du squelette de l'application.  - Alexandre
-* Création de formulaires ???
+* Crï¿½ation du squelette de l'application.  - Alexandre
+* Crï¿½ation de formulaires ???
 * Gestion de la landing page.
 * Gestion de la charte graphique et du template base.html.twig.
-* Gestion de la charte graphique du backoffice et du template admin.html.twig (à partir duquel les autres templates d'administration seront dérivés). 
-* Gestion de 'membres', son template et son contrôleur.
-* Gestion du 'show membre', son template et son contrôleur.
+* Gestion de la charte graphique du backoffice et du template admin.html.twig (ï¿½ partir duquel les autres templates d'administration seront dï¿½rivï¿½s). 
+* Gestion de 'membres', son template et son contrï¿½leur.
+* Gestion du 'show membre', son template et son contrï¿½leur.
 
-* Gestion de la page privée 'Profil'.
-* Gestion de la sécurité, et des formulaires d'inscription/connexion et des sessions.
-* Gestion de l'upload d'images et de leur stockage. Aussi des icônes du site et des différentes interfaces.
+* Gestion de la page privï¿½e 'Profil'.
+* Gestion de la sï¿½curitï¿½, et des formulaires d'inscription/connexion et des sessions.
+* Gestion de l'upload d'images et de leur stockage. Aussi des icï¿½nes du site et des diffï¿½rentes interfaces.
 * Gestion de la messagerie.
 * Gestion des likes.
 * Gestion des cookies.
-* Gestion des relations entre les tables et leurs contraintes, et de sa cohérence avec l'application..
+* Gestion des relations entre les tables et leurs contraintes, et de sa cohï¿½rence avec l'application..
 
---- Tâches secondaires néanmoins importantes ---
-* Vérification de la cohérence sémantique.
-* Vérification des liens.
-* Vérification des ajouts, qu'il n'y ait pas de fichier prévu qui ne soit pas chargé dans chacune des pages. Vérifier également les <link> en mettant bien en prod la vérification d'intégrité.
-* Recherche, création et installation d'images par défaut.
-* Vérification des espaces des noms.
-* Vérification du bon fonctionnement de l'ensemble, et rapport de bugs.
+--- Tï¿½ches secondaires nï¿½anmoins importantes ---
+* Vï¿½rification de la cohï¿½rence sï¿½mantique.
+* Vï¿½rification des liens.
+* Vï¿½rification des ajouts, qu'il n'y ait pas de fichier prï¿½vu qui ne soit pas chargï¿½ dans chacune des pages. Vï¿½rifier ï¿½galement les <link> en mettant bien en prod la vï¿½rification d'intï¿½gritï¿½.
+* Recherche, crï¿½ation et installation d'images par dï¿½faut.
+* Vï¿½rification des espaces des noms.
+* Vï¿½rification du bon fonctionnement de l'ensemble, et rapport de bugs.
 
 
 --- S'il y a le temps ---
-* Test psycho-astro-random-tarot-sophro-érotérico-analytique.
-* Chat en temps réel entre ceux qui sont connectés.
+* Test psycho-astro-random-tarot-sophro-ï¿½rotï¿½rico-analytique.
+* Chat en temps rï¿½el entre ceux qui sont connectï¿½s.
 * Galerie d'images.
-* Test de majorité.
-* Statistiques à l'attention de l'administrateur.
-* Edition des membres avec notamment la possibilité de les bannir.
+* Test de majoritï¿½.
+* Statistiques ï¿½ l'attention de l'administrateur.
+* Edition des membres avec notamment la possibilitï¿½ de les bannir.
 * Mise en ligne.
-* Système de privilèges qui gère la visibilité es membres les uns par rapport aux autres. 
+* Systï¿½me de privilï¿½ges qui gï¿½re la visibilitï¿½ es membres les uns par rapport aux autres. 
 * ...
 * Application Android.
 
 
-Note : étant donné qu'il y a plusieurs fichiers sur lesquels plusieurs peuvent travailler, c'est peut-être une idée de dire qu'un fichier donné "appartient" à l'un de nous. De la sorte, si quelqu'un d'autre doit intervenir sur le fichier d'un autre, il s'assure auprès de lui qu'il ne travaille pas dessus à ce moment.
+Note : ï¿½tant donnï¿½ qu'il y a plusieurs fichiers sur lesquels plusieurs peuvent travailler, c'est peut-ï¿½tre une idï¿½e de dire qu'un fichier donnï¿½ "appartient" ï¿½ l'un de nous. De la sorte, si quelqu'un d'autre doit intervenir sur le fichier d'un autre, il s'assure auprï¿½s de lui qu'il ne travaille pas dessus ï¿½ ce moment.
 
 
 

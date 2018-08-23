@@ -55,6 +55,23 @@ class MessagerieController extends Controller
         return $this->render('tests/showmessage.html.twig', ['message' => $message]);
     }
 
+    public function showMail(Request $request){
+        
+        $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
+
+
+        if($request->get("send")){
+            if($request->get("exampleFormControlSelect2") == "all"){
+                // for($i =0; $i < count($membres); $i++)
+                // Envoi du mail au utilisateur
+            }else{
+                // Envoi à $request->get("exampleFormControlSelect2")
+            }
+        }
+        return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
+    }
+
+    
     public function testAllMessagerie(){
         // Method for testing purposes
         try{
