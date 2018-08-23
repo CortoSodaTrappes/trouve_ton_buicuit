@@ -149,6 +149,11 @@ class Membres implements UserInterface
      */
     private $statut;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="destinataire")
+     */
+    private $messages;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
@@ -165,6 +170,7 @@ class Membres implements UserInterface
         $this->setMange("Non renseigné");
         $this->setSilhouette("Non renseigné");
         $this->setYeux("Non renseigné");
+        $this->messages = new ArrayCollection();
     }
 
     public function getId()
@@ -539,6 +545,37 @@ class Membres implements UserInterface
     public function setStatut(?string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setDestinataire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getDestinataire() === $this) {
+                $message->setDestinataire(null);
+            }
+        }
 
         return $this;
     }

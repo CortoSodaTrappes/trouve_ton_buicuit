@@ -202,6 +202,10 @@ test_showmessage:
     path: /test/showmessage/{id}
     controller: App\Controller\MessagerieController::testShow 
 
+test_all_messages: 
+    path: /test/messages 
+    controller: App\Controller\MessagesController::testAllMessagerie 
+
 test_messagerie:
     path: /test/profil/messagerie
     # controller: App\Controller\MessagerieController::testAllMessagerie 

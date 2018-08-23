@@ -18,8 +18,9 @@ use App\Form\NewEditMembreType;
 use App\Form\PresentationType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
-use App\Entity\Presentations;
-use App\Entity\Recherches;
+use App\Entity\Messagerie;
+// use App\Entity\Presentations;
+// use App\Entity\Recherches;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -43,7 +44,6 @@ class MembresController extends Controller
             $membre->setNaissance($datetime);
         }
 
-
         $membre->setTypeRelation($request->get('selectrelations'));
         $membre->setTraitCaractere($request->get('selectcaracteres'));
 
@@ -56,7 +56,6 @@ class MembresController extends Controller
         $membre->setAnimaux($request->get('selectanimaux'));
         $membre->setHobby($request->get('selecthobby'));
         $membre->setStatut($request->get('selectstatut'));
-
 
             // Upload de l'une image
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
@@ -73,19 +72,17 @@ class MembresController extends Controller
             
 
 
-            // Upload de l'une image
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            if($file = $request->files->get('mainimage')){
-                // $file = $request->get('mainimage')){
-                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-                $file->move(
-                    $this->getParameter('mainimages_directory'),
-                    $fileName
-                );
-
-
-                $membre->setMainimage($fileName);
-            }
+            // // Upload de l'une image
+            // /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            // if($file = $request->files->get('mainimage')){
+            //     // $file = $request->get('mainimage')){
+            //     $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+            //     $file->move(
+            //         $this->getParameter('mainimages_directory'),
+            //         $fileName
+            //     );
+            //     $membre->setMainimage($fileName);
+            // }
 
         if(!is_null($request->get("submit"))){
             try{
@@ -131,7 +128,6 @@ dump($membres);
         return $this->render('front/list.html.twig', array(
             'membres' => $membres)
         );
-
     }
 
 

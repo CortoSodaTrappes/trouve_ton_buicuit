@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Membres;
 use App\Entity\Messagerie;
+use App\Entity\Messages;
 
 
-class MessagerieController extends Controller
+class MessagesController extends Controller
 {
     public function testNew(Request $request): Response
     {
@@ -57,14 +58,9 @@ class MessagerieController extends Controller
 
     public function testAllMessagerie(){
         // Method for testing purposes
-        try{
-            $messages = $this->getDoctrine()->getRepository(Messages::class)->findAll();
-            // $messages = $repository->findAll();
-        }catch(Exception $e){
-            return $this->render('tests/messagerie.html.twig', 
-            ['messages' => $e]);
-        }
-        return $this->render('tests/messagerie.html.twig', 
+        $messages = $this->getDoctrine()->getRepository(Messages::class)->findAll();
+        
+        return $this->render('tests/allmessages.html.twig', 
         ['messages' => $messages]);            
 
     }

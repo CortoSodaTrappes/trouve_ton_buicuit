@@ -106,9 +106,12 @@ Les noms des id et les name doivent être attachés. #}
                         
                     <div class="modif-direct">
                         <!-- MODIF PSEUDO -->
+                        {# <form> #}
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
                                 <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
+                                {# <input type="text" id="pseudo" name="pseudo" placeholder=" ">
+                                <input type="submit" id="submitpseudo" name="submitpseudo"> #}
                             </div>
                             <div id="status_cotainer_change">
                                 <div class="margins-modif">
@@ -117,6 +120,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div>
+                        {# </form> #}
                         <!-- MODIF PHRASE-COURTE -->
                         {# <div id="phrase_change" class="phase-courte margins-top-barre">
                             <div class="icons-inline-p">
