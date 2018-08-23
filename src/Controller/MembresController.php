@@ -81,16 +81,30 @@ class MembresController extends Controller
             $entityManager->flush();
         }
             
-        // modification Pseudo
+        // modification en direct PSEUDO
         
-        // if($file = $request->files->get('status_val')){
-        //     // $file = $request->get('status_val')){
-            
-        //     $membre->setPseudo($request->get('status_val'));
-        //     $entityManager->persist($membre);
-        //     $entityManager->flush();
+         if($request->get('status_val')){
+                
+        $membre->setPseudo($request->get('status_val'));
+        $entityManager->persist($membre);
+        $entityManager->flush();
+        }
+
+        // modification en direct VILLE
+         if($request->get('ville_val')){
+                
+        $membre->setVille($request->get('ville_val'));
+        $entityManager->persist($membre);
+        $entityManager->flush();
+        }
+
+
+        // Disparition du button "edition" profil
+
+        // if(!$user->isLoggedIn())
+        // {
+        // <div></div>
         // }
-            
 
 
         if(!is_null($request->get("submit"))){
@@ -101,7 +115,9 @@ class MembresController extends Controller
             }catch(\Doctrine\ORM\EntityNotFoundException $e){
                 // return $this->returnJson(array("path" =>"/register", "Error : invalid request."), 501) ;
             }
-        }
+        } 
+
+        // création des options dans le formulaire
 
         return $this->render('prive/profil.html.twig', array(
             'membre' => $membre,

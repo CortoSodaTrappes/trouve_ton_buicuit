@@ -1091,7 +1091,8 @@ td {
 
 body {
     color: #C1C2C4;
-    background-color: #2A2D34;
+    /* background-color: #2A2D34; */
+    background-image: url("../images/background4.jpg");
 }
 
 a {

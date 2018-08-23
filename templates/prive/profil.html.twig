@@ -65,7 +65,7 @@ Les noms des id et les name doivent être attachés. #}
                     <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        <img class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
 
                     </div>
                         </button>
@@ -86,7 +86,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <form method="POST" id="toto" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="mainimage">Ajouter une image</label>
-                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                            <input style="width: 100%" type="file" name="mainimage" class="form-control-file" id="mainimage">
                                         </div>
                                         <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
                                     </form>
@@ -113,11 +113,26 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                             <div id="status_cotainer_change">
                                 <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="status_val"><button type="submit" id="save_status">Sauvegarder</button>
+                                    <input name="status_val" class="input-direct" type="text" id="status_val">
+                                    <button type="submit" id="save_status">Sauvegarder</button>
                                 
                                 </div>
                             </div>
                         </div>
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="ville"><a class="help" href="#">{{app.user.ville}}</p>
+                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="ville_cotainer_change">
+                                <div class="margins-modif">
+                                    <input name="ville_val"class="input-direct" type="text" id="ville_val">
+                                    <button type="submit" id="save_ville">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <form>
                         <!-- MODIF PHRASE-COURTE -->
                         {# <div id="phrase_change" class="phase-courte margins-top-barre">
@@ -131,26 +146,14 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div> #}
-                        <!-- MODIF AGE -->
+                        <!-- AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
                                 <p >AGE : {{age}}</p>
                             </div>
                             
                         </div> 
-                        <!-- MODIF VILLE -->
-                        <div id="ville_change" class="margins-top-barre">
-                            <div class="icons-inline-p">
-                                <p id="ville"><a class="help" href="#">Ville : {{app.user.ville}}</p>
-                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
-                            </div>
-                            <div id="ville_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="ville_val"><button type="submit" id="save_ville">Sauvegarder</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
                 <!--  END MODIFICATION on click -->
                         <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show',{id:app.user.id})}}">Voir mon profil</a></button>        
                                 
@@ -172,7 +175,7 @@ Les noms des id et les name doivent être attachés. #}
                     <div class="dating-profil-banner-hobby col-4">
                         <div id="description-hobby" class="description">
 
-                            <form method="post" id="ogkrepok">
+                            <form method="post" id="">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
@@ -738,7 +741,8 @@ $(document).ready(function()
 
 {% endblock %}
 
-{% block footer %}
+
+{# {% block footer %}
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear">
    <!-- ################################################################################################ -->
@@ -758,5 +762,5 @@ $(document).ready(function()
     <!-- ################################################################################################ -->
   </footer>
 </div>
-{% endblock %}
+{% endblock %} #}
 

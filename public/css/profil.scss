@@ -26,6 +26,7 @@
                     }
                     #bouton-photo-profil {
                         padding: 8px 8px;
+                        width: 100%;
                     }
                 }
             }
@@ -184,7 +185,7 @@ button {
 
 ///// PSEUDO modif
 .icons-inline {
-    #pseudo {
+    #pseudoh4 {
         cursor: pointer;
     }
     h4 {
@@ -223,7 +224,7 @@ button {
     margin-left: -1%;
 }
 
-#status_val {
+#pseudo {
     margin: none;
     width: 312px;
 }
@@ -437,4 +438,12 @@ label {
 
 #label-description-longue-show {
     margin: 0%;
+}
+
+#show-main-image {
+    border: 5px solid var(--background-color-sections);
+    border-radius: 3px;
+    .profil-main-img {
+        border-radius: 5px;
+    }
 }
