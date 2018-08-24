@@ -101,7 +101,7 @@ class MembresController extends Controller
 
         // Disparition du button "edition" profil
 
-        // if(!$user->isLoggedIn())
+        // if($id = $membre->getId();  
         // {
         // <div></div>
         // }
@@ -139,8 +139,13 @@ class MembresController extends Controller
 
     public function profilShow(Membres $membre): Response{
 
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
+
         return $this->render('front/show.html.twig', array(
-            'membre' => $membre)
+            'membre' => $membre, 'age'=>$age)
         );
     }
 

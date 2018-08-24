@@ -13,6 +13,13 @@ File: Layout CSS
 @import url("fontawesome-all.min.css");
 @import url("framework.css");
 
+/* Booton connexion*/
+
+#bouton-connexion-color {
+    background-color: transparent;
+}
+
+
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 
@@ -60,6 +67,7 @@ File: Layout CSS
 #header #logo img {
     width: 30px;
     height: 30px;
+    margin-top: -3%;
 }
 
 #header #logo img {
@@ -130,6 +138,10 @@ File: Layout CSS
     display: none;
 }
 
+#cookie {
+    color: #323639;
+}
+
 #cookie h1 {
     text-align: center;
     font-size: 41px;
@@ -144,9 +156,9 @@ File: Layout CSS
 }
 
 #bouton {
-    color: #2A2D34;
-    border-color: #2A2D34;
-    background-color: #2A2D34;
+    color: #fdece5;
+    border-color: #fdece5;
+    background-color: transparent;
 }
 
 
@@ -1092,7 +1104,8 @@ td {
 body {
     color: #C1C2C4;
     /* background-color: #2A2D34; */
-    background-image: url("../images/background4.jpg");
+    background-image: url("../images/background9.jpg");
+    /* background-color: #fce9f0; */
 }
 
 a {
@@ -1144,8 +1157,8 @@ textarea:focus,
 .btn,
 .btn.inverse:hover {
     color: #474747;
-    background-color: #DBE5E7;
-    border-color: #829DA2;
+    background-color: #fdece5;
+    border-color: #fdece5;
 }
 
 .btn:hover,
@@ -1176,7 +1189,8 @@ textarea:focus,
 
 .row2 {
     color: #474747;
-    background-color: #F4F4F4;
+    /* background-color: #F4F4F4; */
+    background-color: transparent;
 }
 
 .row3 {

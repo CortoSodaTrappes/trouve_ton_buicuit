@@ -36,6 +36,7 @@
 
 .profil .container .row .profil-main-information {
   background-color: var(--background-color-sections);
+  opacity: 0.9;
   color: black;
   padding-top: 1.5%;
   border-radius: 5px;
@@ -53,7 +54,7 @@
 }
 
 .profil .container .row .profil-main-information #bottonprofil {
-  margin-top: 4%;
+  margin-top: 0%;
 }
 
 .profil .container .row .profil-main-information .btn {
@@ -75,6 +76,7 @@
 
 .dating-profile .barre-bas .container .dating-profil-banner-hobby #description-hobby {
   background-color: var(--background-color-sections);
+  opacity: 0.9;
 }
 
 .dating-profile .barre-bas .container .dating-profil-banner-hobby #description-hobby #padding-hobby {
@@ -183,6 +185,7 @@ h2 {
 
 .description {
   background-color: var(--background-color-sections);
+  opacity: 0.9;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -449,5 +452,13 @@ label {
 
 #show-main-image .profil-main-img {
   border-radius: 5px;
+}
+
+.fa-certificate {
+  opacity: 0.5;
+}
+
+.fa-map-marker-alt {
+  opacity: 0.5;
 }
 /*# sourceMappingURL=profil.css.map */

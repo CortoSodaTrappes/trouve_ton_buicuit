@@ -24,42 +24,7 @@ Les noms des id et les name doivent être attachés. #}
                         
                     </div>
                 </div>
-                    {# <!-- Button trigger modal -->
-                    <div class="profil-main-img" id="img_profil" alt="image-profil">
-                        <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
-                    </div>
-                        </button>
-                </div>
-                <!-- MODAL -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                
-                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Ajoutez une nouvelle photo <i class="fas fa-sign-in-alt"></i> </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="mainimage">Ajouter une image</label>
-                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
-                                        </div>
-                                        <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FIN MODAL --> #}
+                   
 
                 <div class="profil-main-information col-8">
                 <!-- MODIFICATION on click -->
@@ -86,7 +51,7 @@ Les noms des id et les name doivent être attachés. #}
                         <!-- AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p >AGE : </p>
+                                <p><i class="fas fa-certificate"></i> {{age}}</p>
                                 
                             </div>
                             
@@ -94,14 +59,17 @@ Les noms des id et les name doivent être attachés. #}
                         <!-- MODIF VILLE -->
                         <div id="ville_change" class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p>{{app.user.ville}}</p>
+                                <p><i class="fas fa-map-marker-alt"></i> {{app.user.ville}}</p>
                             </div>
                         </div>
                     </div>
                 <!--  END MODIFICATION on click -->
-                        <p>ce button n'est pas visible si le user regarde les profils des autres users</p>
+                    {% if membre.id == app.user.id %}
                         <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Modifier mon profil</a></button>        
-                                
+                    {% else %}   
+                     
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Envoyer un message</a></button>
+                    {% endif %}   
                     </div>
                 </div>
             </section>
@@ -169,10 +137,10 @@ Les noms des id et les name doivent être attachés. #}
                                     <div class="form-group row" >
                                     <label class="col-md-4 control-label" for="jesuis">Date de naissance: </label>
                                         <div class="col-md-8">
-                                        {# {{membre.naissance}} #}
+                                        {{membre.naissance.format('Y-m-d')}}
                                             <div id="date-naissance">                     
                                                 {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
+                                                {# <input type="date" id="naissance" name="naissance" value="26-03-1966"> #}
                                             </div>
                                         </div>
                                     </div>
