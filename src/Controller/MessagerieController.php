@@ -59,31 +59,31 @@ class MessagerieController extends Controller
 
 
 
-    public function showMail(Request $request){
+    public function showMail(Request $request, \Swift_Mailer $mailer){
         
         $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
 
 
-        if($request->get("send")){
-            if($request->get("exampleFormControlSelect2") == "all"){
-                for($i =0; $i < count($membres); $i++)
-                $message = (new \Swift_Message('Bonjour'))
-                ->setFrom('manu337810@gmail.com')
-                ->setTo('wf3biscuit@gmail.com')
-                ->setBody(
-                    $this->renderView(
-                
-                    'admin3/send_mailing.html.twig',
-                     array('membres' => $membres)
-                    ),
-                    'text/html'
-                );
+        $message = (new \Swift_Message('Bonjour'))
+        ->setFrom('WF3biscuits@gmail.com')
+        ->setTo('WF3biscuits@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'admin3/mail/send.html.twig',
+                array('membres' => $membres)
+            ),
+            'text/html'
+        );
+        $mailer->send($message);
+        // if($request->get("send")){
+        //     if($request->get("exampleFormControlSelect2") == "all"){
+        //         for($i =0; $i < count($membres); $i++)
            
-            }else{
+        //     }else{
                     
-                $request->get("exampleFormControlSelect2");
-            }
-        }
+        //         $request->get("exampleFormControlSelect2");
+        //     }
+        // }
         return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
     }
 
