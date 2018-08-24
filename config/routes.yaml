@@ -68,11 +68,11 @@ admin3_index:
     defaults:
         template: admin3/admin.html.twig
 
-admin3_users_management:
-    path: /admin3/users_management
+admin3_Users_management:
+    path: /admin3/Users_management
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
-        template: /admin3/users_management.html.twig  
+        template: /admin3/Users_management.html.twig  
 
 admin3_permissions:
     path: /admin3/permissions
@@ -88,9 +88,7 @@ admin3_moderation:
 
 admin3_send_mailing:
     path: /admin3/send_mailing
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: /admin3/send_mailing.html.twig  
+    controller: App\Controller\MessagerieController::showMail
 
 admin3_private_messages:
     path: /admin3/private_messages
@@ -116,18 +114,28 @@ admin3_admin_tasks:
 ###########################################
 
        
-# admin:
-#     path: /admin
-#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-#     defaults:
-#         template: /admin2/admin.html.twig
+
+admin:
+    path: /admin
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: /admin2/admin.html.twig
 
 
-# Users_management:
+# # Users_management:
 #     path: /Users_management
 #     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
 #     defaults:
 #         template: /admin2/Users_management.html.twig   
+
+
+
+# permissions:
+#     path: /permissions
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: /admin2/permissions.html.twig
+
 
 # permissions:
 #     path: /permissions
