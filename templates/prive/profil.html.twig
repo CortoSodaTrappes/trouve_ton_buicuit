@@ -55,18 +55,18 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <div>
+                    {# <div>
 
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
 
-                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        {# <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil"> #}
                         
-                    </div>
-                </div>
-                    {# <!-- Button trigger modal -->
+                    {# </div> #}
+                {# </div> #} 
+                    <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
 
                     </div>
                         </button>
@@ -84,10 +84,10 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                                 <div class="modal-body">
 
-                                    <form>
+                                    <form method="POST" id="toto" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="mainimage">Ajouter une image</label>
-                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                            <input style="width: 100%" type="file" name="mainimage" class="form-control-file" id="mainimage">
                                         </div>
                                         <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
                                     </form>
@@ -99,7 +99,7 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div>
                     </div>
-                    <!-- FIN MODAL --> #}
+                    <!-- FIN MODAL -->
 
                 <div class="profil-main-information col-8">
 
@@ -107,7 +107,9 @@ Les noms des id et les name doivent être attachés. #}
                         
                     <div class="modif-direct">
                         <!-- MODIF PSEUDO -->
-                        {# <form> #}
+
+                        <form method="POST" id="roro" enctype="multipart/form-data">
+
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
                                 <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
@@ -116,12 +118,29 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                             <div id="status_cotainer_change">
                                 <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="status_val"><button type="submit" id="save_status">Sauvegarder</button>
+                                    <input name="status_val" class="input-direct" type="text" id="status_val">
+                                    <button type="submit" id="save_status">Sauvegarder</button>
                                 
                                 </div>
                             </div>
                         </div>
-                        {# </form> #}
+
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="ville"><a class="help" href="#"><i class="fas fa-map-marker-alt"></i> {{app.user.ville}}</p>
+                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
+                            </div>
+                            <div id="ville_cotainer_change">
+                                <div class="margins-modif">
+                                    <input name="ville_val"class="input-direct" type="text" id="ville_val">
+                                    <button type="submit" id="save_ville">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <form>
+
                         <!-- MODIF PHRASE-COURTE -->
                         {# <div id="phrase_change" class="phase-courte margins-top-barre">
                             <div class="icons-inline-p">
@@ -134,26 +153,14 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div> #}
-                        <!-- MODIF AGE -->
+                        <!-- AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p >AGE : {{age}}</p>
+                                <p><i class="fas fa-certificate"></i> {{age}}</p>
                             </div>
                             
                         </div> 
-                        <!-- MODIF VILLE -->
-                        <div id="ville_change" class="margins-top-barre">
-                            <div class="icons-inline-p">
-                                <p id="ville"><a class="help" href="#">Ville : {{app.user.ville}}</p>
-                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
-                            </div>
-                            <div id="ville_cotainer_change">
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="ville_val"><button type="submit" id="save_ville">Sauvegarder</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
                 <!--  END MODIFICATION on click -->
                         <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show',{id:app.user.id})}}">Voir mon profil</a></button>        
                                 
@@ -175,7 +182,7 @@ Les noms des id et les name doivent être attachés. #}
                     <div class="dating-profil-banner-hobby col-4">
                         <div id="description-hobby" class="description">
 
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" id="">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
@@ -272,7 +279,7 @@ Les noms des id et les name doivent être attachés. #}
                                     
                                     <!-- Punchline -->
                                     <div class="form-group row" >
-                                        <label class="col-md-12 control-label" for="punchline">Racontez qui vous êtes : </label>
+                                        <label class="col-md-12 control-label" for="punchline">Ma devise : </label>
                                         <div class="col-md-12" id="description-punchline-modification">                     
                                             <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
@@ -280,12 +287,10 @@ Les noms des id et les name doivent être attachés. #}
                                         
                                     </div>
 
-                                    <div style="margin:20px;">
-                                    <input type="file" id="mainimage" name="mainimage" accept="image/png, image/jpeg, image/jpg" />
-                                    </div>
-                                    
+                                                                
                                     <!-- Description longue -->
                                     <div class="form-group" >
+                                        <label id="label-description-longue" class="col-md-12 control-label" for="punchline">Decrivez votre personalité et votre partenaire ideal : </label>
                                         <div class="col-md-12" id="description-longue" >                     
                                             <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             
@@ -743,7 +748,8 @@ $(document).ready(function()
 
 {% endblock %}
 
-{% block footer %}
+
+{# {% block footer %}
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear">
    <!-- ################################################################################################ -->
@@ -763,5 +769,5 @@ $(document).ready(function()
     <!-- ################################################################################################ -->
   </footer>
 </div>
-{% endblock %}
+{% endblock %} #}
 

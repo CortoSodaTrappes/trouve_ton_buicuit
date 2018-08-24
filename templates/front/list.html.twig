@@ -6,7 +6,7 @@
 
 {% block title %} Trouve ton Biscuit {% endblock %}
 
-{% block nav %}
+{# {% block nav %}
  <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');"> 
 
   <div class="wrapper row1">
@@ -41,7 +41,7 @@
     </header>
   </div>
 
-{% endblock %}
+{% endblock %} #}
 
 {% block main %}
 
@@ -71,7 +71,7 @@
             {% endif %}
               <figcaption>
                 <header>{{membre.pseudo}}</header>
-                <p class="more"><a href="{{path('membre_show', {id: membre.id})}}">View Full Details &raquo;</a></p>
+                <p class="more"><a href="{{path('membre_show', {id: membre.id})}}">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>            
           </article>
@@ -79,13 +79,25 @@
       {% endfor %}
       </ul>
 
-      {# <ul>
-        <li>
+      <ul>
+        {# <li>
+
           <article>
             <figure><a href="#"><img src="images/{{app.user.mainimage}}" alt=""></a>
               <figcaption>
                 <header>{{app.user.pseudo}}</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
+              </figcaption>
+            </figure>
+          </article>
+        </li> #}
+
+        <li>
+          <article>
+            <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
+              <figcaption>
+                <header>Metridiculis conseque quis</header>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
@@ -96,7 +108,7 @@
             <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
               <figcaption>
                 <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
@@ -107,7 +119,7 @@
             <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
               <figcaption>
                 <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
@@ -118,7 +130,7 @@
             <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
               <figcaption>
                 <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
@@ -129,7 +141,7 @@
             <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
               <figcaption>
                 <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
@@ -140,40 +152,21 @@
             <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
               <figcaption>
                 <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
+                <p class="more"><a href="#">Voir le profil &raquo;</a></p>
               </figcaption>
             </figure>
           </article>
         </li>
 
-        <li>
-          <article>
-            <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
-              <figcaption>
-                <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
-              </figcaption>
-            </figure>
-          </article>
-        </li>
 
-        <li>
-          <article>
-            <figure><a href="#"><img src="images/spacer.gif" alt=""></a>
-              <figcaption>
-                <header>Metridiculis conseque quis</header>
-                <p class="more"><a href="#">View Full Details &raquo;</a></p>
-              </figcaption>
-            </figure>
-          </article>
-        </li>
-      </ul> #}
+      </ul>
+
     </section>
     <!-- ####################################################################################################### -->
     <!-- ####################################################################################################### -->
     <!-- ####################################################################################################### -->
     <!-- ####################################################################################################### -->
-    <div class="pagination">ADD PAGINATION HERE IF NEEDED</div>
+    <div class="pagination"></div>
     <!-- ####################################################################################################### -->
   </div>
 </div>

@@ -26,11 +26,13 @@
                     }
                     #bouton-photo-profil {
                         padding: 8px 8px;
+                        width: 100%;
                     }
                 }
             }
             .profil-main-information {
                 background-color: var(--background-color-sections);
+                opacity: 0.9;
                 color: black;
                 padding-top: 1.5%;
                 border-radius: 5px;
@@ -43,7 +45,7 @@
                     font-style: italic;
                 }
                 #bottonprofil {
-                    margin-top: 4%;
+                    margin-top: 0%;
                 }
                 .btn {
                     color: #474743;
@@ -69,6 +71,7 @@
             .dating-profil-banner-hobby {
                 #description-hobby {
                     background-color: var(--background-color-sections);
+                    opacity: 0.9;
                     #padding-hobby {
                         padding: 5%;
                         h2 {
@@ -169,6 +172,7 @@ h2 {
 
 .description {
     background-color: var(--background-color-sections);
+    opacity: 0.9;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -184,7 +188,7 @@ button {
 
 ///// PSEUDO modif
 .icons-inline {
-    #pseudo {
+    #pseudoh4 {
         cursor: pointer;
     }
     h4 {
@@ -223,7 +227,7 @@ button {
     margin-left: -1%;
 }
 
-#status_val {
+#pseudo {
     margin: none;
     width: 312px;
 }
@@ -419,4 +423,38 @@ a:hover {
     padding: 8px;
     background-color: var(--background-color-sections);
     ;
+}
+
+// correction courante
+#label-description-longue {
+    margin-left: -2%;
+}
+
+label {
+    font-weight: bold;
+}
+
+.fa-quote-right {
+    opacity: 0.5;
+    padding-right: 1%;
+}
+
+#label-description-longue-show {
+    margin: 0%;
+}
+
+#show-main-image {
+    border: 5px solid var(--background-color-sections);
+    border-radius: 3px;
+    .profil-main-img {
+        border-radius: 5px;
+    }
+}
+
+.fa-certificate {
+    opacity: 0.5;
+}
+
+.fa-map-marker-alt {
+    opacity: 0.5;
 }

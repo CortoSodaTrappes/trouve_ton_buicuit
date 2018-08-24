@@ -11,7 +11,10 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
     width: 100%;
     line-height: 1.6em;
     padding: 0 326px;
-    background-color: #2A2D34;
+    /* background-color: #2A2D34; */
+    background-color: transparent;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 #portfolio ul,
@@ -40,14 +43,14 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
 }
 
 #portfolio article figure img {
-    width: 210px;
-    height: 150px;
+    width: 230px;
+    height: 190px;
 }
 
 #portfolio article figure figcaption {
     padding: 10px;
     color: #000000;
-    background-color: #CCCCCC;
+    background-color: #fad9d0;
     text-align: center;
 }
 

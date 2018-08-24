@@ -6,6 +6,40 @@
 
 {% block main %}
 <body>
+
+<section class="profil">
+    <div class="barre-top">
+        <div class="profil-barre-top container">
+            <section class="profil-block-top-marge row">
+                <div class="profil-photos col-4">
+                    <div id="show-main-image">
+                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
+                        <img  style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        
+                    </div>
+                </div>
+                   
+
+                <div class="profil-main-information col-8">
+                <!-- MODIFICATION on click -->
+                        
+                    <div class="modif-direct">
+                        <!-- MODIF PSEUDO -->
+                        <div id="status_change" class="margins-top-barre">
+                            <div class="icons-inline">
+                                <h4>{{app.user.pseudo}}</h4>
+                            </div>
+                        </div>
+                        <!-- MODIF PHRASE-COURTE -->
+                        {# <div id="phrase_change" class="phase-courte margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p id="phase-courte"><a class="help" href="#">{{app.user.punchline}}</p><span class="airhelp">Modifier la phrase d'accroche</span><i id="icone-phrase" class="fas fa-pen"></i></a>
+                            </div>   
+                            <div id="phrase_cotainer_change"><!-- la même -->
+                                <div class="margins-modif">
+                                    <input class="input-direct" type="text" id="phrase_val"><button type="submit" id="save_phrase">Sauvegarder</button>
+                                
+
     <section class="profil">
         <div class="barre-top">
             <div class="profil-barre-top container">
@@ -32,21 +66,31 @@
                                     <h4>{{membre.pseudo}}</h4>
                                 </div>
                             </div>
-                            <!-- MODIF PHRASE-COURTE -->
 
-                            <!-- AGE -->
-                            <div class="margins-top-barre">
-                                <div class="icons-inline-p">
-                                    <p><i class="fas fa-certificate"></i> {{age}}</p>
+
+
+
 
                                 </div>
 
                             </div>
+
+                        </div> #}
+                        <!-- AGE -->
+                        <div class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p><i class="fas fa-certificate"></i> {{age}}</p>
+                                
+                            </div>
+                            
+                        </div> 
+
                             <!-- MODIF VILLE -->
                             <div id="ville_change" class="margins-top-barre">
                                 <div class="icons-inline-p">
                                     <p><i class="fas fa-map-marker-alt"></i> {{membre.ville}}</p>
                                 </div>
+
                             </div>
                         </div>
                         <!--  END MODIFICATION on click -->
@@ -57,11 +101,79 @@
                         {% endif %}
                     
                     </div>
+
             </div>
+
             </section>
         </div>
         </div>
 
+
+        <!-- ZONE INFORMATION FORMULAIRE -->          
+                    <div class="dating-profil-formulaires col-8">
+                        <div class="formulaire">
+            <!-- DESCRIPTION TEXTE-->
+                            <div class="description padding-formulaires">
+
+                                {# <form> #}
+                                <fieldset class="form-horizontal">
+                                
+
+                                    <!-- Form Name -->
+                                    <h2>Ma description</h2>
+                                    <!-- Date naissance -->
+                                    <div class="form-group row" >
+                                    <label class="col-md-4 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-8">
+                                        {{membre.naissance.format('Y-m-d')}}
+                                            <div id="date-naissance">                     
+                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
+                                                {# <input type="date" id="naissance" name="naissance" value="26-03-1966"> #}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- JE SUIS -->
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-8">
+                                        {{membre.jesuis}}
+                                            {# <select id="jesuis" name="jesuis" class="form-control">
+                                            
+                                                {% for option in optionspersonnes %}
+                                                    {% if option == app.user.jesuis %}
+                                                        <option value="{{option}}" selected>{{option}}</option>
+                                                    {% else %}
+                                                        <option value="{{option}}">{{option}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select> #}
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                    <!-- Punchline -->
+                                    <div class="form-group row" >
+                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma devise : </label>
+                                        <div class="col-md-8" id="description-punchline">         
+                                            <i class="fas fa-quote-right"></i>     {{membre.punchline}}   <i class="fas fa-quote-right"></i>         
+                                            {# <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                             #}
+                                        </div>
+                                        
+                                    </div>
+
+                            
+                                    
+                                    <!-- Description longue -->
+                                    <div class="form-group row" >
+                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma personalité et mon partenaire ideal : </label>
+                                        <div class="col-md-8" id="description-longue" >   
+                                            <i class="fas fa-quote-right"></i>   {{membre.description}}    <i class="fas fa-quote-right"></i>                   
+                                            {# <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea> #}
+                                            
+                                        </div>
+                                    </div>
 
         <!-- ZONE HOBBY AND FORMULAIRES -->
 
@@ -87,6 +199,7 @@
                                         </div>
                                     </fieldset>
                                     {# </form> #}
+
                             </div>
                         </div>
 

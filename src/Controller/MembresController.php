@@ -19,9 +19,30 @@ class MembresController extends Controller
     // Edition du profil
     public function profilEdit(Request $request, Membres $membre): Response{
 
+        $entityManager = $this->getDoctrine()->getManager();
+        
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
         $interval = $datetime1->diff($datetime2);
+            
+        // modification en direct PSEUDO
+        
+         if($request->get('status_val')){
+                
+        $membre->setPseudo($request->get('status_val'));
+        $entityManager->persist($membre);
+        $entityManager->flush();
+        }
+
+        // modification en direct VILLE
+         if($request->get('ville_val')){
+                
+        $membre->setVille($request->get('ville_val'));
+        $entityManager->persist($membre);
+        $entityManager->flush();
+        }
+
+
         $age = $interval->format('%Y ans');            
 
         if(!is_null($request->get("submit"))){
@@ -67,9 +88,12 @@ class MembresController extends Controller
             }catch(\Doctrine\ORM\EntityNotFoundException $e){
                 // return $this->returnJson(array("path" =>"/register", "Error : invalid request."), 501) ;
             }
-        }
+        } 
+
+        // création des options dans le formulaire
 
         return $this->render('prive/profil.html.twig', array(
+            'membre' => $membre,
             'optionspersonnes' => $this->getOptionsPersonnes(),
             'optionsrelations' => $this->getOptionsRelations(),
             'optionstailles' => $this->getOptionsTaille(),
@@ -82,7 +106,7 @@ class MembresController extends Controller
             'optionsmange' => $this->getOptionsMange(),
             'optionsanimaux' => $this->getOptionsAnimaux(),
             'optionshobby' => $this->getOptionsHobby(),
-            'age' => $age ,
+            'age' => $age,
         ));
     }
 
@@ -92,7 +116,13 @@ class MembresController extends Controller
         $interval = $datetime1->diff($datetime2);
         $age = $interval->format('%Y ans');
 
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
+
         return $this->render('front/show.html.twig', array(
+
             'membre' => $membre,
             'age' => $age)
         );
