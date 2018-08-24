@@ -72,44 +72,44 @@ class MessagerieController extends Controller
     }
 
     
-    public function testAllMessagerie(){
-        // Method for testing purposes
-        try{
-            $messages = $this->getDoctrine()->getRepository(Messagerie::class)->findAll();
-            // $messages = $repository->findAll();
-        }catch(Exception $e){
-            return $this->render('tests/messagerie.html.twig', 
-            ['messages' => $e]);
-        }
-        return $this->render('tests/messagerie.html.twig', 
-        ['messages' => $messages]);            
+    // public function testAllMessagerie(){
+    //     // Method for testing purposes
+    //     try{
+    //         $messages = $this->getDoctrine()->getRepository(Messagerie::class)->findAll();
+    //         // $messages = $repository->findAll();
+    //     }catch(Exception $e){
+    //         return $this->render('tests/messagerie.html.twig', 
+    //         ['messages' => $e]);
+    //     }
+    //     return $this->render('tests/messagerie.html.twig', 
+    //     ['messages' => $messages]);            
 
-    }
+    // }
 
-    public function testMessagerie(Request $request){
-        // $messagesManager = $this->getDoctrine()->getManager();
+    // public function testMessagerie(Request $request){
+    //     // $messagesManager = $this->getDoctrine()->getManager();
 
-        $user = $this->getUser() ;
-        $messages_recus = $this
-            ->getDoctrine()
-            ->getRepository(Messagerie::class)
-            ->findBy(['id_destinataire' => $user->getId()],['date' => 'ASC']);
+    //     $user = $this->getUser() ;
+    //     $messages_recus = $this
+    //         ->getDoctrine()
+    //         ->getRepository(Messagerie::class)
+    //         ->findBy(['id_destinataire' => $user->getId()],['date' => 'ASC']);
             
-            $messages_envoyes = $this
-            ->getDoctrine()
-            ->getRepository(Messagerie::class)
-            ->findBy(['id_expediteur' => $user->getId()],['date' => 'ASC']);
+    //         $messages_envoyes = $this
+    //         ->getDoctrine()
+    //         ->getRepository(Messagerie::class)
+    //         ->findBy(['id_expediteur' => $user->getId()],['date' => 'ASC']);
             
         
-        // look for multiple Product objects matching the name, ordered by price
+    //     // look for multiple Product objects matching the name, ordered by price
 
-        return $this->render('tests/messagerie.html.twig', 
-        ['messages_recus' => $messages_recus, 'messages_envoyes' => $messages_envoyes]);
-    }
+    //     return $this->render('tests/messagerie.html.twig', 
+    //     ['messages_recus' => $messages_recus, 'messages_envoyes' => $messages_envoyes]);
+    // }
 
 
-    public function testGetMessage(){
-        return false;
-    }
+    // public function testGetMessage(){
+    //     return false;
+    // }
 
 }
