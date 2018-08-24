@@ -22,7 +22,7 @@
           {% if app.user is not null %}
           <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
-                    <li><a href="{{path('prive_profil')}}">Profil <i class="fas fa-user-alt"></i></a></li>
+                    <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil <i class="fas fa-user-alt"></i></a></li>
                     <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>

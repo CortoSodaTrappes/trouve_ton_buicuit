@@ -1,6 +1,21 @@
 {% extends 'admin.html.twig' %}
 
+
+
 {% block container_fluid %}
-    <h1 class="text-center mt-3 font-weight-light">Admin tasks</h1>
-    <p>Verry verry complicated</p>
-{% endblock %}
+<h1 class="text-center mt-3 font-weight-light">Tasks</h1>
+
+    <form method="post" action="" class="col-md-6 offset-md-3">
+        
+        <div class="form-group">
+            <label for="message">New Task</label>
+            <textarea class="form-control" id="New Task" name="New Task" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark col-md-12 mb-4">Add Task</button>
+    </form>
+ {% endblock %}
+
+
+
+
+

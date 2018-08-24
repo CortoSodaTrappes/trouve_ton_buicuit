@@ -36,21 +36,6 @@ class Membres implements UserInterface
      */
     private $password;
 
-    // /**
-    //  * @ORM\OneToMany(targetEntity="App\Entity\Recherches", mappedBy="id_membre")
-    //  */
-    // private $recherches;
-
-    // /**
-    //  * @ORM\OneToMany(targetEntity="App\Entity\Presentations", mappedBy="id_membre")
-    //  */
-    // private $presentations;
-
-    // /**
-    //  * @ORM\OneToMany(targetEntity="App\Entity\Messagerie", mappedBy="id_expediteur", orphanRemoval=true)
-    //  */
-    //private $messageries;
-
     /**
      * @ORM\Column(type="string", length=48)
      */
@@ -213,99 +198,6 @@ class Membres implements UserInterface
 
         return $this;
     }
-
-    // /**
-    //  * @return Collection|Recherches[]
-    //  */
-    // public function getRecherches(): Collection
-    // {
-    //     return $this->recherches;
-    // }
-
-    // public function addRecherche(Recherches $recherche): self
-    // {
-    //     if (!$this->recherches->contains($recherche)) {
-    //         $this->recherches[] = $recherche;
-    //         $recherche->setIdMembre($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeRecherche(Recherches $recherche): self
-    // {
-    //     if ($this->recherches->contains($recherche)) {
-    //         $this->recherches->removeElement($recherche);
-    //         // set the owning side to null (unless already changed)
-    //         if ($recherche->getIdMembre() === $this) {
-    //             $recherche->setIdMembre(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @return Collection|Presentations[]
-    //  */
-    // public function getPresentations(): Collection
-    // {
-    //     return $this->presentations;
-    // }
-
-    // public function addPresentation(Presentations $presentation): self
-    // {
-    //     if (!$this->presentations->contains($presentation)) {
-    //         $this->presentations[] = $presentation;
-    //         $presentation->setIdMembre($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removePresentation(Presentations $presentation): self
-    // {
-    //     if ($this->presentations->contains($presentation)) {
-    //         $this->presentations->removeElement($presentation);
-    //         // set the owning side to null (unless already changed)
-    //         if ($presentation->getIdMembre() === $this) {
-    //             $presentation->setIdMembre(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @return Collection|Messagerie[]
-    //  */
-    // public function getMessageries(): Collection
-    // {
-    //     return $this->messageries;
-    // }
-
-    // public function addMessagery(Messagerie $messagery): self
-    // {
-    //     if (!$this->messageries->contains($messagery)) {
-    //         $this->messageries[] = $messagery;
-    //         $messagery->setIdExpediteur($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeMessagery(Messagerie $messagery): self
-    // {
-    //     if ($this->messageries->contains($messagery)) {
-    //         $this->messageries->removeElement($messagery);
-    //         // set the owning side to null (unless already changed)
-    //         if ($messagery->getIdExpediteur() === $this) {
-    //             $messagery->setIdExpediteur(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
 
     public function getRoles(){
         return array("ROLE_USER") ;

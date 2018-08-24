@@ -18,9 +18,9 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    <div id="show-main-image">
+                    <div>
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                        <img  style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
                         
                     </div>
                 </div>
@@ -83,26 +83,24 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div> #}
-                        <!-- AGE -->
+                        <!-- MODIF AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p><i class="fas fa-certificate"></i> {{age}}</p>
-                                
+                                <p >AGE</p>
                             </div>
                             
                         </div> 
                         <!-- MODIF VILLE -->
                         <div id="ville_change" class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p><i class="fas fa-map-marker-alt"></i> {{app.user.ville}}</p>
+                                <p>Ville : {{app.user.ville}}</p>
                             </div>
                         </div>
                     </div>
                 <!--  END MODIFICATION on click -->
-                    {% if membre.id == app.user.id %}
+                        <p>ce button n'est pas vicible si le user regarde les profils des autres users</p>
                         <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Modifier mon profil</a></button>        
-                    {% endif %}    
-                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Envoyer un message</a></button>
+                                
                     </div>
                 </div>
             </section>
@@ -168,19 +166,18 @@ Les noms des id et les name doivent être attachés. #}
                                     <h2>Ma description</h2>
                                     <!-- Date naissance -->
                                     <div class="form-group row" >
-                                    <label class="col-md-4 control-label" for="jesuis">Date de naissance: </label>
-                                        <div class="col-md-8">
-                                        {{membre.naissance.format('Y-m-d')}}
+                                    <label class="col-md-3 control-label" for="jesuis">Date de naissance: </label>
+                                        <div class="col-md-9">
                                             <div id="date-naissance">                     
                                                 {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                                {# <input type="date" id="naissance" name="naissance" value="26-03-1966"> #}
+                                                <input type="date" id="naissance" name="naissance" value="26-03-1966">
                                             </div>
                                         </div>
                                     </div>
                                     <!-- JE SUIS -->
                                     <div class="form-group row">
-                                        <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
-                                        <div class="col-md-8">
+                                        <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
+                                        <div class="col-md-9">
                                         {{membre.jesuis}}
                                             {# <select id="jesuis" name="jesuis" class="form-control">
                                             
@@ -198,12 +195,10 @@ Les noms des id et les name doivent être attachés. #}
                                     
                                     
                                     <!-- Punchline -->
-                                    <div class="form-group row" >
-                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma devise : </label>
-                                        <div class="col-md-8" id="description-punchline">         
-                                            <i class="fas fa-quote-right"></i>     {{membre.punchline}}   <i class="fas fa-quote-right"></i>         
-                                            {# <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
-                                             #}
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-punchline">                     
+                                            <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
+                                            
                                         </div>
                                         
                                     </div>
@@ -211,11 +206,9 @@ Les noms des id et les name doivent être attachés. #}
                             
                                     
                                     <!-- Description longue -->
-                                    <div class="form-group row" >
-                                        <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma personalité et mon partenaire ideal : </label>
-                                        <div class="col-md-8" id="description-longue" >   
-                                            <i class="fas fa-quote-right"></i>   {{membre.description}}    <i class="fas fa-quote-right"></i>                   
-                                            {# <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea> #}
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-longue" >                     
+                                            <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             
                                         </div>
                                     </div>
@@ -226,7 +219,7 @@ Les noms des id et les name doivent être attachés. #}
                                 </fieldset>
                                     {# </form> #}
                                 
-                                
+                                <p>Les descriptions comportant des coordonnées personnelles (email, téléphone, adresse, nom, etc...), termes ou thèmes incorrects, messages commerciaux, ne correspondant pas à nos CGU ou à l'esprit du service... seront modifiées ou supprimées.</p>
                             </div>
 
                             <!-- PERSONALITE -->
