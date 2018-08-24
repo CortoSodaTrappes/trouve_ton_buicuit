@@ -1,125 +1,114 @@
-{% extends "front/landing.html.twig" %}
-
-{% block main %}
-    <main style='min-height:60vh;'>
-
-        <div id="cookie"> 
-            <h1>Trouve ton Biscuit</h1>
-            <h5 style="text-align: center"> Click sur le biscuit pour t'inscrire! <i class="fas fa-user-edit"></i> </h5>
-            
-                <!-- Button trigger modal -->
-                <div id="img_cookie">
-                    <button type="button" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+{% extends "front/landing.html.twig" %} {% block main %}
+<main style='min-height:60vh;'>
+    <div id="cookie">
+        <h1>Trouve ton Biscuit</h1>
+        <h5 style="text-align: center"> Click sur le biscuit pour t'inscrire! <i class="fas fa-user-edit"></i> </h5>
+        <!-- Button trigger modal -->
+        <div id="img_cookie">
+            <button type="button" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                     <img src="{{ asset('/images/cookies.jpg') }}">
                 </div>
-  
             </button>
-
-                <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle"> Inscription <i class="fas fa-user-edit"></i> </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle"> Inscription <i class="fas fa-user-edit"></i> </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="" class="col-md-12 offset-md" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="pseudo">Pseudo</label>
+                                        <input type="text" name="pseudo" class="form-control" id="pseudo" placeholder="Entrez un Pseudo">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="Email">Adress Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrez votre email">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="Password">Password</label>
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Votre Password">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="mainimage">Ajouter une image</label>
+                                        <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-
-                                    <form method="post" action="" class="col-md-12 offset-md"  enctype="multipart/form-data">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="pseudo">Pseudo</label>
-                                            <input type="text" name="pseudo" class="form-control" id="pseudo" placeholder="Entrez un Pseudo">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="Email">Adress Email</label>
-                                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrez votre email">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="Password">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password" placeholder="Votre Password">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="mainimage">Ajouter une image</label>
-                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                <div class="form-group">
+                                    <div class="peer">
+                                        <div class="peers ai-c">
+                                            <a href="/ ">
+                                                <label for="inputCall1" class="peers peer-greed js-sb ai-c"><span class="peer peer-greed">Déja inscrits ?</span></label>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="peer">
-                                            <div class="peers ai-c">
-                                                <a href="/ ">
-                                                    <label for="inputCall1" class="peers peer-greed js-sb ai-c"><span class="peer peer-greed">Déja inscrits ?</span></label>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-dark col-md-12"> Inscription </button>
-                                    </form>
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
-                                </div>
-                            </div>
+                                <button type="submit" class="btn btn-dark col-md-12"> Inscription </button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
                         </div>
                     </div>
-
+                </div>
+            </div>
         </div>
-        
-    </main>
-{% endblock %}
+</main>
+{% endblock %} {% block nav %}
+<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
 
-{% block nav %}
- <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');"> 
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <!-- ################################################################################################ -->
+            <div id="logo" class="fl_left">
+                <img src="images/oreologo.jpg" class="d-inline-block align-top" style="float: left" alt="">
+                <p style="float:right" class="d-inline-block align-top">
+                    <h1 style="float:right"><a href="{{path('landing')}}"> &nbsp Trouve ton Biscuit </a></h1>
+                </p>
 
-  <div class="wrapper row1">
-    <header id="header" class="hoc clear"> 
-      <!-- ################################################################################################ -->
-      <div id="logo" class="fl_left">
-        <img src="images/oreologo.jpg" class="d-inline-block align-top" style="float: left" alt="">
-            <p style="float:right" class="d-inline-block align-top">
-                <h1 style="float:right"><a href="{{path('landing')}}"> &nbsp Trouve ton Biscuit </a></h1>
-            </p>
-        
-      </div>
-      <!-- ################################################################################################ -->
-      <nav id="mainav" class="fl_right">
-        <ul class="clear">
-          <li><a href="{{path('landing')}}"> Connexion <i class="fas fa-sign-in-alt"></i> </a></li>
-          {# <li class="active"><a class="drop" href="#">Pages</a>
-            <ul>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li class="active"><a href="{{path('membre_list')}}">Liste</a></li>
-              <li><a href="{{path('membre_show')}}">Show</a></li>
-              <li><a href="{{path('prive_profil')}}">Profil</a></li>
-              <li><a href="{{path('prive_messagerie')}}">Messagerie</a></li>
-              <li><a href="{{path('admin_config')}}">Font Icons</a></li>
-              <li><a href="{{path('admin_membres')}}">Font Icons</a></li>
-            </ul>
-          </li>
-          <li><a class="drop" href="#">Dropdown</a>
-            <ul>
-              <li><a href="#">Level 2</a></li>
-              <li><a class="drop" href="#">Level 2 + Drop</a>
-                <ul>
-                  <li><a href="#">Mes biscuits favoris</a></li>
-                  <li><a href="#">Les mauvais biscuits</a></li>
-                  <li><a href="#">Level 3</a></li>
+            </div>
+            <!-- ################################################################################################ -->
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li><a href="{{path('landing')}}"> Connexion <i class="fas fa-sign-in-alt"></i> </a></li>
+                    {#
+                    <li class="active"><a class="drop" href="#">Pages</a>
+                        <ul>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li class="active"><a href="{{path('membre_list')}}">Liste</a></li>
+                            <li><a href="{{path('membre_show')}}">Show</a></li>
+                            <li><a href="{{path('prive_profil')}}">Profil</a></li>
+                            <li><a href="{{path('prive_messagerie')}}">Messagerie</a></li>
+                            <li><a href="{{path('admin_config')}}">Font Icons</a></li>
+                            <li><a href="{{path('admin_membres')}}">Font Icons</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="drop" href="#">Dropdown</a>
+                        <ul>
+                            <li><a href="#">Level 2</a></li>
+                            <li><a class="drop" href="#">Level 2 + Drop</a>
+                                <ul>
+                                    <li><a href="#">Mes biscuits favoris</a></li>
+                                    <li><a href="#">Les mauvais biscuits</a></li>
+                                    <li><a href="#">Level 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Level 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Link Text</a></li>
+                    <li><a href="#">Link Text</a></li>
+                    <li><a href="#">Link Text</a></li>
+                    <li><a href="#">Long Link Text</a></li> #}
                 </ul>
-              </li>
-              <li><a href="#">Level 2</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Link Text</a></li>
-          <li><a href="#">Link Text</a></li>
-          <li><a href="#">Link Text</a></li>
-          <li><a href="#">Long Link Text</a></li> #}
-        </ul>
-      </nav>
-      <!-- ################################################################################################ -->
-    </header>
-  </div>
+            </nav>
+            <!-- ################################################################################################ -->
+        </header>
+    </div>
 
-{% endblock %}
+    {% endblock %}
