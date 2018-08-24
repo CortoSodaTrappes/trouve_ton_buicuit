@@ -8,19 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File;
-// use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-// use Symfony\Component\Form\Extension\Core\Type\EmailType;
-// use Symfony\Component\Form\Extension\Core\Type\FileType;
-// use Symfony\Component\Form\Extension\Core\Type\DateType;
-// use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
 use App\Form\NewEditMembreType;
 use App\Form\PresentationType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
-use App\Entity\Messagerie;
-// use App\Entity\Presentations;
-// use App\Entity\Recherches;
+// use App\Entity\Messagerie;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -145,21 +138,6 @@ dump($membres);
     // Ctrl pour afficher les détails d'un membre
     public function testShow(Membres $membre): Response
     {
-        // $presentations = $membre->getPresentations()->getValues() ;
-        // $recherches = $membre->getRecherches()->getValues();
-
-        // if(isset($presentations[0])){
-        //     $presentation = $presentations[0]->getAllElement();
-        // }else{
-        //     $presentation = $presentations ;
-        // }
-
-        // if(isset($recherches[0])){
-        //     $recherche = $recherches[0]->getAllElement();
-        // }else{
-        //     $recherche = $recherches ;
-        // }
-
             $datetime1 = $membre->getNaissance();
             $datetime2 = new \DateTime();
             $interval = $datetime1->diff($datetime2);
@@ -167,8 +145,6 @@ dump($membres);
 
         return $this->render('tests/show.html.twig', array(
             'membre' => $membre, 
-            // 'presentation'=>$presentation, 
-            // 'recherche'=>$recherche,
             'age'=>$age)
         );
     }

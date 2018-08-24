@@ -196,7 +196,7 @@ test_delete:
 
 test_newmessage:
     path: /test/newmessage/{id}
-    controller: App\Controller\MessagerieController::testNew 
+    controller: App\Controller\MessagesController::testNew 
 
 test_showmessage:
     path: /test/showmessage/{id}

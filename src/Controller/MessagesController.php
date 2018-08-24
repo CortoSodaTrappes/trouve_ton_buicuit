@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Repository\MembresRepository;
@@ -9,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Membres;
-use App\Entity\Messagerie;
 use App\Entity\Messages;
 
 
@@ -21,19 +19,15 @@ class MessagesController extends Controller
         $expediteur = $this->getUser();
         $destinataire =$membresRepository->find($request->get('id')) ;
 
+        $date = new \DateTime();
         if($request->getMethod()=="POST"){
             $messagesManager = $this->getDoctrine()->getManager();
 
-            $message = new Messagerie();
-            $message->setIdExpediteur($expediteur);
-            // $message->setIdExpediteur($membresRepository->find($request->get("expediteur")));
-            $message->setIdDestinataire($destinataire);
-            // $message->setIdExpediteur($request->get("expediteur"));
-            // $message->setIdDestinataire($request->get("destinataire"));
-            $message->setDate();
-            $message->setCreated();
+            $message = new Messages();
+            $message->setExpediteur($expediteur);
+            $message->setDestinataire($destinataire);
             $message->setTitre($request->get("titre"));
-            $message->setMessage($request->get("message"));
+            $message->setTexte($request->get("message"));
             
             try{
                 $messagesManager->persist($message);
@@ -51,12 +45,8 @@ class MessagesController extends Controller
     }
 
     public function testShow(Messages $message){
-        // Apparemment, en passant un id en argument sf4 s'arrange 
-        // pour que show() reçoive un objet Membre complet.
         $correspondant=array();
         $user = $this->getUser() ;
-        dump($user->getId());
-        dump($message->getExpediteur()->getId());
 
         if($user->getId() == $message->getDestinataire()->getId()){
             $correspondant['expediteur'] = $message->getExpediteur() ;            
@@ -85,7 +75,6 @@ class MessagesController extends Controller
 
     public function testMessagerie(Request $request){
 
-
         $msgRepository = $this->getDoctrine()->getRepository(Messages::class);
         $user = $this->getUser() ;
 
@@ -96,25 +85,19 @@ class MessagesController extends Controller
         // Membre est expéditeur
         $msgDest = $msgRepository->findBy(['expediteur' => $user]) ;
 
-
-        // $user = $this->getUser() ;
         $messages_recus = $this
             ->getDoctrine()
-            ->getRepository(Messagerie::class)
-            ->findBy(['id_destinataire' => $user->getId()],['date' => 'ASC']);
+            ->getRepository(Messages::class)
+            ->findBy(['destinataire' => $user->getId()],['date' => 'ASC']);
             
             $messages_envoyes = $this
             ->getDoctrine()
-            ->getRepository(Messagerie::class)
-            ->findBy(['id_expediteur' => $user->getId()],['date' => 'ASC']);
+            ->getRepository(Messages::class)
+            ->findBy(['expediteur' => $user->getId()],['date' => 'ASC']);
             
-        
-        // look for multiple Product objects matching the name, ordered by price
-
         return $this->render('tests/messagerie.html.twig', 
         ['messages_recus' => $msgExp, 'messages_envoyes' => $msgDest]);
     }
-
 
     public function testGetMessage(){
         return false;

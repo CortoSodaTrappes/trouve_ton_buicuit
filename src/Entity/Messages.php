@@ -54,7 +54,7 @@ class Messages
     public function setTitre(string $titre): self
     {
         $this->titre = $titre;
-
+        $this->setDate();
         return $this;
     }
 
@@ -75,9 +75,9 @@ class Messages
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(): self
     {
-        $this->date = $date;
+        $this->date = new \DateTime();
 
         return $this;
     }
