@@ -1,20 +1,21 @@
-{% extends "front.html.twig" %} 
+{% extends "front.html.twig" %}
+
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{asset('css/profil.css')}}"> 
-{% endblock %} 
+{{ parent() }}
+<link rel="stylesheet" href="{{asset('css/profil.css')}}">
+{% endblock %}
+
+
 
 {% block main %}
 <body>
-
 <section class="profil">
     <div class="barre-top">
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
                     <div id="show-main-image">
-                        {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                        <img  style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
+                        <img  style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
                         
                     </div>
                 </div>
@@ -27,55 +28,11 @@
                         <!-- MODIF PSEUDO -->
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
-                                <h4>{{app.user.pseudo}}</h4>
+                                <h4>{{membre.pseudo}}</h4>
                             </div>
                         </div>
                         <!-- MODIF PHRASE-COURTE -->
-                        {# <div id="phrase_change" class="phase-courte margins-top-barre">
-                            <div class="icons-inline-p">
-                                <p id="phase-courte"><a class="help" href="#">{{app.user.punchline}}</p><span class="airhelp">Modifier la phrase d'accroche</span><i id="icone-phrase" class="fas fa-pen"></i></a>
-                            </div>   
-                            <div id="phrase_cotainer_change"><!-- la même -->
-                                <div class="margins-modif">
-                                    <input class="input-direct" type="text" id="phrase_val"><button type="submit" id="save_phrase">Sauvegarder</button>
-                                
 
-    <section class="profil">
-        <div class="barre-top">
-            <div class="profil-barre-top container">
-                <section class="profil-block-top-marge row">
-                    <div class="profil-photos col-4">
-                        <div id="show-main-image">
-                            {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-                            <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
-
-                        </div>
-                    </div>
-                    {#
-                    <!-- Button trigger modal -->
-
-                    <!-- FIN MODAL -->#}
-
-                    <div class="profil-main-information col-8">
-                        <!-- MODIFICATION on click -->
-
-                        <div class="modif-direct">
-                            <!-- MODIF PSEUDO -->
-                            <div id="status_change" class="margins-top-barre">
-                                <div class="icons-inline">
-                                    <h4>{{membre.pseudo}}</h4>
-                                </div>
-                            </div>
-
-
-
-
-
-                                </div>
-
-                            </div>
-
-                        </div> #}
                         <!-- AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
@@ -84,30 +41,53 @@
                             </div>
                             
                         </div> 
-
-                            <!-- MODIF VILLE -->
-                            <div id="ville_change" class="margins-top-barre">
-                                <div class="icons-inline-p">
-                                    <p><i class="fas fa-map-marker-alt"></i> {{membre.ville}}</p>
-                                </div>
-
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p><i class="fas fa-map-marker-alt"></i> {{membre.ville}}</p>
                             </div>
                         </div>
-                        <!--  END MODIFICATION on click -->
-                        {% if membre.id == app.user.id %}
-                            <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_messagerie',{id:membre.id})}}">Modifier mon profil</a></button> 
-                        {% else %}
-                            <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_newmessage',{id:membre.id})}}">Envoyer un message</a></button>
-                        {% endif %}
-                    
                     </div>
-
-            </div>
-
+                <!--  END MODIFICATION on click -->
+                    {% if membre.id == app.user.id %}
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:membre.id})}}">Modifier mon profil</a></button>        
+                    {% else %}   
+                     
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_newmessage',{id:membre.id})}}">Envoyer un message</a></button>
+                    {% endif %}   
+                    </div>
+                </div>
             </section>
         </div>
-        </div>
+    </div>
+    
+    
+ <!-- ZONE HOBBY AND FORMULAIRES -->   
+       
+    <div class="dating-profile">
+        <div class="barre-bas">
+            <div class="container">
+        
+                <section class="dating-profil-main row">
+        <!-- ZONE HOBBY --> 
+                    <div class="dating-profil-banner-hobby col-4">
+                        <div id="description-hobby" class="description">
 
+                            <form method="post" enctype="multipart/form-data">
+                            <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
+                            <!-- Form Name -->
+                                <h2>Je cherche</h2>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
+                                    <div class="col-md-9">
+                                    {{membre.jeveux}}
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {# </form> #}
+                        </div>
+                    </div>
 
         <!-- ZONE INFORMATION FORMULAIRE -->          
                     <div class="dating-profil-formulaires col-8">
@@ -127,8 +107,7 @@
                                         <div class="col-md-8">
                                         {{membre.naissance.format('Y-m-d')}}
                                             <div id="date-naissance">                     
-                                                {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #}
-                                                {# <input type="date" id="naissance" name="naissance" value="26-03-1966"> #}
+
                                             </div>
                                         </div>
                                     </div>
@@ -137,16 +116,7 @@
                                         <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
                                         <div class="col-md-8">
                                         {{membre.jesuis}}
-                                            {# <select id="jesuis" name="jesuis" class="form-control">
-                                            
-                                                {% for option in optionspersonnes %}
-                                                    {% if option == app.user.jesuis %}
-                                                        <option value="{{option}}" selected>{{option}}</option>
-                                                    {% else %}
-                                                        <option value="{{option}}">{{option}}</option>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </select> #}
+
                                         </div>
                                     </div>
 
@@ -175,261 +145,174 @@
                                         </div>
                                     </div>
 
-        <!-- ZONE HOBBY AND FORMULAIRES -->
 
-        <div class="dating-profile">
-            <div class="barre-bas">
-                <div class="container">
+                                    
 
-                    <section class="dating-profil-main row">
-                        <!-- ZONE HOBBY -->
-                        <div class="dating-profil-banner-hobby col-4">
-                            <div id="description-hobby" class="description">
-
-                                <form method="post" enctype="multipart/form-data">
-                                    <fieldset class="form-horizontal dating-profile" id="padding-hobby">
-                                        <!-- Form Name -->
-                                        <h2>Je cherche</h2>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
-                                            <div class="col-md-9">
-                                                {{membre.jeveux}}
-
-                                            </div>
-                                        </div>
-                                    </fieldset>
+                                </fieldset>
                                     {# </form> #}
-
+                                
+                                
                             </div>
-                        </div>
 
-                        <!-- ZONE INFORMATION FORMULAIRE -->
-                        <div class="dating-profil-formulaires col-8">
-                            <div class="formulaire">
-                                <!-- DESCRIPTION TEXTE-->
-                                <div class="description padding-formulaires">
+                            <!-- PERSONALITE -->
+                            <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
 
-                                    {#
-                                    <form> #}
-                                        <fieldset class="form-horizontal">
+                                    <!-- Form Name -->
+                                    <h2>Ma personnalité</h2>
 
+                                    <!-- Relation -->
+                                    <div class="form-group row">
+                                        <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
+                                        <div class="col-md-8">
+                                        {{membre.TypeRelation}}
 
-                                            <!-- Form Name -->
-                                            <h2>Ma description</h2>
-                                            <!-- Date naissance -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="jesuis">Date de naissance: </label>
-                                                <div class="col-md-8">
-                                                    {{membre.naissance.format('Y-m-d')}}
-                                                    <div id="date-naissance">
-                                                        {# <textarea class="form-control" id="Ma description" name="Ma description">{{app.user.description}}</textarea> #} {# <input type="date" id="naissance" name="naissance" value="26-03-1966"> #}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- JE SUIS -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
-                                                <div class="col-md-8">
-                                                    {{membre.jesuis}}
-
-                                                </div>
-                                            </div>
-
-
-
-                                            <!-- Punchline -->
-                                            <div class="form-group row">
-                                                <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma devise : </label>
-                                                <div class="col-md-8" id="description-punchline">
-                                                    <i class="fas fa-quote-right"></i> {{membre.punchline}} <i class="fas fa-quote-right"></i> {# <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline"
-                                                        name="punchline" value="{{app.user.punchline}}"> #}
-                                                </div>
-
-                                            </div>
-
-
-
-                                            <!-- Description longue -->
-                                            <div class="form-group row">
-                                                <label id="label-description-longue-show" class="col-md-4 control-label" for="punchline">Ma personalité et mon partenaire ideal : </label>
-                                                <div class="col-md-8" id="description-longue">
-                                                    <i class="fas fa-quote-right"></i> {{membre.description}} <i class="fas fa-quote-right"></i> {# <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !"
-                                                        class="form-control" id="description" name="description">{{app.user.description}}</textarea> #}
-
-                                                </div>
-                                            </div>
-
-
-
-
-                                        </fieldset>
-                                        {# </form> #}
-
-
-                                </div>
-
-                                <!-- PERSONALITE -->
-                                <div class="description padding-formulaires">
-                                    {#
-                                    <form> #}
-                                        <fieldset class="form-horizontal">
-
-                                            <!-- Form Name -->
-                                            <h2>Ma personnalité</h2>
-
-                                            <!-- Relation -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
-                                                <div class="col-md-8">
-                                                    {{membre.TypeRelation}}
-
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Enfants -->
-
-
-                                        </fieldset>
-
-                                        <!-- Caractere -->
-                                        <div class="form-group row">
-                                            <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
-                                            <div class="col-md-8">
-                                                {{membre.TraitCaractere}}
-
-                                            </div>
                                         </div>
-
-                                        </fieldset>
-                                        {# </form> #}
+                                    </div>
 
 
-                                </div>
 
-                                <!-- PHYSIQUE -->
-                                <div class="description padding-formulaires">
-                                    {#
-                                    <form> #}
-                                        <fieldset class="form-horizontal">
+                                </fieldset>
 
-                                            <!-- Form Name -->
-                                            <h2>Mon physique</h2>
-
-                                            <!-- Taille -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
-                                                <div class="col-md-8">
-                                                    {{membre.taille}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Ma silhouette : -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
-                                                <div class="col-md-8">
-                                                    {{membre.silhouette}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Mes yeux : -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
-                                                <div class="col-md-8">
-                                                    {{membre.yeux}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Mes cheveux :  -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
-                                                <div class="col-md-8">
-                                                    {{membre.cheveux}}
-
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-                                        {# </form> #}
-
+                                <!-- Caractere -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
+                                <div class="col-md-8">
+                                {{membre.TraitCaractere}}
 
                                 </div>
-                                <!-- MON MODE DE VIE -->
-                                <div class="description padding-formulaires">
-                                    {#
-                                    <form> #}
-                                        <fieldset class="form-horizontal">
-
-                                            <!-- Form Name -->
-                                            <h2>Mon mode de vie</h2>
-
-                                            <!-- Mon statut marital : -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
-                                                <div class="col-md-8">
-                                                    {{membre.statut}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Je fume :  -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
-                                                <div class="col-md-8">
-                                                    {{membre.fume}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Je mange :  -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
-                                                <div class="col-md-8">
-                                                    {{membre.mange}}
-                                                </div>
-                                            </div>
-
-                                            <!-- Mes animaux de compagnie :   -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
-                                                <div class="col-md-8">
-                                                    {{membre.animaux}}
-
-                                                </div>
-                                            </div>
-
-                                            <!-- Mes hobbies :   -->
-                                            <div class="form-group row">
-                                                <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
-                                                <div class="col-md-8">
-                                                    {{membre.hobby}}
-
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-
                                 </div>
-                                </form>
 
-
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
                             </div>
+                            
+            <!-- PHYSIQUE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
 
-                            <div>
-                    </section>
-                    </div>
-                    </div>
+                                <!-- Form Name -->
+                                <h2>Mon physique</h2>
 
-                </div>
+                                <!-- Taille -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
+                                <div class="col-md-8">
+                                {{membre.taille}}
 
+                                </div>
+                                </div>
 
+                                <!-- Ma silhouette : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
+                                <div class="col-md-8">
+                                {{membre.silhouette}}
 
+                                </div>
+                                </div>
 
-    </section>
+                                <!-- Mes yeux : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
+                                <div class="col-md-8">
+                                {{membre.yeux}}
+
+                                </div>
+                                </div>
+
+                                <!-- Mes cheveux :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
+                                <div class="col-md-8">
+                                {{membre.cheveux}}
+
+                                </div>
+                                </div>
+
+                                </fieldset>
+                            {# </form> #}
+                            
+                            
+                            </div>
+            <!-- MON MODE DE VIE -->
+                        <div class="description padding-formulaires">
+                            {# <form> #}
+                                <fieldset class="form-horizontal">
+
+                                <!-- Form Name -->
+                                <h2>Mon mode de vie</h2>
+
+                                <!-- Mon statut marital : -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
+                                <div class="col-md-8">
+                                {{membre.statut}}
+
+                                </div>
+                                </div> 
+
+                                <!-- Je fume :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
+                                <div class="col-md-8">
+                                {{membre.fume}}
+
+                                </div>
+                                </div>
+
+                            <!-- Je mange :  -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
+                                <div class="col-md-8">
+                                {{membre.mange}}
+
+                                </div>
+                                </div>
+
+                                <!-- Mes animaux de compagnie :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
+                                <div class="col-md-8">
+                                 {{membre.animaux}}
+
+                                </div>
+                                </div>
+
+                                <!-- Mes hobbies :   -->
+                                <div class="form-group row">
+                                <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
+                                <div class="col-md-8">
+                                {{membre.hobby}}
+
+                                </div>
+                                </div>
+
+                                </fieldset>
+                                
+                                </div>
+                            </form>
+                        
+                        
+                        </div>
+                    
+                    <div>
+                 </section>
+           </div>
+        </div>
+
+    </div>
+
+    
+
+    
+</section>
 
 </body>
 
 {% endblock %}
+

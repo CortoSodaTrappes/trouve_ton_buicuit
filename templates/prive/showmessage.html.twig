@@ -1,0 +1,41 @@
+{% extends "front.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="css/messagerie.css">
+{% endblock %}
+
+{% block main %}
+
+<body>
+    <div class="container">
+        <section>
+        <h4>Messagerie de <a href="Reflecsive"></h4>
+
+        <h1 class="connecteentantque">Connecté en tant que <a href="{{path('membre_show',{id:app.user.id})}}">{{app.user.pseudo}}(Deconexion)</a></h1>
+
+
+
+            <div class="tableau-reçus">
+                <table class="table">
+                    <thead class="thead-dark">
+                        {% if correspondant == "expediteur" %}
+                            <tr class="row"><th class="col-12"><em>{{message.titre}}</em> <small>de</small> {{message.expediteur.pseudo}}</th></tr>
+                        {% elseif correspondant == "destinataire" %}
+                            <tr class="row"><th class="col-12"><em>{{message.titre}}</em> <small>à </small>{{message.destinataire.pseudo}}</th></tr>
+                        {% else %}
+                            <tr class="row"><th class="col-12"><em>{{message.titre}}</em> <small>de</small> {{message.expediteur.pseudo}} <small>à</small> {{message.destinataire.pseudo}}</th></tr>
+                        {% endif %}
+                    </thead>
+                    <tbody>
+                        <tr class="row"><td class="col-12">{{message.date|date("d/m/Y H:i:s")}}</td></tr>
+                        <tr class="row"><td class="col-12">{{message.texte}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="{{path('prive_messagerie')}}">Retour à la liste des messages.</a></p>
+           
+
+        <section>
+    </div>
+</body>
+{% endblock %}

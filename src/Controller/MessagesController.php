@@ -15,7 +15,6 @@ class MessagesController extends Controller
 {
     public function newmessage(Request $request): Response
     {
-
         $membresRepository = $this->getDoctrine()->getRepository(Membres::class);
         $expediteur = $this->getUser();
         $destinataire =$membresRepository->find($request->get('id')) ;
@@ -37,7 +36,7 @@ class MessagesController extends Controller
                 return $this->render('prive/newmessage.html.twig', ['error' => "Request fail"]);
             }
             // redirection
-            return $this->redirectToRoute('membre_list');
+            return $this->redirectToRoute('prive_messagerie');
         }
 
         // Liste de tous les membres
@@ -45,7 +44,7 @@ class MessagesController extends Controller
             ['destinataire' => $destinataire]);
     }
 
-    public function messagelist(Request $request){
+    public function messageliste(Request $request){
 
         $msgRepository = $this->getDoctrine()->getRepository(Messages::class);
         $user = $this->getUser() ;
@@ -62,7 +61,7 @@ class MessagesController extends Controller
             ->getRepository(Messages::class)
             ->findBy(['destinataire' => $user->getId()],['date' => 'ASC']);
             
-            $messages_envoyes = $this
+        $messages_envoyes = $this
             ->getDoctrine()
             ->getRepository(Messages::class)
             ->findBy(['expediteur' => $user->getId()],['date' => 'ASC']);
@@ -70,12 +69,29 @@ class MessagesController extends Controller
 
         dump($messages_recus);
         dump($messages_envoyes);
-        
+
         return $this->render('prive/messagerieliste.html.twig', 
         ['messages_recus' => $msgExp, 'messages_envoyes' => $msgDest]);
     }
 
+    public function msgShow(Messages $message){
+        $correspondant=array();
+        $user = $this->getUser() ;
 
+        if($user->getId() == $message->getDestinataire()->getId()){
+            $correspondant['expediteur'] = $message->getExpediteur() ;            
+            $correspondant['destinataire'] = $user->getPseudo() ;
+            $correspondant['correspondant'] = "expediteur" ;
+        }elseif($user->getId() == $message->getExpediteur()->getId()){
+            $correspondant['expediteur'] = $user->getPseudo() ;            
+            $correspondant['destinataire'] = $message->getDestinataire() ;            
+            $correspondant['correspondant'] = "destinataire" ;
+        }else{
+            // die("Problème de lecture du message.");
+        }
+        dump($message);
+        return $this->render('prive/showmessage.html.twig', ['message' => $message, 'correspondant'=>$correspondant]);
+    }
 
 
     public function testNew(Request $request): Response
@@ -135,7 +151,6 @@ class MessagesController extends Controller
 
         return $this->render('tests/allmessages.html.twig', 
         ['messages' => $messages]);            
-
     }
 
     public function testMessagerie(Request $request){

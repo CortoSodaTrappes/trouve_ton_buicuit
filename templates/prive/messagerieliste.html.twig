@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block main %}
-
 <body>
     <div class="container">
         <section>
@@ -13,54 +12,48 @@
 
         <h1 class="connecteentantque">Connecté en tant que <a href="{{path('membre_show',{id:app.user.id})}}">{{app.user.pseudo}}(Deconexion)</a></h1>
 
-        <h1>Messages reçus (nombre) </h1>
+        <h1>Messages reçus {{ messages_recus|length }}</h1>
 
             <div class="tableau-reçus">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr class="row">
-                        <th class="col-1" scope="col">Date</th>
-                        <th class="col-3" scope="col">Expediteur</th>
+                        <th class="col-2" scope="col">Date</th>
+                        <th class="col-2" scope="col">Expediteur</th>
                         <th class="col-8" scope="col">Message<a href="/message"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="row">
-                        <th class="col-1" scope="row">1</th>
-                        <td class="col-3">Mark</td>
-                        <td class="col-8">Otto</td>
+                        {% for mr in messages_recus %}
+                        <td class="col-2" scope="row">{{ mr.date|date("d/m/Y") }}</td>
+                        <td class="col-2">{{mr.destinataire.pseudo}}</td>
+                        <td class="col-8"><a href="{{path('prive_showmessage', {id:mr.id})}}">{{mr.titre}}</a></td>
+                        {% endfor %}
                         </tr>
-                      <tr class="row">
-                        <th class="col-1" scope="row">1</th>
-                        <td class="col-3">Mark</td>
-                        <td class="col-8">Otto</td>
-                        </tr>
-                    
                     </tbody>
                     </table>
             </div>
            
-        <h1>Messages envoyés (nombre)</h1>
+        <h1>Messages envoyés {{ messages_envoyes|length }}</h1>
             <div class="tableau-envoyes">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr class="row">
-                        <th class="col-1" scope="col">Date</th>
-                        <th class="col-3" scope="col">Destinataire</th>
+                        <th class="col-2" scope="col">Date</th>
+                        <th class="col-2" scope="col">Destinataire</th>
                         <th class="col-8" scope="col">Message</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="row">
-                        <th class="col-1" scope="row">1</th>
-                        <td class="col-3">Mark</td>
-                        <td class="col-8">Otto</td>
+                        {% for me in messages_envoyes %}
+                        <td class="col-2" scope="row">{{ me.date|date("d/m/Y") }}</td>
+                        <td class="col-2">{{me.destinataire.pseudo}}</td>
+                        <td class="col-8"><a href="{{path('prive_showmessage', {id:me.id})}}">{{me.titre}}</a></td>
+                        {% endfor %}
                         </tr>
-                        <tr class="row">
-                        <th class="col-1" scope="row">2</th>
-                        <td class="col-3">Jacob</td>
-                        <td class="col-8">Thornton</td>
-                        </tr>
+
                         <tr>
                     </tbody>
                  </table>

@@ -140,6 +140,36 @@ dump($membres);
     }
 
 
+
+    ///////////////////////////////// CONTROLEURS DE MAIL /////////////////////////////////////////////////////
+
+
+
+    public function showMail(Request $request, \Swift_Mailer $mailer){
+        $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
+        if($request->get("send")){
+            if($request->get("exampleFormControlSelect2") == "all"){ // boucle envoi mail à tous les users
+                for($i =0; $i < count($membres); $i++)
+                    $this->sendMail($membres[$i]->getEmail(), $mailer);
+            }else{
+                $this->sendMail($request->get("exampleFormControlSelect2"), $mailer);
+            }
+        }
+        return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
+    }
+
+    private function sendMail($adresse, $mailer){
+        $message = (new \Swift_Message('Bonjour'))
+        ->setFrom('WF3biscuits@gmail.com')
+        ->setTo($adresse)
+        ->setBody(
+            $this->renderView('admin3/mail/send.html.twig'),
+            'text/html'
+        );
+        $mailer->send($message);
+    }
+
+
     ///////////////////////////////// CONTROLEURS DE TEST /////////////////////////////////////////////////////
 
 

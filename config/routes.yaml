@@ -37,11 +37,16 @@ prive_profil:
 
 prive_messagerie:
     path: /messagerie
-    controller: App\Controller\MessagesController::messagelist
+    controller: App\Controller\MessagesController::messageliste
 
 prive_newmessage:
     path: /newmessage/{id}
     controller: App\Controller\MessagesController::newmessage
+
+prive_showmessage:
+    path: /showmessage/{id}
+    controller: App\Controller\MessagesController::msgShow
+
 
 
 # admin_config:
