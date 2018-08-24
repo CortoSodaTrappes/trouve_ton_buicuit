@@ -4,7 +4,7 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Users Management</a>
+            <a href="{{ path('admin3_index') }}">To admin</a>
         </li>
 
     </ol>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="mr-5">Permissions</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="{{ path('permissions') }}">Manage permissions</a>
+                <a class="card-footer text-white clearfix small z-1" href="{{ path('admin3_permissions') }}">Manage permissions</a>
                 <span class="float-right"></span>
             </a>
         </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="mr-5">Moderate users</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="{{ path('moderation') }}">Manage User Moderation</a>
+            <a class="card-footer text-white clearfix small z-1" href="{{ path('admin3_moderation') }}">Manage User Moderation</a>
             <span class="float-right"></span>
         </a>
     </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="mr-5">send mailing</div>
         </div>
-        <a class="card-footer text-white clearfix small z-1" href="{{ path('send_mailing') }}">Manage mailing</a>
+        <a class="card-footer text-white clearfix small z-1" href="{{ path('admin3_send_mailing') }}">Manage mailings</a>
         <span class="float-right"></span>
     </a>
 </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="mr-5">private messages</div>
     </div>
-    <a class="card-footer text-white clearfix small z-1" href="{{ path('send_mailing') }}">Manage private messages</a>
+    <a class="card-footer text-white clearfix small z-1" href="{{ path('admin3_private_messages') }}">Manage private messages</a>
     <span class="float-right"></span>
 </a>
 </div>

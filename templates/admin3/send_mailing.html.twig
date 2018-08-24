@@ -1,77 +1,26 @@
-{% extends 'admin.html.twig' %}
-{% block container_fluid %}
+{% extends 'admin.html.twig' %} {% block container_fluid %}
 
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <div>
-            <li class="breadcrumb-item self-center">
-                <h1 class="text-center mt-3 font-weight-light">Messages recept</h1>
-            </li>
-        </div>
 
-    </ol>
+<h1 class="text-center mt-3 font-weight-light">Send Mailing</h1>
 
-    <table class="table table-bordered table-clear">
+<form method="post" class="col-md-6 offset-md-3">
 
-        <thead>
-            <tr>
-
-                <th scope="col">Title</th>
-                <th scope="col">Message</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <ol class="breadcrumb">
-
-        <li class="breadcrumb-item self-center">
-            <h1 class="text-center mt-3 font-weight-light">Messages sent</h1>
-        </li>
-
-    </ol>
-
-    <table class="table table-bordered table-clear">
-
-        <thead>
-            <tr>
-
-                <th scope="col">Title</th>
-                <th scope="col">Message</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <div class="users list">
-
-        <a class="navbar-brand mr-1" href="users list.html">Users list</a>
-
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Select User</label>
+        <select class="form-control" id="exampleFormControlSelect2" name="exampleFormControlSelect2">
+        <option value="all">All users</option>
+        {% for membre in membres %}
+        <option value="{{ membre.email}}">{{membre.email}}</option>
+        {% endfor %}
+    </select>
     </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Write mail</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <input type="submit" value="send" name="send" class="btn btn-dark col-md-12 mb-4"></button>
+    
+</form>
+
 {% endblock %}

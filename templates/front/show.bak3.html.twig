@@ -1,4 +1,3 @@
-{# {% extends "prive.html.twig" %} #}
 {% extends "front.html.twig" %}
 
 {# Mes id doievent être uniques
@@ -10,43 +9,7 @@ Les noms des id et les name doivent être attachés. #}
 <link rel="stylesheet" href="{{asset('css/profil.css')}}">
 {% endblock %}
 
-{% block title %} Trouve ton Biscuit {% endblock %}
 
-{% block nav %}
-{{ parent() }}
- {# <div class="bgded overlay" style="background-image:url('/images/demo/backgrounds/01.png');"> 
-
-  <div class="wrapper row1">
-    <header id="header" class="hoc clear"> 
-      <!-- ################################################################################################ -->
-      <div id="logo" class="fl_left">
-        <img src="images/oreologo.jpg" class="d-inline-block align-top" style="float: left" alt="">
-            <p style="float:right" class="d-inline-block align-top">
-                <h1 style="float:right"><a href="{{path('landing')}}"> &nbsp Trouve ton Biscuit </a></h1>
-            </p>
-        
-      </div>
-      <!-- ################################################################################################ -->
-      {# <nav id="mainav" class="fl_right">
-        <ul class="clear">
-
-            <li><a href="{{path('membre_list')}}"> Home <i class="fas fa-home"></i></a></li>
-            <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
-                <ul>
-                    <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil <i class="fas fa-user-alt"></i></a></li>
-                    <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
-                    <li><a href="{{path('admin3_index')}}">Administration <i class="fas fa-lock"></i></a></li>
-                    <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
-                </ul>
-            </li>
-          
-        </ul>
-      </nav> #}
-      <!-- ################################################################################################ -->
-    {# </header>
-  </div>#}
-
-{% endblock %}  
 
 {% block main %}
 <body>
@@ -55,19 +18,16 @@ Les noms des id et les name doivent être attachés. #}
         <div class="profil-barre-top container">
             <section class="profil-block-top-marge row">
                 <div class="profil-photos col-4">
-                    {# <div>
-
+                    <div>
                         {# <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil"> #}
-
-                        {# <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil"> #}
+                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{app.user.mainimage}}" alt="image-profil">
                         
-                    {# </div> #}
-                {# </div> #} 
-                    <!-- Button trigger modal -->
+                    </div>
+                </div>
+                    {# <!-- Button trigger modal -->
                     <div class="profil-main-img" id="img_profil" alt="image-profil">
                         <button type="button" id="bouton-photo-profil" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        <img style="width: 100%" class="profil-main-img" src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="image-profil">
-
+                        <img class="profil-main-img" src="{{asset('images/femme1a.jpg')}}" alt="image-profil">
                     </div>
                         </button>
                 </div>
@@ -84,10 +44,10 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                                 <div class="modal-body">
 
-                                    <form method="POST" id="toto" enctype="multipart/form-data">
+                                    <form>
                                         <div class="form-group">
                                             <label for="mainimage">Ajouter une image</label>
-                                            <input style="width: 100%" type="file" name="mainimage" class="form-control-file" id="mainimage">
+                                            <input type="file" name="mainimage" class="form-control-file" id="mainimage">
                                         </div>
                                         <button type="submit" class="btn btn-dark col-md-12"> Enregistrer </button>
                                     </form>
@@ -99,48 +59,18 @@ Les noms des id et les name doivent être attachés. #}
                             </div>
                         </div>
                     </div>
-                    <!-- FIN MODAL -->
+                    <!-- FIN MODAL --> #}
 
                 <div class="profil-main-information col-8">
-
                 <!-- MODIFICATION on click -->
                         
                     <div class="modif-direct">
                         <!-- MODIF PSEUDO -->
-
-                        <form method="POST" id="roro" enctype="multipart/form-data">
-
                         <div id="status_change" class="margins-top-barre">
                             <div class="icons-inline">
-                                <h4 id="pseudo"><a class="help" href="#">{{app.user.pseudo}}</h4><span class="airhelp">Modifier le pseudo</span><i id="icone-pseudo" class="fas fa-pen"></i></a>
-                                {# <input type="text" id="pseudo" name="pseudo" placeholder=" ">
-                                <input type="submit" id="submitpseudo" name="submitpseudo"> #}
-                            </div>
-                            <div id="status_cotainer_change">
-                                <div class="margins-modif">
-                                    <input name="status_val" class="input-direct" type="text" id="status_val">
-                                    <button type="submit" id="save_status">Sauvegarder</button>
-                                
-                                </div>
+                                <h4>{{app.user.pseudo}}</h4>
                             </div>
                         </div>
-
-                        <!-- MODIF VILLE -->
-                        <div id="ville_change" class="margins-top-barre">
-                            <div class="icons-inline-p">
-                                <p id="ville"><a class="help" href="#"><i class="fas fa-map-marker-alt"></i> {{app.user.ville}}</p>
-                                <span class="airhelp">Modifier la ville</span><i id="icone-ville" class="fas fa-pen"></i></a>
-                            </div>
-                            <div id="ville_cotainer_change">
-                                <div class="margins-modif">
-                                    <input name="ville_val"class="input-direct" type="text" id="ville_val">
-                                    <button type="submit" id="save_ville">Sauvegarder</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <form>
-
                         <!-- MODIF PHRASE-COURTE -->
                         {# <div id="phrase_change" class="phase-courte margins-top-barre">
                             <div class="icons-inline-p">
@@ -153,23 +83,30 @@ Les noms des id et les name doivent être attachés. #}
                                 </div>
                             </div>
                         </div> #}
-                        <!-- AGE -->
+                        <!-- MODIF AGE -->
                         <div class="margins-top-barre">
                             <div class="icons-inline-p">
-                                <p><i class="fas fa-certificate"></i> {{age}}</p>
+                                <p >AGE</p>
                             </div>
                             
                         </div> 
-                        
+                        <!-- MODIF VILLE -->
+                        <div id="ville_change" class="margins-top-barre">
+                            <div class="icons-inline-p">
+                                <p>Ville : {{app.user.ville}}</p>
+                            </div>
+                        </div>
+                    </div>
                 <!--  END MODIFICATION on click -->
-                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('membre_show',{id:app.user.id})}}">Voir mon profil</a></button>        
+                        <p>ce button n'est pas vicible si le user regarde les profils des autres users</p>
+                        <button type="button" class="btn btn-primary" id="bottonprofil"><a href="{{ path('prive_profil',{id:app.user.id})}}">Modifier mon profil</a></button>        
                                 
                     </div>
                 </div>
             </section>
         </div>
     </div>
-
+    
     
  <!-- ZONE HOBBY AND FORMULAIRES -->   
        
@@ -182,14 +119,15 @@ Les noms des id et les name doivent être attachés. #}
                     <div class="dating-profil-banner-hobby col-4">
                         <div id="description-hobby" class="description">
 
-                            <form method="post" id="">
+                            <form method="post" enctype="multipart/form-data">
                             <fieldset  class="form-horizontal dating-profile" id="padding-hobby">
                             <!-- Form Name -->
                                 <h2>Je cherche</h2>
                                 <div class="form-group row">
                                     <label class="col-md-3 control-label" for="jeveux" id="description-text-hobby">Choisir</label>
                                     <div class="col-md-9">
-                                        <select id="jeveux" name="jeveux" class="form-control">
+                                    {{membre.jeveux}}
+                                        {# <select id="jeveux" name="jeveux" class="form-control">
 
                                             {% for option in optionspersonnes %}
                                                 {% if option == app.user.jeveux %}
@@ -197,7 +135,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                             {# <option value="1">Homme</option>
                                             <option value="2">Femme</option>
@@ -206,9 +144,11 @@ Les noms des id et les name doivent être attachés. #}
                                             <option value="3">Couple hh</option>
                                             <option value="3">Couple ff</option>
                                             <option value="3">Orgie</option> #}
-                                        </select>
+                                        {# </select> #}
                                     </div>
-                                </fieldset>
+                                </div>
+                            </fieldset>
+                            {# </form> #}
                         </div>
                     </div>
 
@@ -217,6 +157,8 @@ Les noms des id et les name doivent être attachés. #}
                         <div class="formulaire">
             <!-- DESCRIPTION TEXTE-->
                             <div class="description padding-formulaires">
+
+                                {# <form> #}
                                 <fieldset class="form-horizontal">
                                 
 
@@ -232,13 +174,13 @@ Les noms des id et les name doivent être attachés. #}
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- JE SUIS -->
                                     <div class="form-group row">
                                         <label class="col-md-3 control-label" for="jesuis">Je suis : </label>
                                         <div class="col-md-9">
-
-                                            <select id="jesuis" name="jesuis" class="form-control">
+                                        {{membre.jesuis}}
+                                            {# <select id="jesuis" name="jesuis" class="form-control">
+                                            
                                                 {% for option in optionspersonnes %}
                                                     {% if option == app.user.jesuis %}
                                                         <option value="{{option}}" selected>{{option}}</option>
@@ -246,51 +188,25 @@ Les noms des id et les name doivent être attachés. #}
                                                         <option value="{{option}}">{{option}}</option>
                                                     {% endif %}
                                                 {% endfor %}
-                                            </select>
-
+                                            </select> #}
                                         </div>
                                     </div>
-
-
-                                    <!-- Je suis -->
-                                {# <div class="form-group row">
-                                    <label class="col-md-4 control-label" for="jesuis">Je suis : </label>
-                                    <div class="col-md-8">
-                                        <select id="jesuis" name="jesuis" class="form-control">
-                                            {% for option in optionspersonnes %}
-                                                {% if option == app.user.jesuis %}
-                                                    <option value="{{option}}" selected>{{option}}</option>
-                                                {% else %}
-                                                    <option value="{{option}}">{{option}}</option>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div> #}
-                                    <!-- Textarea -->
-                                    {# <div class="form-group" >
-                                        <div class="col-md-12" id="description-longue">                     
-                                            <textarea class="form-control" id="description" name="description">{{app.user.description}}</textarea>
-
-                                        </div>
-                                    </div> #}
 
                                     
                                     
                                     <!-- Punchline -->
-                                    <div class="form-group row" >
-                                        <label class="col-md-12 control-label" for="punchline">Ma devise : </label>
-                                        <div class="col-md-12" id="description-punchline-modification">                     
+                                    <div class="form-group" >
+                                        <div class="col-md-12" id="description-punchline">                     
                                             <input placeholder="Écrivez une phase qui vous definit le plus!" type="text" class="form-control" id="punchline" name="punchline" value="{{app.user.punchline}}">
                                             
                                         </div>
                                         
                                     </div>
 
-                                                                
+                            
+                                    
                                     <!-- Description longue -->
                                     <div class="form-group" >
-                                        <label id="label-description-longue" class="col-md-12 control-label" for="punchline">Decrivez votre personalité et votre partenaire ideal : </label>
                                         <div class="col-md-12" id="description-longue" >                     
                                             <textarea placeholder="Écrivez ce qui vous plait ! Soyez sincère, originale, drôle, touchante, mystérieuse... Surtout, soyez vous-même !" class="form-control" id="description" name="description">{{app.user.description}}</textarea>
                                             
@@ -318,8 +234,9 @@ Les noms des id et les name doivent être attachés. #}
                                     <div class="form-group row">
                                         <label class="col-md-4 control-label" for="selectrelations">Prêt à m'engager dans une relation ?</label>
                                         <div class="col-md-8">
+                                        {{membre.TypeRelation}}
 
-                                            <select id="selectrelations" name="selectrelations" class="form-control">
+                                            {# <select id="selectrelations" name="selectrelations" class="form-control">
 
                                             {% for option in optionsrelations %}
                                                 {% if option == app.user.TypeRelation %}
@@ -327,14 +244,14 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                             {# <option value="1">{{app.user.TypeRelation}}</option>
                                             <option value="2">Durable</option>
                                             <option value="3" selected>Sans prise de tête</option>
                                             <option value="4">Sex-friend</option>
                                             <option value="5">One Shot</option> #}
-                                            </select>
+                                            {# </select> #}
                                         </div>
                                     </div>
 
@@ -356,7 +273,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectcaracteres">Trait de caractère le plus marqué :</label>
                                 <div class="col-md-8">
-                                    <select id="selectcaracteres" name="selectcaracteres" class="form-control">
+                                {{membre.TraitCaractere}}
+                                    {# <select id="selectcaracteres" name="selectcaracteres" class="form-control">
 
                                             {% for option in optionscaracteres %}
                                                 {% if option == app.user.TraitCaractere %}
@@ -364,7 +282,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                         {# <option value="1">Aventureux</option>
                                         <option value="2">Calme</option>
@@ -372,8 +290,7 @@ Les noms des id et les name doivent être attachés. #}
                                         <option value="4">Drôle</option>
                                         <option value="5">Timide</option>
                                         <option value="6">Extravagant</option> #}
-
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -395,7 +312,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selecttaille">Ma taille :</label>
                                 <div class="col-md-8">
-                                    <select id="selecttaille" name="selecttaille" class="form-control">
+                                {{membre.taille}}
+                                    {# <select id="selecttaille" name="selecttaille" class="form-control">
 
                                             {% for option in optionstailles %}
                                                 {% if option == app.user.taille %}
@@ -403,14 +321,14 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.taille}}</option>
                                     <option value="1">140-160</option>
                                     <option value="2">160-170</option>
                                     <option value="3">170-180</option>
                                     <option value="3">180-190</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -418,7 +336,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectsilhouette">Ma silhouette :</label>
                                 <div class="col-md-8">
-                                    <select id="selectsilhouette" name="selectsilhouette" class="form-control">
+                                {{membre.silhouette}}
+                                    {# <select id="selectsilhouette" name="selectsilhouette" class="form-control">
 
                                             {% for option in optionssilhouettes %}
                                                 {% if option == app.user.silhouette %}
@@ -426,7 +345,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
 {# 
                                     <option value="1">{{app.user.silhouette}}</option>
@@ -436,7 +355,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">mince</option>
                                     <option value="3">quelques kilos en trop</option>
                                     <option value="3">ronde</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -444,7 +363,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectyeux">Mes yeux :</label>
                                 <div class="col-md-8">
-                                    <select id="selectyeux" name="selectyeux" class="form-control">
+                                {{membre.yeux}}
+                                    {# <select id="selectyeux" name="selectyeux" class="form-control">
                                     
 
                                             {% for option in optionsyeux %}
@@ -453,7 +373,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.yeux}}</option>
                                     <option value="1">marron</option>
@@ -461,7 +381,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">verts</option>
                                     <option value="3">noisettes</option>
                                     <option value="3">gris</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -469,7 +389,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectcheveux">Mes cheveux : </label>
                                 <div class="col-md-8">
-                                    <select id="selectcheveux" name="selectcheveux" class="form-control">
+                                {{membre.cheveux}}
+                                    {# <select id="selectcheveux" name="selectcheveux" class="form-control">
 
 
                                             {% for option in optionscheveux %}
@@ -478,7 +399,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
                                     {# <option value="1">{{app.user.cheveux}}</option>
                                     <option value="1">chatains</option>
@@ -487,7 +408,7 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="3">blancs</option>
                                     <option value="3">roux</option>
                                     <option value="3">autres</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -508,8 +429,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectstatut">Mon statut marital :</label>
                                 <div class="col-md-8">
-
-                                    <select id="selectstatut" name="selectstatut" class="form-control">
+                                {{membre.statut}}
+                                    {# <select id="selectstatut" name="selectstatut" class="form-control">
 
                                             {% for option in optionsstatut %}
                                                 {% if option == app.user.statut %}
@@ -518,12 +439,11 @@ Les noms des id et les name doivent être attachés. #}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
                                             {% endfor %}
-{# 
-                                        <option value="1">jamais marié</option>
+{#  #}
+                                        {# <option value="1">jamais marié</option>
                                         <option value="2">divorcé</option>
                                         <option value="3">veuve</option> #}
-
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div> 
 
@@ -531,14 +451,15 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectfume">Je fume : </label>
                                 <div class="col-md-8">
-                                    <select id="selectfume" name="selectfume" class="form-control">
+                                {{membre.fume}}
+                                    {# <select id="selectfume" name="selectfume" class="form-control"> #}
                                     {# <option value="1">{{app.user.fume}}</option>
                                     <option value="1">Un peu</option>
                                     <option value="1">Beaucoup</option>
                                     <option value="1">Enormement</option>
                                     <option value="2">Jamais</option> #}
 
-                                            {% for option in optionsfume %}
+                                            {# {% for option in optionsfume %}
                                                 {% if option == app.user.fume %}
                                                     <option value="{{option}}" selected>{{option}}</option>
                                                 {% else %}
@@ -546,7 +467,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% endif %}
                                             {% endfor %}
 
-                                    </select>
+                                    </select> #}
                                 </div>
                                 </div>
 
@@ -554,7 +475,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selectmange">Je mange : </label>
                                 <div class="col-md-8">
-                                    <select id="selectmange" name="selectmange" class="form-control">
+                                {{membre.mange}}
+                                    {# <select id="selectmange" name="selectmange" class="form-control">
 
 
                                             {% for option in optionsmange %}
@@ -563,7 +485,7 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
+                                            {% endfor %} #}
 
 
                                     {# <option value="1">{{app.user.mange}}</option>
@@ -571,17 +493,16 @@ Les noms des id et les name doivent être attachés. #}
                                     <option value="2">végétarien</option>
                                     <option value="3">hallal</option>
                                     <option value="3">casher</option> #}
-                                    </select>
+                                    {# </select> #}
                                 </div>
                                 </div>
 
                                 <!-- Mes animaux de compagnie :   -->
                                 <div class="form-group row">
-
                                 <label class="col-md-4 control-label" for="selectanimaux">Mes animaux de compagnie :  </label>
-
                                 <div class="col-md-8">
-                                    <select id="selectanimaux" name="selectanimaux" class="form-control">
+                                 {{membre.animaux}}
+                                    {# <select id="selectanimaux" name="selectanimaux" class="form-control">
 
                                             {% for option in optionsanimaux %}
                                                 {% if option == app.user.animaux %}
@@ -589,8 +510,15 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
-                                    </select>
+                                            {% endfor %} #}
+
+{# 
+                                    <option value="1">Chien</option>
+                                    <option value="2">Chat</option>
+                                    <option value="1">Oiseau</option>
+                                    <option value="2">Reptile</option>
+                                    <option value="2">Autre</option> #}
+                                    {# </select> #}
                                 </div>
                                 </div>
 
@@ -598,7 +526,8 @@ Les noms des id et les name doivent être attachés. #}
                                 <div class="form-group row">
                                 <label class="col-md-4 control-label" for="selecthobby">Mes centres d'intérêt :  </label>
                                 <div class="col-md-8">
-                                    <select id="selecthobby" name="selecthobby" class="form-control">
+                                {{membre.hobby}}
+                                    {# <select id="selecthobby" name="selecthobby" class="form-control">
 
                                             {% for option in optionshobby %}
                                                 {% if option == app.user.hobby %}
@@ -606,17 +535,20 @@ Les noms des id et les name doivent être attachés. #}
                                                 {% else %}
                                                     <option value="{{option}}">{{option}}</option>
                                                 {% endif %}
-                                            {% endfor %}
-                                    </select>
-                                </div>
-                                </div>
-                                </fieldset>
+                                            {% endfor %} #}
 
-                                <!-- Button -->
-                                <div class="form-group button-enregistrer">
-                                
-                                    <button id="submit" name="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                        {# <option value="1">Nature</option>
+                                        <option value="2">Arts</option>
+                                        <option value="2">Sport</option>
+                                        <option value="2">Voyages</option>
+                                        <option value="2">Musique</option>
+                                        <option value="2">Littérature</option> #}
+                                    {# </select> #}
                                 </div>
+                                </div>
+
+                                </fieldset>
+                                
                                 </div>
                             </form>
                         
@@ -627,147 +559,15 @@ Les noms des id et les name doivent être attachés. #}
                  </section>
            </div>
         </div>
+
     </div>
+
+    
+
     
 </section>
-
-<script>
-
-$(document).ready(function()
-{
-    ///////// PSEUDO
-    // open
-    $('#icone-pseudo').click(function(){
-        $('#status_val').val($('#pseudo').text());
-        $('#status_cotainer_change').show();
-        $('#pseudo').hide();
-        $('#icone-pseudo').hide();
-        
-        
-    });
-    
-    // save
-    $('#save_status').click(function(){
-        $('#pseudo').text($.trim($('#status_val').val()))
-        $('#status_cotainer_change').hide();
-        $('#pseudo').show();
-        $('#icone-pseudo').show();
-       
-    });
-})
-
-
-///////// PHRASE-COURTE
-{# $(document).ready(function()
-{
-    // open
-    $('#icone-phrase').click(function(){
-        $('#phrase_val').val($('#phrase-courte').text());
-        $('#phrase_cotainer_change').show();
-        $('#phrase-courte').hide();
-        $('#icone-phrase').hide();
-        
-        
-    });
-    
-    // save
-    
-    $('#save_phrase').click(function(){
-        $('#phrase-courte').text($.trim($('#phrase_val').val()))
-        $('#phrase_cotainer_change').hide();
-        $('#phrase-courte').show();
-        $('#icone-phrase').show();
-       
-    });
-    
-}) #}
-
-
-///////// AGE
-{# $(document).ready(function()
-{
-    // open
-    $('#icone-age').click(function(){
-        $('#age_val').val($('#age').text());
-        $('#age_cotainer_change').show();
-        $('#age').hide();
-        $('#icone-age').hide();
-        
-        
-    });
-    
-    // save
-    
-    $('#save_age').click(function(){
-        $('#age').text($.trim($('#age_val').val()))
-        $('#age_cotainer_change').hide();
-        $('#age').show();
-        $('#icone-age').show();
-       
-    });
-    
-}) #}
-
-
-
-///////// VILLE
-$(document).ready(function()
-{
-    // open
-    $('#icone-ville').click(function(){
-        $('#ville_val').val($('#ville').text());
-        $('#ville_cotainer_change').show();
-        $('#ville').hide();
-        $('#icone-ville').hide();
-        
-        
-    });
-    
-    // save
-    
-    $('#save_ville').click(function(){
-        $('#ville').text($.trim($('#ville_val').val()))
-        $('#ville_cotainer_change').hide();
-        $('#ville').show();
-        $('#icone-ville').show();
-       
-    });
-    
-})
-
-
-
-
-
-
-
-</script>
-
 
 </body>
 
 {% endblock %}
-
-
-{# {% block footer %}
-<div class="wrapper row4">
-  <footer id="footer" class="hoc clear">
-   <!-- ################################################################################################ -->
-    <div id="ctdetails" class="clear">
-      <ul class="nospace clear">
-        <li class="one_quarter">
-          <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong> Problème technique ?:</strong> support@domain.com</span></div>
-        </li>
-        <li class="one_quarter">
-          <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Du Lundi - Vendredi :</strong> 09.00am - 18.00pm</span></div>
-        </li>
-        <li>
-          <p> &copy; 2018 Trouve ton biscuit - Projet Alejandro,Margarita,Emmanuel,Emeline. </p>
-      </ul>
-
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
-</div>
-{% endblock %} #}
 

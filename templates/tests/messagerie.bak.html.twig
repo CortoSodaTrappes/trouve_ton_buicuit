@@ -18,7 +18,7 @@
         </caption>
         <tr>
             <th>Titre</th>
-            <th>id exp.</th>
+            <th>Expéditeur.</th>
             <th>Date</td>
         </tr>
 
@@ -27,7 +27,7 @@
                 <td>
                     <a href="{{path('test_showmessage', {id:msg.id}) }}">{{msg.titre}}</a>
                 </td>
-                <td>&nbsp;</td>
+                <td>{{msg.expediteur.pseudo}}</td>
                 <td>{{msg.date|date("d/m/Y H:i:s")}}</td>
             </tr>
             {# <td>{{msg.titre}}</td><td>{{msg.id_expediteur.id}}</td><td>{{msg.date|date("d/m/Y H:i:s")}}</td> #}
@@ -45,7 +45,7 @@
         </caption>
         <tr>
             <th>Titre</th>
-            <th>id exp.</th>
+            <th>Destinataire</th>
             <th>Date</td>
         </tr>
 
@@ -54,7 +54,7 @@
                 <td>
                     <a href="{{path('test_showmessage', {id:msg.id}) }}">{{msg.titre}}</a>
                 </td>
-                <td>&nbsp;</td>
+                <td>{{msg.destinataire.pseudo}}</td>
                 <td>{{msg.date|date("d/m/Y H:i:s")}}</td>
             </tr>
             {# <td>{{msg.titre}}</td><td>{{msg.id_expediteur.id}}</td><td>{{msg.date|date("d/m/Y H:i:s")}}</td> #}

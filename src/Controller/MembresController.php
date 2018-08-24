@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Repository\MembresRepository;
@@ -8,20 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File;
-// use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-// use Symfony\Component\Form\Extension\Core\Type\EmailType;
-// use Symfony\Component\Form\Extension\Core\Type\FileType;
-// use Symfony\Component\Form\Extension\Core\Type\DateType;
-// use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\LoginType;
 use App\Form\NewEditMembreType;
 use App\Form\PresentationType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
-use App\Entity\Presentations;
-use App\Entity\Recherches;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 
 class MembresController extends Controller
 {
@@ -33,53 +24,6 @@ class MembresController extends Controller
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
         $interval = $datetime1->diff($datetime2);
-        $age = $interval->format('%Y ans');
-
-        if($request->get('jeveux')){
-            $membre->setJeveux($request->get('jeveux'));
-            $membre->setPunchline($request->get('punchline'));
-            $membre->setJesuis($request->get('jesuis'));
-            $membre->setDescription($request->get('description'));
-    
-            if($request->get('naissance')!=""){
-                $datetime = new \DateTime($request->get('naissance'));
-                $membre->setNaissance($datetime);
-            }
-    
-            // $datetime1 = $membre->getNaissance();
-            // $datetime2 = new \DateTime();
-            // $interval = $datetime1->diff($datetime2);
-            // $age = $interval->format('%Y ans');
-
-            $membre->setTypeRelation($request->get('selectrelations'));
-            $membre->setTraitCaractere($request->get('selectcaracteres'));
-    
-            $membre->setTaille($request->get('selecttaille'));
-            $membre->setSilhouette($request->get('selectsilhouette'));
-            $membre->setYeux($request->get('selectyeux'));
-            $membre->setCheveux($request->get('selectcheveux'));
-            $membre->setFume($request->get('selectfume'));
-            $membre->setMange($request->get('selectmange'));
-            $membre->setAnimaux($request->get('selectanimaux'));
-            $membre->setHobby($request->get('selecthobby'));
-            $membre->setStatut($request->get('selectstatut'));
-            $entityManager->flush();
-        }
-
-
-        // Upload de l'une image
-        /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-        if($file = $request->files->get('mainimage')){
-            // $file = $request->get('mainimage')){
-            $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-            $file->move(
-                $this->getParameter('mainimages_directory'),
-                $fileName
-            );
-
-            $membre->setMainimage($fileName);
-            $entityManager->flush();
-        }
             
         // modification en direct PSEUDO
         
@@ -99,16 +43,45 @@ class MembresController extends Controller
         }
 
 
-        // Disparition du button "edition" profil
-
-        // if($id = $membre->getId();  
-        // {
-        // <div></div>
-        // }
-
+        $age = $interval->format('%Y ans');            
 
         if(!is_null($request->get("submit"))){
             try{
+                $membre->setJeveux($request->get('jeveux'));
+                $membre->setPunchline($request->get('punchline'));
+                $membre->setJesuis($request->get('jesuis'));
+                $membre->setDescription($request->get('description'));
+
+                if($request->get('naissance')!=""){
+                    $datetime = new \DateTime($request->get('naissance'));
+                    $membre->setNaissance($datetime);
+                }
+
+                $membre->setTypeRelation($request->get('selectrelations'));
+                $membre->setTraitCaractere($request->get('selectcaracteres'));
+
+                $membre->setTaille($request->get('selecttaille'));
+                $membre->setSilhouette($request->get('selectsilhouette'));
+                $membre->setYeux($request->get('selectyeux'));
+                $membre->setCheveux($request->get('selectcheveux'));
+                $membre->setFume($request->get('selectfume'));
+                $membre->setMange($request->get('selectmange'));
+                $membre->setAnimaux($request->get('selectanimaux'));
+                $membre->setHobby($request->get('selecthobby'));
+                $membre->setStatut($request->get('selectstatut'));
+
+                // Upload de l'une image
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                if($file = $request->files->get('mainimage')){
+                    $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                    $file->move(
+                        $this->getParameter('mainimages_directory'),
+                        $fileName
+                    );
+                    $membre->setMainimage($fileName);
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($membre);
                 $entityManager->flush();
                 // return $this->redirectToRoute('prive_profil', array('id' => $membre->getId()));
@@ -138,6 +111,10 @@ class MembresController extends Controller
     }
 
     public function profilShow(Membres $membre): Response{
+        $datetime1 = $membre->getNaissance();
+        $datetime2 = new \DateTime();
+        $interval = $datetime1->diff($datetime2);
+        $age = $interval->format('%Y ans');
 
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
@@ -145,7 +122,9 @@ class MembresController extends Controller
         $age = $interval->format('%Y ans');
 
         return $this->render('front/show.html.twig', array(
-            'membre' => $membre, 'age'=>$age)
+
+            'membre' => $membre,
+            'age' => $age)
         );
     }
 
@@ -158,7 +137,6 @@ dump($membres);
         return $this->render('front/list.html.twig', array(
             'membres' => $membres)
         );
-
     }
 
 
@@ -176,21 +154,6 @@ dump($membres);
     // Ctrl pour afficher les détails d'un membre
     public function testShow(Membres $membre): Response
     {
-        // $presentations = $membre->getPresentations()->getValues() ;
-        // $recherches = $membre->getRecherches()->getValues();
-
-        // if(isset($presentations[0])){
-        //     $presentation = $presentations[0]->getAllElement();
-        // }else{
-        //     $presentation = $presentations ;
-        // }
-
-        // if(isset($recherches[0])){
-        //     $recherche = $recherches[0]->getAllElement();
-        // }else{
-        //     $recherche = $recherches ;
-        // }
-
             $datetime1 = $membre->getNaissance();
             $datetime2 = new \DateTime();
             $interval = $datetime1->diff($datetime2);
@@ -198,8 +161,6 @@ dump($membres);
 
         return $this->render('tests/show.html.twig', array(
             'membre' => $membre, 
-            // 'presentation'=>$presentation, 
-            // 'recherche'=>$recherche,
             'age'=>$age)
         );
     }

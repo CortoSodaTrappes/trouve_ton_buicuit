@@ -29,8 +29,8 @@
             <li class="active"><a class="drop" href="#"> Bonjour {{app.user.pseudo}} <i class="far fa-user"></i></a> 
                 <ul>
                     <li><a href="{{path('prive_profil', {id:app.user.id})}}">Profil <i class="fas fa-user-alt"></i></a></li>
-
                     <li><a href="{{path('prive_messagerie')}}">Messagerie <i class="far fa-envelope"></i></a></li>
+                    <li><a href="{{path('admin3_index')}}">Administration <i class="fas fa-lock"></i></a></li>
                     <li><a href="{{path('logout')}}">  Déconnexion <i class="fas fa-times-circle"></i></a> </li> 
                 </ul>
             </li>
@@ -63,9 +63,9 @@
         <li>
           <article>
             {% if membre.mainimage is null %}
-              <figure><a href="{{path('membre_show', {'id': membre.id})}}"><img src="images/spacer.gif" alt=""></a>
+              <figure><a href="{{path('membre_show', {id: membre.id})}}"><img src="images/spacer.gif" alt=""></a>
             {% else %}
-              <figure><a href="{{path('membre_show', {'id': membre.id})}}">
+              <figure><a href="{{path('membre_show', {id: membre.id})}}">
                 <img src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="">
               </a>
             {% endif %}
@@ -81,6 +81,7 @@
 
       <ul>
         {# <li>
+
           <article>
             <figure><a href="#"><img src="images/{{app.user.mainimage}}" alt=""></a>
               <figcaption>
@@ -157,7 +158,9 @@
           </article>
         </li>
 
+
       </ul>
+
     </section>
     <!-- ####################################################################################################### -->
     <!-- ####################################################################################################### -->

@@ -5,11 +5,14 @@
 {% endblock %}
 
 {% block main %}
+
 <body>
     <div class="container">
         <section>
         <h4>Messagerie de <a href="Reflecsive"></h4>
-        <h1 class="connecteentantque">Connecté en tant que <a href="Reflecsive"></a>(Deconexion)</h1>
+
+        <h1 class="connecteentantque">Connecté en tant que <a href="{{path('membre_show',{id:app.user.id})}}">{{app.user.pseudo}}(Deconexion)</a></h1>
+
         <h1>Messages reçus (nombre) </h1>
 
             <div class="tableau-reçus">

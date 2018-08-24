@@ -37,7 +37,25 @@ class LandingController extends Controller {
             $membre->setPseudo($request->get("pseudo"));
             $membre->setEmail($request->get("email"));
             $membre->setPassword( $encoder->encodePassword($membre, $request->get("password")) );
-            $membre->setmainimage($request->get("mainimage"));
+
+
+            // $membre->setmainimage($request->get("mainimage"));
+            // Upload d'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                // $file = $request->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+
+                $membre->setMainimage($fileName);
+            }
+
+
+
+
             $datedefaut = new \DateTime("2000-01-15");
             $membre->setnaissance($datedefaut);
             $membre->setville("Paris");

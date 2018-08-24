@@ -37,21 +37,6 @@ class Membres implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Recherches", mappedBy="id_membre")
-     */
-    private $recherches;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Presentations", mappedBy="id_membre")
-     */
-    private $presentations;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Messagerie", mappedBy="id_expediteur", orphanRemoval=true)
-     */
-    private $messageries;
-
-    /**
      * @ORM\Column(type="string", length=48)
      */
     private $role;
@@ -149,11 +134,16 @@ class Membres implements UserInterface
      */
     private $statut;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="destinataire")
+     */
+    private $messages;
+
     public function __construct()
     {
         $this->recherches = new ArrayCollection();
         $this->presentations = new ArrayCollection();
-        $this->messageries = new ArrayCollection();
+        //$this->messageries = new ArrayCollection();
 
         $this->setTraitCaractere("Non renseigné");
         $this->setTypeRelation("Non renseigné");
@@ -165,6 +155,7 @@ class Membres implements UserInterface
         $this->setMange("Non renseigné");
         $this->setSilhouette("Non renseigné");
         $this->setYeux("Non renseigné");
+        $this->messages = new ArrayCollection();
     }
 
     public function getId()
@@ -204,99 +195,6 @@ class Membres implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Recherches[]
-     */
-    public function getRecherches(): Collection
-    {
-        return $this->recherches;
-    }
-
-    public function addRecherche(Recherches $recherche): self
-    {
-        if (!$this->recherches->contains($recherche)) {
-            $this->recherches[] = $recherche;
-            $recherche->setIdMembre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecherche(Recherches $recherche): self
-    {
-        if ($this->recherches->contains($recherche)) {
-            $this->recherches->removeElement($recherche);
-            // set the owning side to null (unless already changed)
-            if ($recherche->getIdMembre() === $this) {
-                $recherche->setIdMembre(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Presentations[]
-     */
-    public function getPresentations(): Collection
-    {
-        return $this->presentations;
-    }
-
-    public function addPresentation(Presentations $presentation): self
-    {
-        if (!$this->presentations->contains($presentation)) {
-            $this->presentations[] = $presentation;
-            $presentation->setIdMembre($this);
-        }
-
-        return $this;
-    }
-
-    public function removePresentation(Presentations $presentation): self
-    {
-        if ($this->presentations->contains($presentation)) {
-            $this->presentations->removeElement($presentation);
-            // set the owning side to null (unless already changed)
-            if ($presentation->getIdMembre() === $this) {
-                $presentation->setIdMembre(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Messagerie[]
-     */
-    public function getMessageries(): Collection
-    {
-        return $this->messageries;
-    }
-
-    public function addMessagery(Messagerie $messagery): self
-    {
-        if (!$this->messageries->contains($messagery)) {
-            $this->messageries[] = $messagery;
-            $messagery->setIdExpediteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessagery(Messagerie $messagery): self
-    {
-        if ($this->messageries->contains($messagery)) {
-            $this->messageries->removeElement($messagery);
-            // set the owning side to null (unless already changed)
-            if ($messagery->getIdExpediteur() === $this) {
-                $messagery->setIdExpediteur(null);
-            }
-        }
 
         return $this;
     }
@@ -543,9 +441,34 @@ class Membres implements UserInterface
         return $this;
     }
 
-    public function f(): self
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
     {
-        $this->statut = $statut;
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setDestinataire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getDestinataire() === $this) {
+                $message->setDestinataire(null);
+            }
+        }
 
         return $this;
     }
