@@ -70,8 +70,30 @@
 
     <main style='min-height:60vh;'>
 
-    <h1 class="text-center mt-4"> Messagerie </h1>
-    <P>Ici les messages envoyés et reçus.</p>
+    <h1 class="text-center mt-4"> Nouveau message </h1>
+
+      <form method="post" id="form_messagerie" action="" class="col-md-3 offset-md-5">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="de">De {{app.user.pseudo}} </label>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="pour">Pour {{destinataire.pseudo}} </label>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="titre">Titre</label>
+          <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre du message">
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="texte">Message</label>
+          <textarea class="form-control" name="texte" id="texte" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark col-md-6">Envoyer</button>
+      </div>
+      </form>
 
     </main>
 {% endblock %}

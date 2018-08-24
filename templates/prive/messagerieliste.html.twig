@@ -1,0 +1,71 @@
+{% extends "front.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="css/messagerie.css">
+{% endblock %}
+
+{% block main %}
+{{dump(messages_recus)}}
+{{dump(messages_envoyes)}}
+<body>
+    <div class="container">
+        <section>
+        <h4>Messagerie de <a href="Reflecsive"></h4>
+        <h1 class="connecteentantque">Connecté en tant que <a href="{{path('membre_show',{id:app.user.id})}}">{{app.user.pseudo}}(Deconexion)</a></h1>
+        <h1>Messages reçus (nombre) </h1>
+
+            <div class="tableau-reçus">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr class="row">
+                        <th class="col-1" scope="col">Date</th>
+                        <th class="col-3" scope="col">Expediteur</th>
+                        <th class="col-8" scope="col">Message<a href="/message"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row">
+                        <th class="col-1" scope="row">1</th>
+                        <td class="col-3">Mark</td>
+                        <td class="col-8">Otto</td>
+                        </tr>
+                      <tr class="row">
+                        <th class="col-1" scope="row">1</th>
+                        <td class="col-3">Mark</td>
+                        <td class="col-8">Otto</td>
+                        </tr>
+                    
+                    </tbody>
+                    </table>
+            </div>
+           
+        <h1>Messages envoyés (nombre)</h1>
+            <div class="tableau-envoyes">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr class="row">
+                        <th class="col-1" scope="col">Date</th>
+                        <th class="col-3" scope="col">Destinataire</th>
+                        <th class="col-8" scope="col">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row">
+                        <th class="col-1" scope="row">1</th>
+                        <td class="col-3">Mark</td>
+                        <td class="col-8">Otto</td>
+                        </tr>
+                        <tr class="row">
+                        <th class="col-1" scope="row">2</th>
+                        <td class="col-3">Jacob</td>
+                        <td class="col-8">Thornton</td>
+                        </tr>
+                        <tr>
+                    </tbody>
+                 </table>
+            </div>
+
+        <section>
+    </div>
+</body>
+{% endblock %}

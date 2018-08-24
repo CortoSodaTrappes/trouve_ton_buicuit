@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Repository\MembresRepository;
@@ -13,9 +12,7 @@ use App\Form\NewEditMembreType;
 use App\Form\PresentationType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Membres;
-// use App\Entity\Messagerie;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 
 class MembresController extends Controller
 {
@@ -25,60 +22,44 @@ class MembresController extends Controller
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
         $interval = $datetime1->diff($datetime2);
-        $age = $interval->format('%Y ans');
-
-        $membre->setJeveux($request->get('jeveux'));
-        $membre->setPunchline($request->get('punchline'));
-        $membre->setJesuis($request->get('jesuis'));
-        $membre->setDescription($request->get('description'));
-
-        if($request->get('naissance')!=""){
-            $datetime = new \DateTime($request->get('naissance'));
-            $membre->setNaissance($datetime);
-        }
-
-        $membre->setTypeRelation($request->get('selectrelations'));
-        $membre->setTraitCaractere($request->get('selectcaracteres'));
-
-        $membre->setTaille($request->get('selecttaille'));
-        $membre->setSilhouette($request->get('selectsilhouette'));
-        $membre->setYeux($request->get('selectyeux'));
-        $membre->setCheveux($request->get('selectcheveux'));
-        $membre->setFume($request->get('selectfume'));
-        $membre->setMange($request->get('selectmange'));
-        $membre->setAnimaux($request->get('selectanimaux'));
-        $membre->setHobby($request->get('selecthobby'));
-        $membre->setStatut($request->get('selectstatut'));
-
-            // Upload de l'une image
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            if($file = $request->files->get('mainimage')){
-                // $file = $request->get('mainimage')){
-                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-                $file->move(
-                    $this->getParameter('mainimages_directory'),
-                    $fileName
-                );
-
-                $membre->setMainimage($fileName);
-            }
-            
-
-
-            // // Upload de l'une image
-            // /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            // if($file = $request->files->get('mainimage')){
-            //     // $file = $request->get('mainimage')){
-            //     $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-            //     $file->move(
-            //         $this->getParameter('mainimages_directory'),
-            //         $fileName
-            //     );
-            //     $membre->setMainimage($fileName);
-            // }
+        $age = $interval->format('%Y ans');            
 
         if(!is_null($request->get("submit"))){
             try{
+                $membre->setJeveux($request->get('jeveux'));
+                $membre->setPunchline($request->get('punchline'));
+                $membre->setJesuis($request->get('jesuis'));
+                $membre->setDescription($request->get('description'));
+
+                if($request->get('naissance')!=""){
+                    $datetime = new \DateTime($request->get('naissance'));
+                    $membre->setNaissance($datetime);
+                }
+
+                $membre->setTypeRelation($request->get('selectrelations'));
+                $membre->setTraitCaractere($request->get('selectcaracteres'));
+
+                $membre->setTaille($request->get('selecttaille'));
+                $membre->setSilhouette($request->get('selectsilhouette'));
+                $membre->setYeux($request->get('selectyeux'));
+                $membre->setCheveux($request->get('selectcheveux'));
+                $membre->setFume($request->get('selectfume'));
+                $membre->setMange($request->get('selectmange'));
+                $membre->setAnimaux($request->get('selectanimaux'));
+                $membre->setHobby($request->get('selecthobby'));
+                $membre->setStatut($request->get('selectstatut'));
+
+                // Upload de l'une image
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                if($file = $request->files->get('mainimage')){
+                    $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                    $file->move(
+                        $this->getParameter('mainimages_directory'),
+                        $fileName
+                    );
+                    $membre->setMainimage($fileName);
+                }
+
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($membre);
                 $entityManager->flush();
@@ -106,7 +87,6 @@ class MembresController extends Controller
     }
 
     public function profilShow(Membres $membre): Response{
-
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
         $interval = $datetime1->diff($datetime2);

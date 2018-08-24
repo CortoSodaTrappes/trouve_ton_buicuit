@@ -63,15 +63,15 @@
         <li>
           <article>
             {% if membre.mainimage is null %}
-              <figure><a href="{{path('membre_show', {'id': membre.id})}}"><img src="images/spacer.gif" alt=""></a>
+              <figure><a href="{{path('membre_show', {id: membre.id})}}"><img src="images/spacer.gif" alt=""></a>
             {% else %}
-              <figure><a href="{{path('membre_show', {'id': membre.id})}}">
+              <figure><a href="{{path('membre_show', {id: membre.id})}}">
                 <img src="{{asset('uploads/images/')}}{{membre.mainimage}}" alt="">
               </a>
             {% endif %}
               <figcaption>
                 <header>{{membre.pseudo}}</header>
-                <p class="more"><a href="{{path('membre_show', {'id': membre.id})}}">View Full Details &raquo;</a></p>
+                <p class="more"><a href="{{path('membre_show', {id: membre.id})}}">View Full Details &raquo;</a></p>
               </figcaption>
             </figure>            
           </article>

@@ -13,6 +13,71 @@ use App\Entity\Messages;
 
 class MessagesController extends Controller
 {
+    public function newmessage(Request $request): Response
+    {
+
+        $membresRepository = $this->getDoctrine()->getRepository(Membres::class);
+        $expediteur = $this->getUser();
+        $destinataire =$membresRepository->find($request->get('id')) ;
+
+        $date = new \DateTime();
+        if($request->getMethod()=="POST"){
+            $messagesManager = $this->getDoctrine()->getManager();
+
+            $message = new Messages();
+            $message->setExpediteur($expediteur);
+            $message->setDestinataire($destinataire);
+            $message->setTitre($request->get("titre"));
+            $message->setTexte($request->get("texte"));
+            
+            try{
+                $messagesManager->persist($message);
+                $messagesManager->flush();
+            }catch(\Doctrine\ORM\EntityNotFoundException $e){
+                return $this->render('prive/newmessage.html.twig', ['error' => "Request fail"]);
+            }
+            // redirection
+            return $this->redirectToRoute('membre_list');
+        }
+
+        // Liste de tous les membres
+        return $this->render('prive/newmessage.html.twig', 
+            ['destinataire' => $destinataire]);
+    }
+
+    public function messagelist(Request $request){
+
+        $msgRepository = $this->getDoctrine()->getRepository(Messages::class);
+        $user = $this->getUser() ;
+
+        // Membre est destinataire
+        $msgExp = $msgRepository->findBy(['destinataire' => $user]) ;
+
+
+        // Membre est expéditeur
+        $msgDest = $msgRepository->findBy(['expediteur' => $user]) ;
+
+        $messages_recus = $this
+            ->getDoctrine()
+            ->getRepository(Messages::class)
+            ->findBy(['destinataire' => $user->getId()],['date' => 'ASC']);
+            
+            $messages_envoyes = $this
+            ->getDoctrine()
+            ->getRepository(Messages::class)
+            ->findBy(['expediteur' => $user->getId()],['date' => 'ASC']);
+            
+
+        dump($messages_recus);
+        dump($messages_envoyes);
+        
+        return $this->render('prive/messagerieliste.html.twig', 
+        ['messages_recus' => $msgExp, 'messages_envoyes' => $msgDest]);
+    }
+
+
+
+
     public function testNew(Request $request): Response
     {
         $membresRepository = $this->getDoctrine()->getRepository(Membres::class);
