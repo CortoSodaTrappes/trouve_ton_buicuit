@@ -55,6 +55,10 @@ class MessagerieController extends Controller
         return $this->render('tests/showmessage.html.twig', ['message' => $message]);
     }
 
+
+
+
+
     public function showMail(Request $request){
         
         $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
@@ -62,54 +66,72 @@ class MessagerieController extends Controller
 
         if($request->get("send")){
             if($request->get("exampleFormControlSelect2") == "all"){
-                // for($i =0; $i < count($membres); $i++)
-                // Envoi du mail au utilisateur
+                for($i =0; $i < count($membres); $i++)
+                $message = (new \Swift_Message('Bonjour'))
+                ->setFrom('manu337810@gmail.com')
+                ->setTo('wf3biscuit@gmail.com')
+                ->setBody(
+                    $this->renderView(
+                
+                    'admin3/send_mailing.html.twig',
+                     array('membres' => $membres)
+                    ),
+                    'text/html'
+                );
+           
             }else{
-                // Envoi à $request->get("exampleFormControlSelect2")
+                    
+                $request->get("exampleFormControlSelect2");
             }
         }
         return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
     }
 
+ 
+
+
+
+
     
-    // public function testAllMessagerie(){
-    //     // Method for testing purposes
-    //     try{
-    //         $messages = $this->getDoctrine()->getRepository(Messagerie::class)->findAll();
-    //         // $messages = $repository->findAll();
-    //     }catch(Exception $e){
-    //         return $this->render('tests/messagerie.html.twig', 
-    //         ['messages' => $e]);
-    //     }
-    //     return $this->render('tests/messagerie.html.twig', 
-    //     ['messages' => $messages]);            
+    public function testAllMessagerie(){
+        // Method for testing purposes
+        try{
+            $messages = $this->getDoctrine()->getRepository(Messagerie::class)->findAll();
+            // $messages = $repository->findAll();
+        }catch(Exception $e){
+            return $this->render('tests/messagerie.html.twig', 
+            ['messages' => $e]);
+        }
+        return $this->render('tests/messagerie.html.twig', 
+        ['messages' => $messages]);            
 
-    // }
+    }
 
-    // public function testMessagerie(Request $request){
-    //     // $messagesManager = $this->getDoctrine()->getManager();
 
-    //     $user = $this->getUser() ;
-    //     $messages_recus = $this
-    //         ->getDoctrine()
-    //         ->getRepository(Messagerie::class)
-    //         ->findBy(['id_destinataire' => $user->getId()],['date' => 'ASC']);
+    public function testMessagerie(Request $request){
+        // $messagesManager = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser() ;
+        $messages_recus = $this
+            ->getDoctrine()
+            ->getRepository(Messagerie::class)
+            ->findBy(['id_destinataire' => $user->getId()],['date' => 'ASC']);
             
-    //         $messages_envoyes = $this
-    //         ->getDoctrine()
-    //         ->getRepository(Messagerie::class)
-    //         ->findBy(['id_expediteur' => $user->getId()],['date' => 'ASC']);
+            $messages_envoyes = $this
+            ->getDoctrine()
+            ->getRepository(Messagerie::class)
+            ->findBy(['id_expediteur' => $user->getId()],['date' => 'ASC']);
             
         
-    //     // look for multiple Product objects matching the name, ordered by price
+        // look for multiple Product objects matching the name, ordered by price
 
-    //     return $this->render('tests/messagerie.html.twig', 
-    //     ['messages_recus' => $messages_recus, 'messages_envoyes' => $messages_envoyes]);
-    // }
+        return $this->render('tests/messagerie.html.twig', 
+        ['messages_recus' => $messages_recus, 'messages_envoyes' => $messages_envoyes]);
+    }
 
 
-    // public function testGetMessage(){
-    //     return false;
-    // }
+    public function testGetMessage(){
+        return false;
+    }
 
 }
