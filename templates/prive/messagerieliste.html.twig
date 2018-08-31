@@ -10,7 +10,7 @@
         <section>
         <h4>Messagerie de <a href="Reflecsive"></h4>
 
-        <h1 class="connecteentantque">Connecté en tant que <a href="{{path('membre_show',{id:app.user.id})}}">{{app.user.pseudo}}(Deconexion)</a></h1>
+        <h1 class="connecteentantque">Connecté en tant que <a href="{{path('logout')}}">{{app.user.pseudo}}(Deconexion)</a></h1>
 
         <h1>Messages reçus {{ messages_recus|length }}</h1>
 

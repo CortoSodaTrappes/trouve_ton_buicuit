@@ -59,3 +59,38 @@ Licence: <a href="https://www.os-templates.com/template-terms">Website Template 
     padding: 0;
     font-size: 14px;
 }
+
+
+/* @media all and (max-width: 1402px) {
+    #portfolio {
+        padding: 0 200px;
+    }
+}
+
+@media all and (max-width: 1024px) {
+    #portfolio {
+        padding: 0 135px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    #portfolio {
+        padding: 0px 125px;
+    }
+}
+
+@media all and (max-width: 414px) {
+    #portfolio {
+        padding: 50px 95px;
+    }
+}
+*/
+
+
+/* ANIMATION */
+
+.grow:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}

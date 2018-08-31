@@ -54,8 +54,6 @@ class LandingController extends Controller {
             }
 
 
-
-
             $datedefaut = new \DateTime("2000-01-15");
             $membre->setnaissance($datedefaut);
             $membre->setville("Paris");

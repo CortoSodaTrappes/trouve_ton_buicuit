@@ -458,3 +458,10 @@ label {
 .fa-map-marker-alt {
     opacity: 0.5;
 }
+
+/// RESPONSIVE
+@media all and (max-width: 990px) {
+    #bottonprofil {
+        margin-bottom: 5%;
+    }
+}

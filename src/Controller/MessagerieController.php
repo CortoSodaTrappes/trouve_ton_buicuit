@@ -40,7 +40,7 @@ class MessagerieController extends Controller
             ),
             'text/html'
         );
-        $mailer->send($message);
+        $mailer->send($message); 
     }
 
 

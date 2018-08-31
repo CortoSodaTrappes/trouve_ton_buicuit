@@ -23,27 +23,39 @@ class MembresController extends Controller
         
         $datetime1 = $membre->getNaissance();
         $datetime2 = new \DateTime();
-        $interval = $datetime1->diff($datetime2);
+        $interval = $datetime2->diff($datetime1);
             
         // modification en direct PSEUDO
-        
          if($request->get('status_val')){
-                
-        $membre->setPseudo($request->get('status_val'));
-        $entityManager->persist($membre);
-        $entityManager->flush();
+            $membre->setPseudo($request->get('status_val'));
+            $entityManager->persist($membre);
+            $entityManager->flush();
         }
 
         // modification en direct VILLE
          if($request->get('ville_val')){
-                
-        $membre->setVille($request->get('ville_val'));
-        $entityManager->persist($membre);
-        $entityManager->flush();
+            $membre->setVille($request->get('ville_val'));
+            $entityManager->persist($membre);
+            $entityManager->flush();
         }
 
+        $age = $interval->format('%Y ans');
+        
+        if(!is_null($request->files->get('mainimage'))){
+            // Upload de l'une image
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            if($file = $request->files->get('mainimage')){
+                $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
+                $file->move(
+                    $this->getParameter('mainimages_directory'),
+                    $fileName
+                );
+                $membre->setMainimage($fileName);
+                $entityManager->persist($membre);
+                $entityManager->flush();
+            }
+        }
 
-        $age = $interval->format('%Y ans');            
 
         if(!is_null($request->get("submit"))){
             try{
@@ -55,6 +67,10 @@ class MembresController extends Controller
                 if($request->get('naissance')!=""){
                     $datetime = new \DateTime($request->get('naissance'));
                     $membre->setNaissance($datetime);
+                    $datetime1 = $membre->getNaissance();
+                    $datetime2 = new \DateTime();
+                    $interval = $datetime2->diff($datetime1);
+                    $age = $interval->format('%Y ans');
                 }
 
                 $membre->setTypeRelation($request->get('selectrelations'));
@@ -69,19 +85,8 @@ class MembresController extends Controller
                 $membre->setAnimaux($request->get('selectanimaux'));
                 $membre->setHobby($request->get('selecthobby'));
                 $membre->setStatut($request->get('selectstatut'));
-
-                // Upload de l'une image
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                if($file = $request->files->get('mainimage')){
-                    $fileName = $membre->getPseudo() .'.'. $file->guessExtension() ;
-                    $file->move(
-                        $this->getParameter('mainimages_directory'),
-                        $fileName
-                    );
-                    $membre->setMainimage($fileName);
-                }
-
-                $entityManager = $this->getDoctrine()->getManager();
+dump($membre);
+                // $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($membre);
                 $entityManager->flush();
                 // return $this->redirectToRoute('prive_profil', array('id' => $membre->getId()));
@@ -91,7 +96,6 @@ class MembresController extends Controller
         } 
 
         // création des options dans le formulaire
-
         return $this->render('prive/profil.html.twig', array(
             'membre' => $membre,
             'optionspersonnes' => $this->getOptionsPersonnes(),
@@ -122,7 +126,6 @@ class MembresController extends Controller
         $age = $interval->format('%Y ans');
 
         return $this->render('front/show.html.twig', array(
-
             'membre' => $membre,
             'age' => $age)
         );
@@ -145,29 +148,29 @@ dump($membres);
 
 
 
-    public function showMail(Request $request, \Swift_Mailer $mailer){
-        $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
-        if($request->get("send")){
-            if($request->get("exampleFormControlSelect2") == "all"){ // boucle envoi mail à tous les users
-                for($i =0; $i < count($membres); $i++)
-                    $this->sendMail($membres[$i]->getEmail(), $mailer);
-            }else{
-                $this->sendMail($request->get("exampleFormControlSelect2"), $mailer);
-            }
-        }
-        return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
-    }
+    // public function showMail(Request $request, \Swift_Mailer $mailer){
+    //     $membres = $this->getDoctrine()->getRepository(Membres::class)->findAll();
+    //     if($request->get("send")){
+    //         if($request->get("exampleFormControlSelect2") == "all"){ // boucle envoi mail à tous les users
+    //             for($i =0; $i < count($membres); $i++)
+    //                 $this->sendMail($membres[$i]->getEmail(), $mailer);
+    //         }else{
+    //             $this->sendMail($request->get("exampleFormControlSelect2"), $mailer);
+    //         }
+    //     }
+    //     return $this->render('admin3/send_mailing.html.twig', array("membres" => $membres));
+    // }
 
-    private function sendMail($adresse, $mailer){
-        $message = (new \Swift_Message('Bonjour'))
-        ->setFrom('WF3biscuits@gmail.com')
-        ->setTo($adresse)
-        ->setBody(
-            $this->renderView('admin3/mail/send.html.twig'),
-            'text/html'
-        );
-        $mailer->send($message);
-    }
+    // private function sendMail($adresse, $mailer){
+    //     $message = (new \Swift_Message('Bonjour'))
+    //     ->setFrom('WF3biscuits@gmail.com')
+    //     ->setTo($adresse)
+    //     ->setBody(
+    //         $this->renderView('admin3/mail/send.html.twig'),
+    //         'text/html'
+    //     );
+    //     $mailer->send($message);
+    // }
 
 
     ///////////////////////////////// CONTROLEURS DE TEST /////////////////////////////////////////////////////

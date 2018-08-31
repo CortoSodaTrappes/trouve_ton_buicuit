@@ -61,7 +61,7 @@
       <ul>
       {% for membre in membres %}
         <li>
-          <article>
+          <article class="grow">
             {% if membre.mainimage is null %}
               <figure><a href="{{path('membre_show', {id: membre.id})}}"><img src="images/spacer.gif" alt=""></a>
             {% else %}

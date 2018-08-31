@@ -1621,3 +1621,12 @@ table a,
         font-size: 1.6rem;
     }
 }
+
+
+/* ANIMATION */
+
+.rotate:hover {
+    -webkit-transform: rotateZ(20deg);
+    -ms-transform: rotateZ(20deg);
+    transform: rotateZ(20deg);
+}
